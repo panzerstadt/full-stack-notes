@@ -2,6 +2,10 @@
 - https://www.youtube.com/watch?v=GekQqFZm7mA
 
 ## Relational Databases
+- https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html
+- https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html
+- http://www.mysqltutorial.org/basic-mysql-tutorial.aspx
+- https://www.elated.com/articles/mysql-for-absolute-beginners/
 - a ledger style structure
 - a **THING** is a **row** in a **table**
 - sometimes you split up the **THING** into parts across different **tables**
@@ -18,9 +22,19 @@
 		- e.g. multilevel joins are terribly slow
 	- ORMs (Object Relational Mapping) is used to create complex queries
 - RDBMS are designed to answer **known questions**.
+- they have to be built with **all known questions** in mind so that they can be designed into the ORM
 
 ## Graph Databases
 ### \[property\] graphs
+**do this first**
+	- graphql + flask
+	- https://www.youtube.com/watch?v=p7VujaALaGQ
+- all graphql tutorials https://hackr.io/tutorials/learn-graphql
+- https://egghead.io/courses/build-a-graphql-server
+- https://neo4j.com/blog/neo4j-video-tutorials/
+- https://www.howtographql.com/
+- https://neo4j.com/developer/get-started/
+- https://neo4j.com/blog/7-ways-data-is-graph/
 - a **THING** is a **node** or **vertex**
 - **nodes** have **PROPERTIES**
 	- usually key-value pairs {Keys: Values}
@@ -49,6 +63,11 @@
 	- direct relationships (but that's not hard to do with RDBMS)
 	- indirect relationships (which are harder to traverse with relational databases)
 	![indirect relationships](./images/indirect-relationships.png)
+	<p align="center">usually slow and non-performant on RDBMS</p>
 	- questions you didn't expect (when designing the database, which is almost always)
+- you can add more relationships as needed and still be performant
 
-TO BE CONTINUED : https://youtu.be/GekQqFZm7mA?t=11m40s
+## links
+- https://www.quora.com/Neo4j-Who-uses-a-graph-database-in-production
+- https://www.quora.com/Why-arent-graph-databases-more-popular
+- https://neo4j.com/blog/neo4j-graph-side-project/
