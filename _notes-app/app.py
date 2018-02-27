@@ -3,6 +3,7 @@ from flask import Flask
 from flask import render_template, Markup
 import os
 from collections import OrderedDict
+print('markdown version: ', markdown.version)
 
 
 def iterate_till_blank(file_obj, strip_ends=True):
