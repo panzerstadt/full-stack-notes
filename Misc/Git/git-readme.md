@@ -11,6 +11,8 @@ git best practises ref
 - https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
 example
 - https://raw.githubusercontent.com/altercation/solarized/master/README.md
+cheat sheet
+- https://medium.freecodecamp.org/git-cheat-sheet-and-best-practices-c6ce5321f52
 
 ## **most frequent commands**
 	git init
