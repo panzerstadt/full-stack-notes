@@ -2,58 +2,57 @@
 
 
 **a happy git relationship**
-* At a high level it’s pretty simple: align the way you work with the way Git works.
-	* In your task management system, create smallish tasks that will be completed by a single developer
-	* For each task, complete the work in a single branch
-	* When you’re done with the task, merge your branch as a single commit
+At a high level it’s pretty simple: align the way you work with the way Git works.
+- In your task management system, create smallish tasks that will be completed by a single developer
+- For each task, complete the work in a single branch
+- When you’re done with the task, merge your branch as a single commit
 
 
 **useful reads**
-	git best practises ref
-	https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
-	example
-	https://raw.githubusercontent.com/altercation/solarized/master/README.md
+git best practises ref
+- https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
+example
+- https://raw.githubusercontent.com/altercation/solarized/master/README.md
 
 
 **most frequent commands**
-	git init
-	git add .
-	git commit -m “message here”
-	git push origin master
+1. git init
+2. git add .
+3. git commit -m “message here”
+4. git push origin master
 
 
 **to connect this local git to a new empty remote repository**
-	https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad
-	go to github and make new repository, then copy the .git web address
-	git remote add origin [copied web address]
+https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad
+- go to github and make new repository, then copy the .git web address
+- git remote add origin [copied web address]
 
 
 **to check where this git will connect to**
-	git remote -v
+git remote -v
 
 
 **images**
-	https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github
-	https://help.github.com/articles/about-readmes/
-<!---
-	If you use Markdown (README.md):
-	Provided that you have the image in your repo, you can use a relative URL:
-		![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
-	If you need to embed an image that's hosted elsewhere, you can use a full URL
-		![Alt text](http://full/path/to/img.jpg "Optional title")
-	GitHub recommend that you use relative links with the ?raw=true parameter to ensure forked repos point correctly.
-	Check out an example: https://raw.github.com/altercation/solarized/master/README.md
-	Also, the documentation on relative links in README files: https://help.github.com/articles/relative-links-in-readmes
-	And of course the markdown docs: http://daringfireball.net/projects/markdown/syntax
-	Additionally, if you create a new branch screenshots to store the images you can avoid them being in the master working tree
-	You can then embed them using:
-		![Alt text](/../<branch name>/path/to/image.png?raw=true "Optional Title")
--->
+- https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github
+- https://help.github.com/articles/about-readmes/
+		If you use Markdown (README.md):
+		Provided that you have the image in your repo, you can use a relative URL:
+		- ![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+		If you need to embed an image that's hosted elsewhere, you can use a full URL
+		- ![Alt text](http://full/path/to/img.jpg "Optional title")
+		GitHub recommend that you use relative links with the ?raw=true parameter to ensure forked repos point correctly.
+		Check out an example: https://raw.github.com/altercation/solarized/master/README.md
+		Also, the documentation on relative links in README files: https://help.github.com/articles/relative-links-in-readmes
+		And of course the markdown docs: http://daringfireball.net/projects/markdown/syntax
+		Additionally, if you create a new branch screenshots to store the images you can avoid them being in the master working tree
+		You can then embed them using:
+		- ![Alt text](/../<branch name>/path/to/image.png?raw=true "Optional Title")
+
 
 
 **commenting**
-	https://stackoverflow.com/questions/4823468/comments-in-markdown
-	https://talk.commonmark.org/t/method-for-comments-especially-multiline/208/3
+https://stackoverflow.com/questions/4823468/comments-in-markdown
+https://talk.commonmark.org/t/method-for-comments-especially-multiline/208/3
 
 **starting new git repo**
 
@@ -96,7 +95,7 @@
 
 **merge conflicts**
 	https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
-	![Alt text](/images/merge-conflicts.png?raw=true "https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7")
+	![merge conflicts](/images/merge-conflicts.png)
 
 
 **solving clashes and local/remote changes**
