@@ -57,6 +57,7 @@ def build_content_dict(full_filepaths, keyword='todo'):
 
     result = OrderedDict()
     for i, full_filepath in enumerate(full_filepaths):
+        print(full_filepath)
         with open(full_filepath, encoding='utf-8', errors='ignore') as readme:
             for line in readme:
                 if keyword in line.lower():
