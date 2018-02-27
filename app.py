@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import markdown
 from flask import Flask
 from flask import render_template, Markup
