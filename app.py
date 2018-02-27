@@ -23,18 +23,22 @@ def iterate_till_blank(file_obj, strip_ends=True):
     return result
 
 
-def get_full_and_simple_filepaths(folder='./', keyword='md', debug=False):
-    files = []
+def get_full_and_simple_filepaths(folder='./', keyword='.md', ignore=[None], debug=False):
+    file_list = []
     full_filepaths = []
     simple_filepaths = []
-    for paths in os.walk(folder):
-        for path in paths[2]:
-            if keyword in path:
-                files.append([paths[0], path])
-                if debug:
-                    print('filename: ', path)
-                    print('tuple: ', paths)
-    for filepath in files:
+    for root, dirs, files in os.walk(folder):
+        for file in files:
+            if keyword in file:
+                if os.path.basename(root).startswith('.'):
+                    print('NOT THIS ONE', root)
+                    pass
+                else:
+                    file_list.append([root, file])
+                    if debug:
+                        print('filename: ', file)
+                        print('tuple: ', (root, dirs, files))
+    for filepath in file_list:
         full_filepaths.append(os.path.join(filepath[0], filepath[1]))
         simple_filepaths.append(os.path.splitext(filepath[1])[0])
     return full_filepaths, simple_filepaths
@@ -57,7 +61,6 @@ def build_content_dict(full_filepaths, keyword='todo'):
 
     result = OrderedDict()
     for i, full_filepath in enumerate(full_filepaths):
-        print(full_filepath)
         with open(full_filepath, encoding='utf-8', errors='ignore') as readme:
             for line in readme:
                 if keyword in line.lower():
@@ -82,7 +85,7 @@ app = Flask(__name__)
 print('app initiated. name of app: {0}'.format(__name__))
 
 # global variables
-full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='md')
+full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='.md', debug=True)
 
 
 @app.route('/full/')
@@ -130,5 +133,5 @@ def todo():
 def homepage():
     pass
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()
