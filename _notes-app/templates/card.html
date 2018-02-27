@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+seems you can stack bootstrap links together.
+CSS is always on top (to speed things up)
+
+ -->
+
+<link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.3/flatly/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.10.0/css/bootstrap-markdown.min.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+    <meta charset="UTF-8">
+    <title>cards : {{ name }}</title>
+</head>
+<body>
+<div class="jumbotron" style="background-color:#313638">
+    <div class="container rounded" style="background-color:#FBFCFC;display:flex;align-items:center;padding:5%">
+        <div>
+            {{content}}
+        </div>
+    </div>
+</div>
+
+<!--
+JAVASCRIPT at the bottom
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.10.0/js/bootstrap-markdown.min.js"></script>
+
+</body>
+</html>
