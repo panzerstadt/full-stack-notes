@@ -79,7 +79,7 @@ app = Flask(__name__)
 print('app initiated. name of app: {0}'.format(__name__))
 
 # global variables
-full_filepaths, filenames = get_full_and_simple_filepaths(folder='../', keyword='md')
+full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='md')
 
 
 @app.route('/full/')
