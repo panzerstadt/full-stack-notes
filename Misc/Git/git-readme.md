@@ -93,71 +93,72 @@ You can then embed them using:
 
 ## **solving clashes and local/remote changes**
 - https://stackoverflow.com/questions/22620393/various-ways-to-remove-local-git-changes
-	
-	Solution : Major Edit(s): 03/26 : * Replaced many of vague terms with git specific terminology [tracked/untracked/staged/unstaged]
-	There could be only three categories of files when we make local changes:
-	Type 1. Staged Tracked files
-	Type 2. Unstaged Tracked files
-	Type 3. Unstaged UnTracked files a.k.a UnTracked files
-	/* Staged - Those that are moved to staging area/ Added to index
-	/* Tracked - modified files
-	/* UnTracked - new files. Always unstaged. If staged, that means they are tracked.
-	What each commands do:
-	1. git checkout . - Removes Unstaged Tracked files ONLY [Type 2]
-	2. git clean -f - Removes Unstaged UnTracked files ONLY [Type 3]
-	3. git reset --hard - Removes Staged Tracked and UnStaged Tracked files ONLY[Type 1, Type 2]
-	4. git stash -u - Removes all changes [Type 1, Type 2, Type 3]
-	Conclusion:
-	It's clear that we can use either
-	(1) combination of `git clean -f` and `git reset --hard` 
+```
+*Solution : Major Edit(s): 03/26 : * Replaced many of vague terms with git specific terminology [tracked/untracked/staged/unstaged]
+There could be only three categories of files when we make local changes:
+Type 1. Staged Tracked files
+Type 2. Unstaged Tracked files
+Type 3. Unstaged UnTracked files a.k.a UnTracked files
+/* Staged - Those that are moved to staging area/ Added to index
+/* Tracked - modified files
+/* UnTracked - new files. Always unstaged. If staged, that means they are tracked.
+What each commands do:
+1. git checkout . - Removes Unstaged Tracked files ONLY [Type 2]
+2. git clean -f - Removes Unstaged UnTracked files ONLY [Type 3]
+3. git reset --hard - Removes Staged Tracked and UnStaged Tracked files ONLY[Type 1, Type 2]
+4. git stash -u - Removes all changes [Type 1, Type 2, Type 3]
+Conclusion:
+It's clear that we can use either
+(1) combination of `git clean -f` and `git reset --hard` 
 
-	OR
-	(2) `git stash -u`
+OR
+(2) `git stash -u`
 
-	to achieve the desired result.
-	Note: Stashing, as the word means 'Store (something) safely and secretly in a specified place.' This can always be retrieved using git stash pop. So choosing between the above two options is developer's call.
-	Thank you Christoph and Frederik Schøning.
-	Edit: 03/27
-	I thought it's worth putting the 'beware' note to git clean -f
-	git clean -f
-	There is no going back. Use -n or --dry-run to preview the damage you'll do.
-	If you want to also remove directories, run git clean -f -d
-	If you just want to remove ignored files, run git clean -f -X
-	If you want to remove ignored as well as non-ignored files, run git clean -f -x
-	reference : more on git clean : How to remove local (untracked) files from the current Git working tree?
-	Edit: 05/20/15
-	Discarding all local commits on this branch [Removing local commits]
-	In order to discard all local commits on this branch, to make the local branch identical to the "upstream" of this branch, simply run git reset --hard @{u}
-	Reference: http://sethrobertson.github.io/GitFixUm/fixup.html
-	or do git reset --hard origin/master [if local branch is master]
-	Note: 06/12/2015 This is not a duplicate of the other SO question that's marked as duplicate. This question address how to remove local GIT changes [remove a file added, remove changes added to existing file etc and the various approaches; Where in the other SO thread only address how to remove local commit. If you added a file, and you want to remove that alone, then the other SO thread doesn't discuss about it. Hence this is not a duplicate of the other one]
-	Edit: 06/23/15
-	How to revert a commit already pushed to a remote repository?
-	$ git revert ab12cd15
+to achieve the desired result.
+Note: Stashing, as the word means 'Store (something) safely and secretly in a specified place.' This can always be retrieved using git stash pop. So choosing between the above two options is developer's call.
+Thank you Christoph and Frederik Schøning.
+Edit: 03/27
+I thought it's worth putting the 'beware' note to git clean -f
+git clean -f
+There is no going back. Use -n or --dry-run to preview the damage you'll do.
+If you want to also remove directories, run git clean -f -d
+If you just want to remove ignored files, run git clean -f -X
+If you want to remove ignored as well as non-ignored files, run git clean -f -x
+reference : more on git clean : How to remove local (untracked) files from the current Git working tree?
+Edit: 05/20/15
+Discarding all local commits on this branch [Removing local commits]
+In order to discard all local commits on this branch, to make the local branch identical to the "upstream" of this branch, simply run git reset --hard @{u}
+Reference: http://sethrobertson.github.io/GitFixUm/fixup.html
+or do git reset --hard origin/master [if local branch is master]
+Note: 06/12/2015 This is not a duplicate of the other SO question that's marked as duplicate. This question address how to remove local GIT changes [remove a file added, remove changes added to existing file etc and the various approaches; Where in the other SO thread only address how to remove local commit. If you added a file, and you want to remove that alone, then the other SO thread doesn't discuss about it. Hence this is not a duplicate of the other one]
+Edit: 06/23/15
+How to revert a commit already pushed to a remote repository?
+$ git revert ab12cd15
 
-	Edit: 09/01/2015
-	Delete a previous commit from local branch and remote branch
-	Case: You just commited a change to your local branch and immediately pushed to the remote branch, Suddenly realized , Oh no! I dont need this change. Now do what?
-	git reset --hard HEAD~1 [for deleting that commit from local branch]
-	git push origin HEAD --force [both the commands must be executed. For deleting from remote branch]
-	Whats the branch ? Its the currently checked out branch.
-	Edit 09/08/2015 - Remove local git merge:
-	I am on master branch and merged master branch with a newly working branch phase2
-	$ git status
-	# On branch master
+Edit: 09/01/2015
+Delete a previous commit from local branch and remote branch
+Case: You just commited a change to your local branch and immediately pushed to the remote branch, Suddenly realized , Oh no! I dont need this change. Now do what?
+git reset --hard HEAD~1 [for deleting that commit from local branch]
+git push origin HEAD --force [both the commands must be executed. For deleting from remote branch]
+Whats the branch ? Its the currently checked out branch.
+Edit 09/08/2015 - Remove local git merge:
+I am on master branch and merged master branch with a newly working branch phase2
+$ git status
+# On branch master
 
-	$ git merge phase2
+$ git merge phase2
 
-	$ git status
-	# On branch master
-	# Your branch is ahead of 'origin/master' by 8 commits.
+$ git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 8 commits.
 
-	Q: How to get rid of this merge? Tried git reset --hard and git clean -d -f Both didn't work.
-	The only thing that worked are any of the below ones:
-	$ git reset --hard origin/master
+Q: How to get rid of this merge? Tried git reset --hard and git clean -d -f Both didn't work.
+The only thing that worked are any of the below ones:
+$ git reset --hard origin/master
 
-	or
-	$ git reset --hard HEAD~8
+or
+$ git reset --hard HEAD~8
 
-	or
-	$ git reset --hard 9a88396f51e2a068bb7 [sha commit code - this is the one that was present before all your merge commits happened]
+or
+$ git reset --hard 9a88396f51e2a068bb7 [sha commit code - this is the one that was present before all your merge commits happened]
+```
