@@ -94,7 +94,7 @@ You can then embed them using:
 ## **solving clashes and local/remote changes**
 - https://stackoverflow.com/questions/22620393/various-ways-to-remove-local-git-changes
 	
-	/*Solution : Major Edit(s): 03/26 : * Replaced many of vague terms with git specific terminology [tracked/untracked/staged/unstaged]
+	Solution : Major Edit(s): 03/26 : * Replaced many of vague terms with git specific terminology [tracked/untracked/staged/unstaged]
 	There could be only three categories of files when we make local changes:
 	Type 1. Staged Tracked files
 	Type 2. Unstaged Tracked files
