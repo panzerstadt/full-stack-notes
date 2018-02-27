@@ -81,12 +81,22 @@ print('app initiated. name of app: {0}'.format(__name__))
 full_filepaths, filenames = get_full_and_simple_filepaths(folder='../', keyword='md')
 
 
-@app.route('/unformatted/')
-def homepage_unformatted():
-    md_content = Markup(markdown.markdown(open(testdir).read()))
-    return render_template('card.html', name=testname, content=md_content)
+@app.route('/full/')
+def all_readmes():
+    global full_filepaths
+
+    md = ''
+    for file in full_filepaths:
+        with open(file) as single_readme:
+            md += single_readme.read()
+            md += '\n----\n'
+
+    full_readme_md = md
+    md_content = Markup(markdown.markdown(full_readme_md))
+    return render_template('card.html', name='all the readmes', content=md_content)
 
 @app.route('/todo/')
+@app.route('/')
 def todo():
     global full_filepaths
 
@@ -112,7 +122,7 @@ def todo():
     return render_template('card.html', name='to-do list', content=md_content)
 
 
-@app.route('/')
+#@app.route('/')
 def homepage():
     pass
 
