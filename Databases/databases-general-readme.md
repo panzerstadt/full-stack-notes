@@ -1,6 +1,17 @@
 # GRAPH + RELATIONAL DATABASES
 - https://www.youtube.com/watch?v=GekQqFZm7mA
 
+### TODO: many database tech
+- graphql + flask https://www.youtube.com/watch?v=p7VujaALaGQ
+- mysql https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html
+- MongoDB
+
+## Types of Databases
+- relational : MySQL, sqlite
+- graph : Neo4j
+- hierarchical : xml, json
+- document : MongoDB
+
 ## Relational Databases
 - https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html
 - https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html
@@ -66,6 +77,10 @@
 	<p align="center">usually slow and non-performant on RDBMS</p>
 	- questions you didn't expect (when designing the database, which is almost always)
 - you can add more relationships as needed and still be performant
+
+## Document Databases
+### MongoDB
+- WIP
 
 ## links
 - https://www.quora.com/Neo4j-Who-uses-a-graph-database-in-production

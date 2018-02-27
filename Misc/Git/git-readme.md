@@ -1,5 +1,9 @@
 # GIT
 
+### TODO: intermediate GIT
+- https://medium.freecodecamp.org/understanding-git-for-real-by-exploring-the-git-directory-1e079c15b807
+- practice merge conflicts https://medium.freecodecamp.org/5-github-tips-for-new-coders-2f312689ffd5
+
 ## **a happy git relationship**
 At a high level it’s pretty simple: align the way you work with the way Git works.
 - In your task management system, create smallish tasks that will be completed by a single developer
@@ -9,10 +13,12 @@ At a high level it’s pretty simple: align the way you work with the way Git wo
 ## **useful reads**
 git best practises ref
 - https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
-example
+markdown example
 - https://raw.githubusercontent.com/altercation/solarized/master/README.md
 cheat sheet
 - https://medium.freecodecamp.org/git-cheat-sheet-and-best-practices-c6ce5321f52
+important things to know
+- https://medium.freecodecamp.org/5-github-tips-for-new-coders-2f312689ffd5
 
 ## **most frequent commands**
 	git init
@@ -89,6 +95,8 @@ You can then embed them using:
 
 ## **merge conflicts**
 - https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
+- https://medium.freecodecamp.org/5-github-tips-for-new-coders-2f312689ffd5
+
 - using WebStorm
 ![merge conflicts](./images/merge-conflicts.png)
 <p align="center">One added line (green), one edited line (blue) and a conflict (red)</p>
