@@ -55,7 +55,7 @@ def build_content_dict(full_filepaths, keyword='todo'):
 
     result = OrderedDict()
     for i, full_filepath in enumerate(full_filepaths):
-        with open(full_filepath) as readme:
+        with open(full_filepath, encoding='utf-8') as readme:
             for line in readme:
                 if keyword in line.lower():
                     # strips markdown formatting on left and \n + spaces on right
