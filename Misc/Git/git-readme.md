@@ -36,18 +36,18 @@ example
 - https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github
 - https://help.github.com/articles/about-readmes/
 ```
-	If you use Markdown (README.md):
-	Provided that you have the image in your repo, you can use a relative URL:
-	![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
-	If you need to embed an image that's hosted elsewhere, you can use a full URL
-	![Alt text](http://full/path/to/img.jpg "Optional title")
-	GitHub recommend that you use relative links with the ?raw=true parameter to ensure forked repos point correctly.
-	Check out an example: https://raw.github.com/altercation/solarized/master/README.md
-	Also, the documentation on relative links in README files: https://help.github.com/articles/relative-links-in-readmes
-	And of course the markdown docs: http://daringfireball.net/projects/markdown/syntax
-	Additionally, if you create a new branch screenshots to store the images you can avoid them being in the master working tree
-	You can then embed them using:
-	![Alt text](/../<branch name>/path/to/image.png?raw=true "Optional Title")
+If you use Markdown (README.md):
+Provided that you have the image in your repo, you can use a relative URL:
+![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+If you need to embed an image that's hosted elsewhere, you can use a full URL
+![Alt text](http://full/path/to/img.jpg "Optional title")
+GitHub recommend that you use relative links with the ?raw=true parameter to ensure forked repos point correctly.
+Check out an example: https://raw.github.com/altercation/solarized/master/README.md
+Also, the documentation on relative links in README files: https://help.github.com/articles/relative-links-in-readmes
+And of course the markdown docs: http://daringfireball.net/projects/markdown/syntax
+Additionally, if you create a new branch screenshots to store the images you can avoid them being in the master working tree
+You can then embed them using:
+![Alt text](/../<branch name>/path/to/image.png?raw=true "Optional Title")
 ```
 ----
 
@@ -97,7 +97,7 @@ example
 
 ### **merge conflicts**
 - https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
-![merge conflicts](/images/merge-conflicts.png)
+![merge conflicts](./images/merge-conflicts.png)
 ----
 
 ### **solving clashes and local/remote changes**
