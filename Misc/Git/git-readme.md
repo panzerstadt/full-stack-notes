@@ -2,10 +2,10 @@
 
 
 **a happy git relationship**
-	* At a high level it’s pretty simple: align the way you work with the way Git works.
-		* In your task management system, create smallish tasks that will be completed by a single developer
-		* For each task, complete the work in a single branch
-		* When you’re done with the task, merge your branch as a single commit
+* At a high level it’s pretty simple: align the way you work with the way Git works.
+	* In your task management system, create smallish tasks that will be completed by a single developer
+	* For each task, complete the work in a single branch
+	* When you’re done with the task, merge your branch as a single commit
 
 
 **useful reads**
