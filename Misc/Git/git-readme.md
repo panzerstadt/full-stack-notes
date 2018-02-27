@@ -1,38 +1,33 @@
 # GIT
 
-### **a happy git relationship**
+## **a happy git relationship**
 At a high level it’s pretty simple: align the way you work with the way Git works.
 - In your task management system, create smallish tasks that will be completed by a single developer
 - For each task, complete the work in a single branch
 - When you’re done with the task, merge your branch as a single commit
-----
 
-### **useful reads**
+## **useful reads**
 git best practises ref
 - https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
 example
 - https://raw.githubusercontent.com/altercation/solarized/master/README.md
-----
 
-### **most frequent commands**
+## **most frequent commands**
 	git init
 	git add .
 	git commit -m “message here”
 	git push origin master
-----
 
-### **to connect this local git to a new empty remote repository**
+## **to connect this local git to a new empty remote repository**
 - https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad
 - go to github and make new repository, then copy the .git web address
 	
 	git remote add origin [copied web address]
-----
 
-### **to check where this git will connect to**
+## **to check where this git will connect to**
 	git remote -v
-----
 
-### **images**
+## **images**
 - https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github
 - https://help.github.com/articles/about-readmes/
 ```
@@ -49,14 +44,12 @@ Additionally, if you create a new branch screenshots to store the images you can
 You can then embed them using:
 ![Alt text](/../<branch name>/path/to/image.png?raw=true "Optional Title")
 ```
-----
 
-### **commenting**
+## **commenting**
 - https://stackoverflow.com/questions/4823468/comments-in-markdown
 - https://talk.commonmark.org/t/method-for-comments-especially-multiline/208/3
-----
 
-### **starting new git repo**
+## **starting new git repo**
 
 	Initialize
 	1. make empty folder mkdir thatriectoryname 
@@ -81,29 +74,27 @@ You can then embed them using:
 	2. commit means that file will now forever live in git’s history, which can be tracked and rewinded to.
 	3. by default git creates a master branch, use git branch to check
 	4. use git log to see what the “commit” box currently has
-----
 
-### **git push to all remotes in the project (e.g. heroku and github)**
+## **git push to all remotes in the project (e.g. heroku and github)**
 - https://stackoverflow.com/questions/5785549/able-to-push-to-all-git-remotes-with-the-one-command
 - add shortcut to git cli
 	git config --global alias.pushall '!git remote | xargs -L1 git push --all'
 - then just use shortcut
 	git pushall
-----
 
-### **be careful when moving and renaming**
+## **be careful when moving and renaming**
 - Git doesn’t track moved/renamed files. However, if it sees your branch has a removed file, and a new file, and they are, say, 90% similar, it will assume that it’s seeing a renamed file.
-----
 
-### **merge conflicts**
+## **merge conflicts**
 - https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
+- using WebStorm
 ![merge conflicts](./images/merge-conflicts.png)
-----
+<p align="center">One added line (green), one edited line (blue) and a conflict (red)</p>
 
-### **solving clashes and local/remote changes**
+## **solving clashes and local/remote changes**
 - https://stackoverflow.com/questions/22620393/various-ways-to-remove-local-git-changes
 	
-	Solution : Major Edit(s): 03/26 : * Replaced many of vague terms with git specific terminology [tracked/untracked/staged/unstaged]
+	/*Solution : Major Edit(s): 03/26 : * Replaced many of vague terms with git specific terminology [tracked/untracked/staged/unstaged]
 	There could be only three categories of files when we make local changes:
 	Type 1. Staged Tracked files
 	Type 2. Unstaged Tracked files
