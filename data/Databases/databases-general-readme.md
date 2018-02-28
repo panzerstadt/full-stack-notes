@@ -12,49 +12,88 @@
 - document : MongoDB
 
 ## RDBMS vs MongoDB
-```html
-<table style="text-align:center;" class="table table-bordered">
-<tbody><tr>
-<th style="text-align:center;width:50%;">RDBMS</th>
-<th style="text-align:center;">MongoDB</th>
-</tr>
-<tr>
-<td>Database</td>
-<td>Database</td>
-</tr>
-<tr>
-<td>Table</td>
-<td>Collection</td>
-</tr>
-<tr>
-<td>Tuple/Row</td>
-<td>Document</td>
-</tr>
-<tr>
-<td>column</td>
-<td>Field</td>
-</tr>
-<tr>
-<td>Table Join</td>
-<td>Embedded Documents</td>
-</tr>
-<tr>
-<td>Primary Key</td>
-<td>Primary Key (Default key _id provided by mongodb itself)</td>
-</tr>
-<tr>
-<th colspan="2" style="text-align:center;">Database Server and Client</th>
-</tr>
-<tr>
-<td>Mysqld/Oracle</td>
-<td>mongod</td>
-</tr>
-<tr>
-<td>mysql/sqlplus</td>
-<td>mongo</td>
-</tr>
-</tbody></table>
-```
+<table class="table table-bordered" style="text-align:center;">
+    <tbody>
+        <tr>
+            <th style="text-align:center;width:50%;">
+                RDBMS
+            </th>
+            <th style="text-align:center;">
+                MongoDB
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Database
+            </td>
+            <td>
+                Database
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Table
+            </td>
+            <td>
+                Collection
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tuple/Row
+            </td>
+            <td>
+                Document
+            </td>
+        </tr>
+        <tr>
+            <td>
+                column
+            </td>
+            <td>
+                Field
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Table Join
+            </td>
+            <td>
+                Embedded Documents
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Primary Key
+            </td>
+            <td>
+                Primary Key (Default key _id provided by mongodb itself)
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2" style="text-align:center;">
+                Database Server and Client
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Mysqld/Oracle
+            </td>
+            <td>
+                mongod
+            </td>
+        </tr>
+        <tr>
+            <td>
+                mysql/sqlplus
+            </td>
+            <td>
+                mongo
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 
 ## Relational Databases
 - https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html
@@ -118,8 +157,10 @@
 	- direct relationships (but that's not hard to do with RDBMS)
 	- indirect relationships (which are harder to traverse with relational databases)
 	![indirect relationships](./images/indirect-relationships.png)
-	<p align="center">usually slow and non-performant on RDBMS</p>
-	- questions you didn't expect (when designing the database, which is almost always)
+<p align="center">
+    usually slow and non-performant on RDBMS
+</p>
+- questions you didn't expect (when designing the database, which is almost always)
 - you can add more relationships as needed and still be performant
 
 ## Document Databases
