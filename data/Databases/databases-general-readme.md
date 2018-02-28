@@ -12,87 +12,89 @@
 - document : MongoDB
 
 ## RDBMS vs MongoDB
-<table class="table table-bordered" style="text-align:center;">
-    <tbody>
-        <tr>
-            <th style="text-align:center;width:50%;">
-                RDBMS
-            </th>
-            <th style="text-align:center;">
-                MongoDB
-            </th>
-        </tr>
-        <tr>
-            <td>
-                Database
-            </td>
-            <td>
-                Database
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Table
-            </td>
-            <td>
-                Collection
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Tuple/Row
-            </td>
-            <td>
-                Document
-            </td>
-        </tr>
-        <tr>
-            <td>
-                column
-            </td>
-            <td>
-                Field
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Table Join
-            </td>
-            <td>
-                Embedded Documents
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Primary Key
-            </td>
-            <td>
-                Primary Key (Default key _id provided by mongodb itself)
-            </td>
-        </tr>
-        <tr>
-            <th colspan="2" style="text-align:center;">
-                Database Server and Client
-            </th>
-        </tr>
-        <tr>
-            <td>
-                Mysqld/Oracle
-            </td>
-            <td>
-                mongod
-            </td>
-        </tr>
-        <tr>
-            <td>
-                mysql/sqlplus
-            </td>
-            <td>
-                mongo
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+	<table class="table table-bordered" style="text-align:center;">
+	    <tbody>
+	        <tr>
+	            <th style="text-align:center;width:50%;">
+	                RDBMS
+	            </th>
+	            <th style="text-align:center;">
+	                MongoDB
+	            </th>
+	        </tr>
+	        <tr>
+	            <td>
+	                Database
+	            </td>
+	            <td>
+	                Database
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                Table
+	            </td>
+	            <td>
+	                Collection
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                Tuple/Row
+	            </td>
+	            <td>
+	                Document
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                column
+	            </td>
+	            <td>
+	                Field
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                Table Join
+	            </td>
+	            <td>
+	                Embedded Documents
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                Primary Key
+	            </td>
+	            <td>
+	                Primary Key (Default key _id provided by mongodb itself)
+	            </td>
+	        </tr>
+	        <tr>
+	            <th colspan="2" style="text-align:center;">
+	                Database Server and Client
+	            </th>
+	        </tr>
+	        <tr>
+	            <td>
+	                Mysqld/Oracle
+	            </td>
+	            <td>
+	                mongod
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                mysql/sqlplus
+	            </td>
+	            <td>
+	                mongo
+	            </td>
+	        </tr>
+	    </tbody>
+	</table>
+</div>
 
 
 ## Relational Databases
