@@ -17,7 +17,7 @@
 - they were developed to address a set of problems that fb keeps seeing
 
 ### the problem: facebook notification bug
-<img src="./images/01.png" alt="notification bug" style="width: 200px;"/>
+<img src="./images/01.png" alt="notification bug" style="width: 50px;"/>
 <p align="center">
 	when you log into facebook, you see a notification.
 	when you click on it, there are no new messages.
@@ -26,7 +26,7 @@
 	repeat.
 </p>
 
-<img src="./images/02.png" alt="endless cycle" style="width: 200px;"/>
+<img src="./images/02.png" alt="endless cycle" style="width: 50px;"/>
 <p align="center">
 	it wasn't just a cycle for the users, it was also for the dev team.
 	fix bug > fine > bug comes back > fix bug > fine > bug comes back
