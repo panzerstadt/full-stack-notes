@@ -2,7 +2,7 @@
 - https://www.youtube.com/watch?v=GekQqFZm7mA
 
 ### TODO: many database tech
-- graphql + flask https://www.youtube.com/watch?v=p7VujaALaGQ
+- graphql + flask <https://www.youtube.com/watch?v=p7VujaALaGQ>
 - mysql https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html
 - MongoDB
 
