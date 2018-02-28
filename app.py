@@ -80,6 +80,21 @@ def first(s):
     '''
     return next(iter(s))
 
+
+def md_progressbar(percent, title=None):
+    """
+    returns markdown formatted progressbar coutesy of progressed.io
+    website : https://github.com/fehmicansaglam/progressed.io
+    :param percent:
+    :return: ![Progress](http://progressed.io/bar/<percent>)
+    """
+    if title:
+        progressbar = '![Progress](http://progressed.io/bar/{0}?title={1})'.format(percent, title)
+    else:
+        progressbar = '![Progress](http://progressed.io/bar/{0})'.format(percent)
+    return progressbar
+
+
 app = Flask(__name__)
 print('app initiated. name of app: {0}'.format(__name__))
 
@@ -112,30 +127,47 @@ def todo():
     # rebuild markdown formatting for todo list
     md_list = []
     for k, v in todo_dict.items():
-        md = '#### [{0}]({1})\n'.format(k, v[0])  # title
-        if v[1]:
-            md += '###### {0}\n'.format(v[1])  # subtitle
-        else:
-            md += '###### complete!'
-        if v[2]:
-            # make a percentage
+        # title with links
+        md_block_0 = '#### [{0}]({1})\n'.format(k, v[0])
+        # todo : (currently relative links, only works in github markdown)
 
-            # write contents
-            for lines in v[2]:
-                md += '{0}\n'.format(lines)  # contents
-        md += '\n----'
-        md_list.append(md)
+        # subtitle and contents
+        md_block_1 = ''
+        if v[1]:
+            percentage = 0
+            md_block_1 += '###### {0}\n'.format(v[1])  # subtitle
+            # if there is a todo list, then check for contents
+            if v[2]:
+                # make a percentage
+                percentage = max(0, (5 - len(v[2]))) * 20
+                # write contents
+                for lines in v[2]:
+                    md_block_1 += '{0}\n'.format(lines)  # contents
+        else:
+            # if there are no todo lists,topic is complete!
+            md_block_1 += '###### complete!\n'
+            percentage = 100
+
+        # progress bar
+        md_block_2 = md_progressbar(percentage)
+
+        md = '\n'.join([md_block_0, md_block_2, md_block_1])
+        #md += '\n----'
+        md_list.append([md, percentage])
 
     # then join all individual mds with \n to make a combined md
-    todo_list_md = '\n'.join(md_list)
-    print(todo_list_md)
-    md_content = Markup(markdown.markdown(todo_list_md))
-    return render_template('card_multiple.html', name='to-do list', content=md_content)
+    # todo_list_md = '\n'.join(md_list[0])
+    # print(todo_list_md)
+    md_contents = [Markup(markdown.markdown(md_pair[0])) for md_pair in md_list]
+    percentages = [md_pair[1] for md_pair in md_list]
+    return render_template('card_multiple.html',
+                           name='to-do list',
+                           contents=zip(percentages, md_contents))
 
 
 #@app.route('/')
 def homepage():
     pass
 
-# if __name__ == '__main__':
-#     app.run()
+if __name__ == '__main__':
+    app.run()

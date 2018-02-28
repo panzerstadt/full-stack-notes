@@ -13,12 +13,16 @@ CSS is always on top (to speed things up)
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <head>
     <meta charset="UTF-8">
-    <title>cards : {{ name }}</title>
+    <title>gitnotes : {% block title %}{% endblock %}</title>
 </head>
-<body>
-<div class="jumbotron" style="background-color:#313638">
-    <!-- containers need to be instantiated for each block -->
-    {% block body %}{% endblock %}
+<body class="jumbotron" style="background-color:#373F42">
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-4 col-xs-12">
+            <!-- containers need to be instantiated for each block -->
+            {% block body %}{% endblock %}
+        </div>
+    </div>
 </div>
 
 <!--
