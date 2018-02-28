@@ -99,7 +99,7 @@ def all_readmes():
 
     full_readme_md = md
     md_content = Markup(markdown.markdown(full_readme_md))
-    return render_template('card.html', name='all the readmes', content=md_content)
+    return render_template('card_single.html', name='all the readmes', content=md_content)
 
 @app.route('/todo/')
 @app.route('/')
@@ -112,10 +112,15 @@ def todo():
     # rebuild markdown formatting for todo list
     md_list = []
     for k, v in todo_dict.items():
-        md = '### [{0}]({1})\n'.format(k, v[0])  # title
+        md = '#### [{0}]({1})\n'.format(k, v[0])  # title
         if v[1]:
-            md += '##### {0}\n'.format(v[1])  # subtitle
+            md += '###### {0}\n'.format(v[1])  # subtitle
+        else:
+            md += '###### complete!'
         if v[2]:
+            # make a percentage
+
+            # write contents
             for lines in v[2]:
                 md += '{0}\n'.format(lines)  # contents
         md += '\n----'
@@ -125,7 +130,7 @@ def todo():
     todo_list_md = '\n'.join(md_list)
     print(todo_list_md)
     md_content = Markup(markdown.markdown(todo_list_md))
-    return render_template('card.html', name='to-do list', content=md_content)
+    return render_template('card_multiple.html', name='to-do list', content=md_content)
 
 
 #@app.route('/')
