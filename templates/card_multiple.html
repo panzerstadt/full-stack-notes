@@ -6,8 +6,10 @@
 <div class="card-columns">
     {% for percentage, content in contents %}
         <div class="card">
-            <div class="card-block" style="padding:20px;background-color:##FEFCF9;overflow-wrap:break-word">
-                {{ content }}
+            <div class="card-body" style="padding:20px;background-color:##FEFCF9;overflow-wrap:break-word">
+                <div class="card-text">
+                    {{ content }}
+                </div>
             </div>
         </div>
     {% endfor %}

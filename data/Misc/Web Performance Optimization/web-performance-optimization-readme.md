@@ -3,6 +3,9 @@
 - streamlining is called Front End Optimization (FEO) or content optimization
 - study how heavy webpages/dashboards optimize their content loading and loading order
 
+## TODO: tutorial
+- knowing the 'critical rendering path' (by google) https://www.udacity.com/course/website-performance-optimization--ud884
+
 
 ## course - knowing the 'critical rendering path'
 - https://www.udacity.com/course/website-performance-optimization--ud884

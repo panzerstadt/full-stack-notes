@@ -2,7 +2,6 @@
 - https://www.youtube.com/watch?v=GekQqFZm7mA
 
 ### TODO: many database tech
-- graphql + flask <https://www.youtube.com/watch?v=p7VujaALaGQ>
 - mysql https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html
 - MongoDB
 
@@ -11,6 +10,51 @@
 - graph : Neo4j
 - hierarchical : xml, json
 - document : MongoDB
+
+## RDBMS vs MongoDB
+```html
+<table style="text-align:center;" class="table table-bordered">
+<tbody><tr>
+<th style="text-align:center;width:50%;">RDBMS</th>
+<th style="text-align:center;">MongoDB</th>
+</tr>
+<tr>
+<td>Database</td>
+<td>Database</td>
+</tr>
+<tr>
+<td>Table</td>
+<td>Collection</td>
+</tr>
+<tr>
+<td>Tuple/Row</td>
+<td>Document</td>
+</tr>
+<tr>
+<td>column</td>
+<td>Field</td>
+</tr>
+<tr>
+<td>Table Join</td>
+<td>Embedded Documents</td>
+</tr>
+<tr>
+<td>Primary Key</td>
+<td>Primary Key (Default key _id provided by mongodb itself)</td>
+</tr>
+<tr>
+<th colspan="2" style="text-align:center;">Database Server and Client</th>
+</tr>
+<tr>
+<td>Mysqld/Oracle</td>
+<td>mongod</td>
+</tr>
+<tr>
+<td>mysql/sqlplus</td>
+<td>mongo</td>
+</tr>
+</tbody></table>
+```
 
 ## Relational Databases
 - https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html
