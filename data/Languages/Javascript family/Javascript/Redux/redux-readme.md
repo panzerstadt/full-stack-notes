@@ -17,9 +17,10 @@
 - they were developed to address a set of problems that fb keeps seeing
 
 ### the problem: facebook notification bug
-<div class="container">
+
+<div class="container" style="background-color: #FCFBFB">
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-xs-4">
 			<img src="./images/01.png" alt="notification bug" width="200"/>
 			<p align="center">
 				when you log into facebook, you see a notification.
@@ -33,11 +34,15 @@
 </div>
 
 <div class="container">
-	<img src="./images/02.png" alt="endless cycle" width="200" />
-	<p align="center">
-		it wasn't just a cycle for the users, it was also for the dev team.
-		fix bug > fine > bug comes back > fix bug > fine > bug comes back
-	</p>
+	<div class="row">
+		<div class="col-xs-4">
+			<img src="./images/02.png" alt="endless cycle" width="200" />
+			<p align="center">
+				it wasn't just a cycle for the users, it was also for the dev team.
+				fix bug > fine > bug comes back > fix bug > fine > bug comes back
+			</p>
+		</div>
+	</div>
 </div>
 
 facebook wanted to get out of this cycle, by making the **system predictable** so that this problem would keep resurfacing.
