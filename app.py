@@ -56,8 +56,7 @@ def build_content_dict(full_filepaths, keyword='todo'):
     """
     from os.path import basename, splitext
     filenames = [splitext(basename(f))[0] for f in full_filepaths]  # get clean filename
-    # remove -readme
-    filenames = [f[:-7] for f in filenames]
+    filenames = [f[:-7] for f in filenames]  # remove -readme
 
     result = OrderedDict()
     for i, full_filepath in enumerate(full_filepaths):
