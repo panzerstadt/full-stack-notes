@@ -17,20 +17,28 @@
 - they were developed to address a set of problems that fb keeps seeing
 
 ### the problem: facebook notification bug
-<img src="./images/01.png" alt="notification bug" align="center" width="200"/>
-<p align="center">
-	when you log into facebook, you see a notification.
-	when you click on it, there are no new messages.
-	the notification goes away.
-	after a while, it comes back.
-	repeat.
-</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<img src="./images/01.png" alt="notification bug" width="200"/>
+			<p align="center">
+				when you log into facebook, you see a notification.
+				when you click on it, there are no new messages.
+				the notification goes away.
+				after a while, it comes back.
+				repeat.
+			</p>
+		</div>
+	</div>
+</div>
 
-<img src="./images/02.png" alt="endless cycle" align="center" width="200" />
-<p align="center">
-	it wasn't just a cycle for the users, it was also for the dev team.
-	fix bug > fine > bug comes back > fix bug > fine > bug comes back
-</p>
+<div class="container">
+	<img src="./images/02.png" alt="endless cycle" width="200" />
+	<p align="center">
+		it wasn't just a cycle for the users, it was also for the dev team.
+		fix bug > fine > bug comes back > fix bug > fine > bug comes back
+	</p>
+</div>
 
 facebook wanted to get out of this cycle, by making the **system predictable** so that this problem would keep resurfacing.
 
