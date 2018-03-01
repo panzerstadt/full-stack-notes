@@ -27,17 +27,19 @@ def get_full_and_simple_filepaths(folder='./', keyword='md', debug=False):
     files = []
     full_filepaths = []
     simple_filepaths = []
+    full_dirs = []
     for paths in os.walk(folder):
         for path in paths[2]:
             if keyword in path:
-                files.append([paths[0], path])
+                files.append([paths[0], path, path[1]])
                 if debug:
                     print('filename: ', path)
                     print('tuple: ', paths)
     for filepath in files:
         full_filepaths.append(os.path.join(filepath[0], filepath[1]))
         simple_filepaths.append(os.path.splitext(filepath[1])[0])
-    return full_filepaths, simple_filepaths
+        full_dirs.append(path[1])
+    return full_filepaths, simple_filepaths, full_dirs
 
 
 def build_content_dict(full_filepaths, keyword='todo'):
@@ -81,8 +83,8 @@ app = Flask(__name__)
 print('app initiated. name of app: {0}'.format(__name__))
 
 # global variables
-full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='md')
-
+full_filepaths, filenames, directories = get_full_and_simple_filepaths(folder='./', keyword='md')
+print(directories)
 
 @app.route('/full/')
 def all_readmes():
