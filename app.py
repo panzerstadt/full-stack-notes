@@ -23,10 +23,11 @@ def iterate_till_blank(file_obj, strip_ends=True):
     return result
 
 
-def get_full_and_simple_filepaths(folder='./', keyword='md', debug=False):
-    files = []
+def get_full_and_simple_filepaths(folder='./', keyword='.md', ignore=[None], debug=False):
+    file_list = []
     full_filepaths = []
     simple_filepaths = []
+<<<<<<< HEAD
     full_dirs = []
     for paths in os.walk(folder):
         for path in paths[2]:
@@ -36,6 +37,20 @@ def get_full_and_simple_filepaths(folder='./', keyword='md', debug=False):
                     print('filename: ', path)
                     print('tuple: ', paths)
     for filepath in files:
+=======
+    for root, dirs, files in os.walk(folder):
+        for file in files:
+            if keyword in file:
+                if os.path.basename(root).startswith('.'):
+                    print('NOT THIS ONE', root)
+                    pass
+                else:
+                    file_list.append([root, file])
+                    if debug:
+                        print('filename: ', file)
+                        print('tuple: ', (root, dirs, files))
+    for filepath in file_list:
+>>>>>>> 8f56c7323cdd3d8ec8b38341383e44202da15593
         full_filepaths.append(os.path.join(filepath[0], filepath[1]))
         simple_filepaths.append(os.path.splitext(filepath[1])[0])
         full_dirs.append(path[1])
@@ -54,12 +69,11 @@ def build_content_dict(full_filepaths, keyword='todo'):
     """
     from os.path import basename, splitext
     filenames = [splitext(basename(f))[0] for f in full_filepaths]  # get clean filename
-    # remove -readme
-    filenames = [f[:-7] for f in filenames]
+    filenames = [f[:-7] for f in filenames]  # remove -readme
 
     result = OrderedDict()
     for i, full_filepath in enumerate(full_filepaths):
-        with open(full_filepath, encoding='utf-8') as readme:
+        with open(full_filepath, encoding='utf-8', errors='ignore') as readme:
             for line in readme:
                 if keyword in line.lower():
                     # strips markdown formatting on left and \n + spaces on right
@@ -79,12 +93,32 @@ def first(s):
     '''
     return next(iter(s))
 
+
+def md_progressbar(percent, title=None):
+    """
+    returns markdown formatted progressbar coutesy of progressed.io
+    website : https://github.com/fehmicansaglam/progressed.io
+    :param percent:
+    :return: ![Progress](http://progressed.io/bar/<percent>)
+    """
+    if title:
+        progressbar = '![Progress](http://progressed.io/bar/{0}?title={1})'.format(percent, title)
+    else:
+        progressbar = '![Progress](http://progressed.io/bar/{0})'.format(percent)
+    return progressbar
+
+
 app = Flask(__name__)
 print('app initiated. name of app: {0}'.format(__name__))
 
 # global variables
+<<<<<<< HEAD
 full_filepaths, filenames, directories = get_full_and_simple_filepaths(folder='./', keyword='md')
 print(directories)
+=======
+full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='.md', debug=True)
+
+>>>>>>> 8f56c7323cdd3d8ec8b38341383e44202da15593
 
 @app.route('/full/')
 def all_readmes():
@@ -98,7 +132,7 @@ def all_readmes():
 
     full_readme_md = md
     md_content = Markup(markdown.markdown(full_readme_md))
-    return render_template('card.html', name='all the readmes', content=md_content)
+    return render_template('card_single.html', name='all the readmes', content=md_content)
 
 @app.route('/todo/')
 @app.route('/')
@@ -111,20 +145,42 @@ def todo():
     # rebuild markdown formatting for todo list
     md_list = []
     for k, v in todo_dict.items():
-        md = '### [{0}]({1})\n'.format(k, v[0])  # title
+        # title with links
+        md_block_0 = '#### [{0}]({1})\n'.format(k, v[0])
+        # todo : (currently relative links, only works in github markdown)
+
+        # subtitle and contents
+        md_block_1 = ''
         if v[1]:
-            md += '##### {0}\n'.format(v[1])  # subtitle
-        if v[2]:
-            for lines in v[2]:
-                md += '{0}\n'.format(lines)  # contents
-        md += '\n----'
-        md_list.append(md)
+            percentage = 0
+            md_block_1 += '###### {0}\n'.format(v[1])  # subtitle
+            # if there is a todo list, then check for contents
+            if v[2]:
+                # make a percentage
+                percentage = max(0, (5 - len(v[2]))) * 20
+                # write contents
+                for lines in v[2]:
+                    md_block_1 += '{0}\n'.format(lines)  # contents
+        else:
+            # if there are no todo lists,topic is complete!
+            md_block_1 += '###### complete!\n'
+            percentage = 100
+
+        # progress bar
+        md_block_2 = md_progressbar(percentage)
+
+        md = '\n'.join([md_block_0, md_block_2, md_block_1])
+        #md += '\n----'
+        md_list.append([md, percentage])
 
     # then join all individual mds with \n to make a combined md
-    todo_list_md = '\n'.join(md_list)
-    print(todo_list_md)
-    md_content = Markup(markdown.markdown(todo_list_md))
-    return render_template('card.html', name='to-do list', content=md_content)
+    # todo_list_md = '\n'.join(md_list[0])
+    # print(todo_list_md)
+    md_contents = [Markup(markdown.markdown(md_pair[0])) for md_pair in md_list]
+    percentages = [md_pair[1] for md_pair in md_list]
+    return render_template('card_multiple.html',
+                           name='to-do list',
+                           contents=zip(percentages, md_contents))
 
 
 #@app.route('/')

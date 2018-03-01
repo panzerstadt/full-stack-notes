@@ -14,5 +14,10 @@ Here’s what happened long, long ago:
 3. This results in a new language standard, known as ECMAScript.
 4. Put simply, ECMAScript is a standard. While JavaScript is the most popular implementation of that standard. JavaScript implements ECMAScript and builds on top of it.
 
+## useful things
+- progress bars https://docs.travis-ci.com/api#overview
+- simple progress bar https://github.com/fehmicansaglam/progressed.io
+- other charts http://luizperes.github.io/status-projects/
+
 ## links
 - https://webapplog.com/es6/
