@@ -7,6 +7,7 @@
 
 ## TODO: read
 - https://www.tutorialspoint.com/mongodb/mongodb_overview.htm
+- implement a simple MongoDB server
 
 ## Concept
 - based on the concept of a **collection** and **document**

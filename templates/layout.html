@@ -14,14 +14,27 @@ CSS is always on top (to speed things up)
 <head>
     <meta charset="UTF-8">
     <title>gitnotes : {% block title %}{% endblock %}</title>
+    <style>
+        @mixin media-breakpoint-only(md) {
+            column-count:2;
+        }
+
+        .card-columns {
+            @include media-breakpoint-only(md);
+        }
+    </style>
 </head>
-<body class="jumbotron" style="background-color:#373F42">
+<body style="background-color:#373F42;padding:10px">
+<div class="container-fluid">
+    <div class="col-xs-12" style="font-size:20vmax;color:white">
+        3 days
+    </div>
+</div>
+
 <div class="container">
-    <div class="row">
-        <div class="col-12 col-md-4 col-xs-12">
-            <!-- containers need to be instantiated for each block -->
-            {% block body %}{% endblock %}
-        </div>
+    <div class="col-xs-12">
+        {% block body %}
+        {% endblock %}
     </div>
 </div>
 

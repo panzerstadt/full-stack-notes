@@ -1,24 +1,53 @@
 # GIT
 
 ### TODO: intermediate GIT
-- https://medium.freecodecamp.org/understanding-git-for-real-by-exploring-the-git-directory-1e079c15b807
+- explore the .git (repo) https://medium.freecodecamp.org/understanding-git-for-real-by-exploring-the-git-directory-1e079c15b807
 - practice merge conflicts https://medium.freecodecamp.org/5-github-tips-for-new-coders-2f312689ffd5
+- more merge conflicts https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/merge-conflicts
+- summarize this https://www.webdesignerdepot.com/2009/03/intro-to-git-for-web-designers/
+- workflows https://www.atlassian.com/git/tutorials/comparing-workflows
+
+## **what is git**
+#### git is a graph
+It is the **.git** folder in your main folder, that defines a repository for your project. this repository is a sorta-tree, or a ***directed acyclic graph*** of commit objects with pointers to parent commits that point backwards in time, until you reach the first commit.
+You can travel along the graph by using ```git checkout some-branch-name``` to rewind the project in time (on your local machine).
+![a kinda-git repo](./images/directed-acyclic-graph.png)
+
+to see the repo graph:
+[source](https://stackoverflow.com/questions/1838873/visualizing-branch-topology-in-git/34467298#34467298)
+[source](https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs/9074343#24107223)
+	
+	# for a compact version   : git log --graph --pretty=oneline  
+	# for the full version    : git log --graph                   
+	# pretty version          : git log --graph --full-history --all --pretty=format:"%h%x09%d%x20%s"
+	# prettier version        : git log --graph --full-history --all --color \
+        --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+    # super version simple    : git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)
+    # super version with time : git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n%C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    # super duper version     : git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n%C(white)%s%C(reset)%n%C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+
+or, use the GUI [GitKraken](https://www.gitkraken.com)
+
+> Whenever you want to perform some operation to query or manipulate the repository, you should be thinking, "how do i want to query or manipulate the graph of commits?"
+
+## quick explanation from someone
+[source](https://stackoverflow.com/questions/7076164/terminology-used-by-git)
+
+Everything you do is local to your repository (either created by ```git init``` or ```git clone``` git://url.com/another/repo.git). There are only a few commands in git that interact with other repositories (a.k.a. teh interwebz), including ```clone```, ```fetch```, ```pull```, ```push```.
+```Push``` & ```pull``` are used to syncronize repositories. ```Pull``` fetches objects from another repository and merges them with your current branch. ```Push``` is used to take your changes and push them to another repository. You cannot push single commits or changes, **you only can push a commit including its complete history.**
+
+A single repository can contain multiple branches but does not need to. The default branch in git is called master. You can create as many branches as you want, merging is a piece of cake with git. **Branches are local until you run** ```git push origin <branch>```.
+
+A commit describes a complete state of the project. Those states can be compared to one another, which produces a "diff" (```git diff origin/master master``` = see differences between ```origin/master``` and ```master```)
+
+Git is pretty powerful when it comes to preparing your commits. The key ingredient here is the "index" (or "staging area"). You can add single changes to the index (using git add) until you think the index looks good. git commit fires up your text editor and you need to provide a commit message (why and how did you make that change); after entering your commit message git will create a new commit – containing the contents of the index – on top of the previous commit (the parent pointer is the SHA1 of the previous commit).
+
 
 ## **a happy git relationship**
 At a high level it’s pretty simple: align the way you work with the way Git works.
-- In your task management system, create smallish tasks that will be completed by a single developer
-- For each task, complete the work in a single branch
-- When you’re done with the task, merge your branch as a single commit
-
-## **useful reads**
-git best practises ref
-- https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
-markdown example
-- https://raw.githubusercontent.com/altercation/solarized/master/README.md
-cheat sheet
-- https://medium.freecodecamp.org/git-cheat-sheet-and-best-practices-c6ce5321f52
-important things to know
-- https://medium.freecodecamp.org/5-github-tips-for-new-coders-2f312689ffd5
+- In your task management system, **create smallish tasks that will be completed by a single developer**
+- For each task, complete the work in a **single branch** (name it something useful, like feature-link_sorting)
+- When you’re done with the task, merge your branch as a single commit (probably the ***develop*** branch)
 
 ## **most frequent commands**
 	git init
@@ -33,7 +62,62 @@ important things to know
 	git remote add origin [copied web address]
 
 ## **to check where this git will connect to**
-	git remote -v
+	git remote -v   # v for verbose
+
+## **sequence of commands to develop a new feature for a project**
+	git clone https://github.com/cooperka/emoji-commit-messages.git
+	cd emoji-commit-messages
+	git status
+	git checkout -b my-new-feature
+	echo “This is a cool new file” > my-file.txt
+	git status
+	git add --all
+	git status
+	git diff HEAD
+	git commit -m “Add my-file.txt”
+	git status
+	git log
+	git push origin HEAD
+	git checkout master
+	git pull
+
+## types of git workflows
+[source](https://www.atlassian.com/git/glossary/terminology)
+[actual workflow tutorial](https://www.atlassian.com/git/tutorials/comparing-workflows)
+
+
+## **git terminology**
+[source](https://www.sbf5.com/~cduan/technical/git/git-1.shtml#heads) [glossary](https://help.github.com/articles/github-glossary/) 
+1. Git 
+	- thing whose purpose is to manage a project (a set of files) as they change over time
+	- stores information in a data structure called a **repository**
+2. Repo (repository)
+> is what makes git **git**.
+	- __.git__
+	- is stored as a file along with other files in the project
+	- to 'delete' git, just delete the .git folder
+	- has a set of **commit** objects
+	- has a set of references to commit objects called **heads**
+	- [good read](https://medium.freecodecamp.org/understanding-git-for-real-by-exploring-the-git-directory-1e079c15b807)
+3. Commit Objects
+	- is made of:
+		1. a set of **files** (your files that you make), reflecting the state of the project at a given point in time
+		2. references to **parent commit objects**
+		3. An **SHA1 name**, which is a unique id for the commit object. it is a 40-character string.
+			- the name is composed of a hash of relevant aspects of the commit (**the data is in the SHA1 name itself!!!**), so identical commits will always have the same name (because they turn into the same has number)
+			- to get the SHA1 name that you are lookin for, use ```git log```
+	- two types:
+		- **parent commit objects** are commits that were edited to produce the subsequent (updated) state of the project (meaning: original state + parent commit objects = new state)
+		- **commit objects** 
+	- generally a commit object will one parent commit, because one generally takes a project in a given state, makes a few changes, and saves a new state of the project.
+	- a project always has one commit object with no parents. this is the first commit made to the project repo.
+4. Heads
+	- is a **reference to a commit object**. there is a head in every repo called ***master***. a repository can contain any number of heads. the current state that you're looking at is called ***HEAD*** (with the caps and italics)
+	- As a shortcut, you can type the word HEAD instead of branch-name to automatically use the branch you’re currently on. HEAD always refers to your latest checkpoint, that is, the latest commit on your current branch.
+5. Other Stuff
+	[glossary](https://help.github.com/articles/github-glossary/) 
+		
+
 
 ## **images**
 - https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github
@@ -94,14 +178,89 @@ You can then embed them using:
 - Git doesn’t track moved/renamed files. However, if it sees your branch has a removed file, and a new file, and they are, say, 90% similar, it will assume that it’s seeing a renamed file.
 
 ## **merge conflicts**
+- https://wincent.com/wiki/Git_merge_conflict_cheatsheet
 - https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
 - https://medium.freecodecamp.org/5-github-tips-for-new-coders-2f312689ffd5
+- https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/merge-conflicts
 
-- using WebStorm
+> When faced with a merge conflict, 
+> the first step is to understand what happened. 
+> E.g.: Did one of your colleagues edit the same file on the same lines as you? 
+> Did he delete a file that you modified? Did you both add a file with the same name?
+
+- in Git, "merging" is an act of integrating another branch into your current working branch
+
+#### **important things to know about merge conflicts**
+
+> you cannot break things! (in Git)
+
+- you can always undo a merge and **rewind** to the state before the conflict happened.
+- in subversion (SVN), merge conflicts are scary. **NOT IN GIT**.
+
+> a conflict will only ever handicap yourself,
+> because conflicts ONLY HAPPEN ON THE DEV'S LOCAL MACHINE
+> - not on the server.
+
+
+
+- seeing merge conflicts using WebStorm
 ![merge conflicts](./images/merge-conflicts.png)
 <p align="center">One added line (green), one edited line (blue) and a conflict (red)</p>
 
-## **solving clashes and local/remote changes**
+## **someone else said something**
+So for the sake of simplicity we'll consider git push, pull, and commit to be the standard commands.
+
+After those three, the commands I use the most would be branch, checkout, log, and blame. 
+
+Git branch is to create another branch of development for a project. For a project with multiple people working on it, this is a **must**. Branching allows multiple developers to work on the same code while minimizing conflict damage. It can also be used when developing multiple features on a single project. For instance, if you are building a search bar, a user profile page, and a log in page for a web application, you can have separate branches for each one of those features. This will help to maintain clarity and focus within the repository.
+
+Git checkout is used mostly for testing, debugging, and more testing. Checkout is used to go back in time sort of. If you would like to look at the code as it was 15 commits ago, you use git checkout [hash code for the commit you want to look at]. 
+
+Git log is very simple but, in my experience, very under utilized. Git log will print out the entire commit history of a project. You can also use log to print out the commit history of a specific branch, user, period of time, etc... It can become very specific once you get used to it.
+
+The last one is blame. This one is my favorite because people continuously mess up my code through bad formatting, poor practice, bad commits, etc... Git blame is used to see who change which lines in which files and when. Very useful for people who own or manage a repository.
+
+Another command that I use very often but don't recommend for anyone below a more advance/fluent level is rebase, and more specifically rebase -i. This command, commonly referred to as an interactive rebase, is used to modify the history of a repository. **THIS IS VERY EASY TO SCREW UP** so be careful. But if you have 25 commits that you want to condense for some reason, you can use rebase -i and the editor will give you instructions on how to squish commits, change commit messages, etc...
+
+## **some other someone else said something too**
+Branching and forking are very similar in that they are both ways to separate sections of the code from the 'main' repository. However, they work **very** differently. 
+
+When you create a new *branch*, that new path that you are working on is still connected to the main code base. On the other hand, a *fork* will create a whole new, disconnected version of the code base.
+
+They are both powerful but in very different ways. I suggest branching mostly because I usually work on smaller teams that are in constant communication. The reason why this matters is that branching gives all of the developers read **and** write access to the code base. So whenever they feel like pushing code, they can (hence why git blame is useful for me). 
+
+However, if you prefer to have more control over the code that gets pushed to the repository then forking is the way to go. Since developers have to submit pull requests before a merge, you can closely monitor the changes to the code. 
+
+Take GitHub for example. If Frank has a project on GitHub and Jenn wants to push a bug-fix to the project, she can't just branch the project, push, then merge. She has to create a fork and then submit a pull request to Frank. This way, Frank has a way to monitor all of the code coming into the project.
+
+However, on a smaller team led by Amy, the developers are in constant communication. When a change is to be submitted, it is coming from a trusted source. Branching is more appropriate in this kind of situation. Since the developers are all trusted sources, branching will allow for a faster and more connected development process. 
+
+So really, your process is actually **very** gitty! It just happens to be a more controlled process rather than a branching approach.
+
+There is a great [blog post](https://confluence.atlassian.com/bitbucket/branch-or-fork-your-repository-221450630.html) on the Atlassian blog about the difference if you are interested. The [git documentation](https://git-scm.com/doc) is a great introduction to actually [branching](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell) in real life. 
+
+I firmly believe that if you are going to be using git on a daily basis, you should have a firm grasp on what Git actually does. Git is one of those things that will make a project more difficult until you know how to use it but once you know how to use it, that project is now significantly easier to work on. 
+
+I'm glad I could help and if you ever need a hand feel free to send me a message!
+
+
+## **other useful reads**
+git best practises ref
+- https://hackernoon.com/my-approach-to-using-git-without-the-headaches-6926df5af0c7
+markdown example
+- https://raw.githubusercontent.com/altercation/solarized/master/README.md
+cheat sheet
+- https://medium.freecodecamp.org/git-cheat-sheet-and-best-practices-c6ce5321f52
+important things to know
+- https://medium.freecodecamp.org/5-github-tips-for-new-coders-2f312689ffd5
+good stuff
+- http://ftp.newartisans.com/pub/git.from.bottom.up.pdf
+- https://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide
+- https://hackernoon.com/understanding-git-fcffd87c15a3
+ok stuff
+- https://git.wiki.kernel.org/index.php/TipsAndTricks
+
+### **solving clashes and local/remote changes**
 - https://stackoverflow.com/questions/22620393/various-ways-to-remove-local-git-changes
 ```
 *Solution : Major Edit(s): 03/26 : * Replaced many of vague terms with git specific terminology [tracked/untracked/staged/unstaged]

@@ -2,7 +2,7 @@
 
 import markdown
 from flask import Flask
-from flask import render_template, Markup
+from flask import render_template, Markup, request
 import os
 from collections import OrderedDict
 print('markdown version: ', markdown.version)
@@ -95,11 +95,19 @@ def md_progressbar(percent, title=None):
     return progressbar
 
 
+def ensure_url(html_in):
+    pass
+
+
+def is_unsorted(name):
+    if 'unsorted' in str(name).lower():
+        return True
+
 app = Flask(__name__)
 print('app initiated. name of app: {0}'.format(__name__))
 
 # global variables
-full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='.md', debug=True)
+full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='.md', debug=False)
 
 
 @app.route('/full/')
@@ -117,7 +125,6 @@ def all_readmes():
     return render_template('card_single.html', name='all the readmes', content=md_content)
 
 @app.route('/todo/')
-@app.route('/')
 def todo():
     global full_filepaths
 
@@ -130,13 +137,14 @@ def todo():
         # title with links
         md_block_0 = '#### [{0}]({1})\n'.format(k, v[0])
         # todo : (currently relative links, only works in github markdown)
+        # TODO: CONVERT LINKS INTO GITHUB URLS HERE
 
         # subtitle and contents
         md_block_1 = ''
         if v[1]:
             percentage = 0
             md_block_1 += '###### {0}\n'.format(v[1])  # subtitle
-            # if there is a todo list, then check for contents
+            # if there is a todolist, then check for contents
             if v[2]:
                 # make a percentage
                 percentage = max(0, (5 - len(v[2]))) * 20
@@ -144,7 +152,9 @@ def todo():
                 for lines in v[2]:
                     md_block_1 += '{0}\n'.format(lines)  # contents
         else:
-            # if there are no todo lists,topic is complete!
+            # if there are no todolists,topic is complete!
+            # TODO: unless they are flagged complete, they should show 0 percent
+            # TODO: so CHECK FOR COMPLETE FLAG (USE A NON-RESERVED CHARACTER FOR THIS)
             md_block_1 += '###### complete!\n'
             percentage = 100
 
@@ -165,9 +175,18 @@ def todo():
                            contents=zip(percentages, md_contents))
 
 
-#@app.route('/')
+@app.route('/single-page/')
+def readme_card():
+    test_content = """
+    <h1>hey</h1>
+    <p style="font-size: 80vmin">3days</p>
+    """
+    return render_template('card_single.html', name='test', content=test_content)
+
+@app.route('/', methods=['GET', 'POST'])
 def homepage():
-    pass
+    print(request.method)
+    return todo()
 
 if __name__ == '__main__':
     app.run()
