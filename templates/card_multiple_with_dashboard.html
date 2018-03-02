@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ name }}
+{% endblock %}
+
+{% block dashboard %}
+{{ dashboard_contents }}
+<!-- if i wanna get fancy and make multiple charts and whizz bang stuff,
+     i will be doing it here -->
+{% endblock %}
+
+{% block body %}
+<div class="card-columns">
+    {% for percentage, content in contents %}
+        <div class="card">
+            <div class="card-body" style="background-color:#FEFCF9">
+                <div class="card-text" >
+                    {{ content }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

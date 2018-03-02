@@ -15,11 +15,11 @@ def iterate_till_blank(file_obj, strip_ends=True):
             new_line = file_obj.__next__()
         except StopIteration:
             break
-        if len(new_line) != 1:
+        if len(new_line) <= 1:
+            break
+        else:
             if strip_ends: result.append(new_line.strip())
             else: result.append(new_line)
-        else:
-            break
     return result
 
 
@@ -44,7 +44,98 @@ def get_full_and_simple_filepaths(folder='./', keyword='.md', ignore=[None], deb
     return full_filepaths, simple_filepaths
 
 
-def build_content_dict(full_filepaths, keyword='todo'):
+def first(s):
+    '''Return the first element from an ordered collection
+       or an arbitrary element from an unordered collection.
+       Raise StopIteration if the collection is empty.
+    '''
+    return next(iter(s))
+
+
+def md_progressbar(percent, title=None):
+    """
+    returns markdown formatted progressbar coutesy of progressed.io
+    website : https://github.com/fehmicansaglam/progressed.io
+    :param percent:
+    :return: ![Progress](http://progressed.io/bar/<percent>)
+    """
+    if title:
+        progressbar = '![Progress](http://progressed.io/bar/{0}?title={1})'.format(percent, title)
+    else:
+        progressbar = '![Progress](http://progressed.io/bar/{0})'.format(percent)
+    return progressbar
+
+
+def is_unsorted(name):
+    if 'unsorted' in str(name).lower():
+        return True
+
+
+def ensure_url(line_of_text, split_key=' '):
+    words = line_of_text.split(split_key)  # split lines by spacing
+    for i, character in enumerate(words):
+        if character[:4] == 'http':
+            # add formatting to both urls in the middle and end of lines
+            # (urls at the end of the line have a '\n' escape
+            if character.endswith('\n'):
+                words[i] = '<' + character.strip() + '>' + '\n'
+            else:
+                words[i] = '<' + character + '>'
+    return split_key.join(words)
+
+
+def build_all_files(full_filepaths, urlify=True):
+    """
+    HEAVY. opens all files and stores them as a huge variable.
+    :param full_filepaths: filepaths as an input list
+    :param urlify: apply markdown formatting to ensure urls turn into links in markdown viewers
+    :returns: a tuple with the format (filepath, file_as_string) for every filepath
+    """
+    result = []  # stores files as objects
+    for i, full_filepath in enumerate(full_filepaths):
+        with open(full_filepath, encoding='utf-8', errors='ignore') as readme:
+            readme = readme.readlines()
+            for j, line in enumerate(readme):
+                if urlify:
+                    line = ensure_url(line)
+                    readme[j] = line
+
+            result.append(''.join(readme))
+    return zip(full_filepaths, result)
+
+
+def build_content_dict_from_tuple(file_tuples, keyword='todo'):
+    """
+    DISCLAIMER : ONLY DESIGNED TO WORK WITH PERSONAL MARKDOWN RULES
+
+    searches a list of files (in string format) for the first instance of a given keyword
+    and builds an ordered dictionary consisting of:
+    {filename : [absolute_path, line_containing_keyword, content_related_to_line]}
+
+    :return: OrderedDict() in the format {filename : [absolute_path, line_containing_keyword, content_related_to_line]}
+    """
+    from os.path import basename, splitext
+
+    result = OrderedDict()
+    for full_filepath, file_str in file_tuples:
+        filename = splitext(basename(full_filepath))[0]  # get clean filename
+        filename = filename[:-7]  # remove -readme
+
+        readme = iter(file_str.splitlines())  #makes the same iterable as open() function
+
+        for line in readme:
+            if keyword in line.lower():
+                # strips markdown formatting on left and \n + spaces on right
+                subtitle = line.lstrip('#').strip()
+                content = iterate_till_blank(readme)
+                result[filename] = [full_filepath, subtitle, content]
+                break
+            else:
+                result[filename] = [full_filepath, None, None]
+    return result
+
+
+def build_content_dict_from_filepaths(full_filepaths, keyword='todo'):
     """
     DISCLAIMER : ONLY DESIGNED TO WORK WITH PERSONAL MARKDOWN RULES
 
@@ -73,46 +164,28 @@ def build_content_dict(full_filepaths, keyword='todo'):
     return result
 
 
-def first(s):
-    '''Return the first element from an ordered collection
-       or an arbitrary element from an unordered collection.
-       Raise StopIteration if the collection is empty.
-    '''
-    return next(iter(s))
-
-
-def md_progressbar(percent, title=None):
-    """
-    returns markdown formatted progressbar coutesy of progressed.io
-    website : https://github.com/fehmicansaglam/progressed.io
-    :param percent:
-    :return: ![Progress](http://progressed.io/bar/<percent>)
-    """
-    if title:
-        progressbar = '![Progress](http://progressed.io/bar/{0}?title={1})'.format(percent, title)
-    else:
-        progressbar = '![Progress](http://progressed.io/bar/{0})'.format(percent)
-    return progressbar
-
-
-def ensure_url(html_in):
-    pass
-
-
-def is_unsorted(name):
-    if 'unsorted' in str(name).lower():
-        return True
 
 app = Flask(__name__)
 print('app initiated. name of app: {0}'.format(__name__))
 
 # global variables
 full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='.md', debug=False)
+file_tuples = build_all_files(full_filepaths)
+
+# temp = build_content_dict_from_tuple(file_tuples)
+# for k, v in temp.items():
+#     print(k, v)
+
+
+def dashboard():
+    # TODO: this is where to put all the dashboard stuff, it stays on every page since it lives within the layout page
+    return ''
+
 
 
 @app.route('/full/')
 def all_readmes():
-    global full_filepaths
+    global file_tuples
 
     md = ''
     for file in full_filepaths:
@@ -126,10 +199,10 @@ def all_readmes():
 
 @app.route('/todo/')
 def todo():
-    global full_filepaths
+    global file_tuples
 
     # find keyword from filepaths
-    todo_dict = build_content_dict(full_filepaths, keyword='todo')
+    todo_dict = build_content_dict_from_tuple(file_tuples, keyword='todo')
 
     # rebuild markdown formatting for todo list
     md_list = []
@@ -170,8 +243,9 @@ def todo():
     # print(todo_list_md)
     md_contents = [Markup(markdown.markdown(md_pair[0])) for md_pair in md_list]
     percentages = [md_pair[1] for md_pair in md_list]
-    return render_template('card_multiple.html',
+    return render_template('card_multiple_with_dashboard.html',
                            name='to-do list',
+                           dashboard_contents=dashboard(),
                            contents=zip(percentages, md_contents))
 
 

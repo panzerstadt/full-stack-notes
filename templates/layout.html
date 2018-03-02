@@ -26,8 +26,10 @@ CSS is always on top (to speed things up)
 </head>
 <body style="background-color:#373F42;padding:10px">
 <div class="container-fluid">
-    <div class="col-xs-12" style="font-size:20vmax;color:white">
-        3 days
+    <div class="col-xs-12" style="font-size:10vmax;color:white">
+        <!-- work out the range of numbers for vmax based on num of characters -->
+        {% block dashboard %}
+        {% endblock %}
     </div>
 </div>
 
