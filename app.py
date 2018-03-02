@@ -7,6 +7,29 @@ import os
 from collections import OrderedDict
 print('markdown version: ', markdown.version)
 
+"""
+NOTES
+-----
+
+backslashes available in markdown:
+\ backslash
+` backtick
+* asterisk
+_ underscore
+{} curly braces
+[] square brackets
+() parentheses
+# hashmark
++ plus sign
+- minus sign (hyphen) 
+. dot
+! exclamation mark
+
+++ RESERVED CHARACTERS:
+||| complete
+
+"""
+
 
 def iterate_till_blank(file_obj, strip_ends=True):
     result = []
@@ -104,9 +127,11 @@ def build_all_files(full_filepaths, urlify=True):
     return zip(full_filepaths, result)
 
 
-def build_content_dict_from_tuple(file_tuples, keyword='todo'):
+def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=True):
     """
     DISCLAIMER : ONLY DESIGNED TO WORK WITH PERSONAL MARKDOWN RULES
+
+    actually not very safe, as the todo keyword can be very easily typed into notes
 
     searches a list of files (in string format) for the first instance of a given keyword
     and builds an ordered dictionary consisting of:
@@ -118,20 +143,32 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo'):
 
     result = OrderedDict()
     for full_filepath, file_str in file_tuples:
+        todo_boolean = False
         filename = splitext(basename(full_filepath))[0]  # get clean filename
         filename = filename[:-7]  # remove -readme
+
+        if flag_complete:
+            if '|||' in file_str:
+                result[filename] = [full_filepath, None, None, True]
+                print('completion flag found!')
+                break
 
         readme = iter(file_str.splitlines())  #makes the same iterable as open() function
 
         for line in readme:
             if keyword in line.lower():
-                # strips markdown formatting on left and \n + spaces on right
+                # strips markdown formatting on left and \n + spaces on both sides
                 subtitle = line.lstrip('#').strip()
                 content = iterate_till_blank(readme)
-                result[filename] = [full_filepath, subtitle, content]
+                result[filename] = [full_filepath, subtitle, content, False]
+                todo_boolean = True
                 break
             else:
-                result[filename] = [full_filepath, None, None]
+                continue
+
+        if not todo_boolean:
+            result[filename] = [full_filepath, None, None, False]
+
     return result
 
 
@@ -178,7 +215,8 @@ file_tuples = build_all_files(full_filepaths)
 
 
 def dashboard():
-    # TODO: this is where to put all the dashboard stuff, it stays on every page since it lives within the layout page
+    # TODO: this is where to put all the dashboard stuff, it stays on every page since it
+    # TODO: lives within the layout page
     return ''
 
 
@@ -224,12 +262,12 @@ def todo():
                 # write contents
                 for lines in v[2]:
                     md_block_1 += '{0}\n'.format(lines)  # contents
-        else:
-            # if there are no todolists,topic is complete!
-            # TODO: unless they are flagged complete, they should show 0 percent
-            # TODO: so CHECK FOR COMPLETE FLAG (USE A NON-RESERVED CHARACTER FOR THIS)
+        elif v[3]:
             md_block_1 += '###### complete!\n'
             percentage = 100
+        else:
+            md_block_1 += '\nno todo list found.\n'
+            percentage = 0
 
         # progress bar
         md_block_2 = md_progressbar(percentage)
