@@ -4,13 +4,25 @@
 {{ name }}
 {% endblock %}
 
+<!--
 {% block dashboard %}
 {{ dashboard_contents }}
 <!-- if i wanna get fancy and make multiple charts and whizz bang stuff,
-     i will be doing it here -->
+     i will be doing it here
 {% endblock %}
+-->
 
 {% block body %}
+<div class="container-fluid">
+    <div class="col-xs-12" style="font-size:auto;background-color:white;height:100vmin;width:100vmin;margin:auto">
+        <!-- work out the range of numbers for vmax based on num of characters -->
+        test
+    </div>
+    <div class="col-xs-12" style="background-color:transparent">
+        {{ dashboard }}
+    </div>
+</div>
+
 <div class="card-columns">
     {% for percentage, content in contents %}
         <div class="card">

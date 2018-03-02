@@ -3,7 +3,7 @@
 import markdown
 from flask import Flask
 from flask import render_template, Markup, request
-import os
+import os, datetime
 from collections import OrderedDict
 print('markdown version: ', markdown.version)
 
@@ -89,6 +89,110 @@ def md_progressbar(percent, title=None):
     return progressbar
 
 
+def markdown_to_html(markdown_str):
+    return Markup(markdown.markdown(markdown_str))
+
+
+def image_center_autosize(img_html, fullscreen=True):
+    if fullscreen: styles = 'height:70vmin;width:70vmin;margin-left:auto;margin-right:auto;display:block'
+    else: styles = 'width:400px;margin-left:auto;margin-right:auto;display:block'
+
+    temp = img_html.split('src')
+    img_html = temp[0] + Markup('style="{0}"'.format(styles)) + ' src' + temp[1]
+    return img_html
+
+
+# todo: TURN THIS INTO A PYPI PACKAGE!
+def generate_chart(chart_type='pie',
+                   doughnut_center_str=None,
+                   chart_size='200x100',
+                   chart_data='t:20,80',
+                   chart_label=None,
+                   label_color=None,
+                   chart_colors=None,
+                   chart_animate=None,
+                   api_source=1,
+                   markdown=True,
+                   markdown_label=None):
+    """
+    ### todo: turn this into a package on pypi!
+    source: https://image-charts.com/documentation
+    settings:
+    cht = chart type                                *REQUIRED
+    chs = chart size, (int(width) x int(height))    *REQUIRED
+    chd = chart data                                *REQUIRED
+    chl = chart label
+    chan = either empty, or <duration>,<easing>  animates the chart (gif)
+    chf = SOMETHING
+
+    sample:
+    https://chart.googleapis.com/chart?cht=p&chs=250x100&chd=t:20,5,75&chl=Done|In%20Progress|To%20Do
+
+    javascript code automation from dev:
+    https://image-charts.com/documentation#javascript-encoding-script
+
+    :param api_source: 0 = google api, 1 = image-charts
+    :return:
+    """
+    source = ['chart.googleapis.com', 'image-charts.com']
+    colors = ['FFC00C', 'EA469E', '03A9F4']  # orange, red, blue
+
+    # all the settings
+    settings = []
+    if chart_type == 'pie': settings.append('cht=p')
+    if chart_type == 'doughnut':
+        settings.append('cht=pd')
+        if doughnut_center_str:
+            settings.append('chli={0}'.format(doughnut_center_str))
+    if chart_size: settings.append('chs={0}'.format(chart_size))
+    if chart_data: settings.append('chd={0}'.format(chart_data))
+    if chart_label: settings.append('chl={0}'.format(chart_label))
+    if label_color: settings.append('chdls={0}'.format(label_color))
+    if chart_colors: settings.append('chco={0}'.format(chart_colors))
+
+    settings.append('chf=bg,s,00000000')
+
+    if chart_animate == False:
+        pass
+    elif chart_animate == True:
+        settings.append('chan')
+    elif chart_animate is not None and len(chart_animate) >= 0:
+        settings.append('chan=' + chart_animate)
+
+    settings = iter(settings)
+    chart_settings = '&'.join(settings)
+
+    # build the url request
+    chart_url  = 'https://'
+    chart_url += source[api_source] + '/'
+    chart_url += 'chart?'
+    chart_url += chart_settings
+
+    if markdown:
+        if not markdown_label:
+            markdown_label = 'alt text'
+        chart_url = '![{0}]({1})'.format(markdown_label, chart_url)
+
+    return chart_url
+
+
+def progress_doughnut_chart(progress=60, centered=True):
+    chart = generate_chart(markdown=True,
+                           chart_type='doughnut',
+                           doughnut_center_str='{0}'.format(str(progress)+'/100'),
+                           chart_size='600x600',
+                           chart_label='not%20done|done',
+                           label_color='FFC00C',
+                           chart_animate=False,
+                           chart_colors='DB2B39|1D3152',
+                           chart_data='t:{0},{1}'.format(100 - progress, progress))
+
+    chart = markdown_to_html(chart)
+    if centered: chart = image_center_autosize(chart)
+
+    return chart
+
+
 def is_unsorted(name):
     if 'unsorted' in str(name).lower():
         return True
@@ -112,7 +216,7 @@ def build_all_files(full_filepaths, urlify=True):
     HEAVY. opens all files and stores them as a huge variable.
     :param full_filepaths: filepaths as an input list
     :param urlify: apply markdown formatting to ensure urls turn into links in markdown viewers
-    :returns: a tuple with the format (filepath, file_as_string) for every filepath
+    :returns: a list with the format (filepath, file_as_string) for every filepath
     """
     result = []  # stores files as objects
     for i, full_filepath in enumerate(full_filepaths):
@@ -124,7 +228,9 @@ def build_all_files(full_filepaths, urlify=True):
                     readme[j] = line
 
             result.append(''.join(readme))
-    return zip(full_filepaths, result)
+
+    # if i return an iterator it will be gone the next time
+    return list(zip(full_filepaths, result))
 
 
 def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=True):
@@ -150,8 +256,9 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=Tru
         if flag_complete:
             if '|||' in file_str:
                 result[filename] = [full_filepath, None, None, True]
-                print('completion flag found!')
-                break
+                todo_boolean = True
+                #print('completion flag found in {0}!'.format(filename))
+                pass
 
         readme = iter(file_str.splitlines())  #makes the same iterable as open() function
 
@@ -172,6 +279,7 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=Tru
     return result
 
 
+# OLD
 def build_content_dict_from_filepaths(full_filepaths, keyword='todo'):
     """
     DISCLAIMER : ONLY DESIGNED TO WORK WITH PERSONAL MARKDOWN RULES
@@ -201,7 +309,6 @@ def build_content_dict_from_filepaths(full_filepaths, keyword='todo'):
     return result
 
 
-
 app = Flask(__name__)
 print('app initiated. name of app: {0}'.format(__name__))
 
@@ -209,18 +316,20 @@ print('app initiated. name of app: {0}'.format(__name__))
 full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='.md', debug=False)
 file_tuples = build_all_files(full_filepaths)
 
+
 # temp = build_content_dict_from_tuple(file_tuples)
 # for k, v in temp.items():
 #     print(k, v)
 
 
-def dashboard():
+def dashboard(list_of_stuff):
     # TODO: this is where to put all the dashboard stuff, it stays on every page since it
     # TODO: lives within the layout page
-    return ''
+    if isinstance(list_of_stuff, str): return list_of_stuff
+    else: return '\n'.join(list_of_stuff)
 
 
-
+# OLD
 @app.route('/full/')
 def all_readmes():
     global file_tuples
@@ -235,6 +344,7 @@ def all_readmes():
     md_content = Markup(markdown.markdown(full_readme_md))
     return render_template('card_single.html', name='all the readmes', content=md_content)
 
+
 @app.route('/todo/')
 def todo():
     global file_tuples
@@ -242,13 +352,12 @@ def todo():
     # find keyword from filepaths
     todo_dict = build_content_dict_from_tuple(file_tuples, keyword='todo')
 
-    # rebuild markdown formatting for todo list
+    # rebuild markdown formatting for todolist
     md_list = []
     for k, v in todo_dict.items():
         # title with links
-        md_block_0 = '#### [{0}]({1})\n'.format(k, v[0])
-        # todo : (currently relative links, only works in github markdown)
-        # TODO: CONVERT LINKS INTO GITHUB URLS HERE
+        # ?filepath= turns the absolute filepath into a get request argument
+        md_block_0 = '#### [{0}](?filepath={1})\n'.format(k, v[0])
 
         # subtitle and contents
         md_block_1 = ''
@@ -273,30 +382,38 @@ def todo():
         md_block_2 = md_progressbar(percentage)
 
         md = '\n'.join([md_block_0, md_block_2, md_block_1])
-        #md += '\n----'
         md_list.append([md, percentage])
 
-    # then join all individual mds with \n to make a combined md
-    # todo_list_md = '\n'.join(md_list[0])
-    # print(todo_list_md)
-    md_contents = [Markup(markdown.markdown(md_pair[0])) for md_pair in md_list]
+    # calculate total percentage of stuff done
+    total_percentage = sum([int(x[1]) for x in md_list])/ (len(md_list)*100)
+    total_percentage = round(total_percentage*100)  #turn it into an integer
+    total_chart = progress_doughnut_chart(total_percentage)
+
+    # create countdown timer
+    countdown = datetime.datetime.now().time()
+    due_date = 0
+
+    # format markdown into html
+    html_contents = [markdown_to_html(md_pair[0]) for md_pair in md_list]
     percentages = [md_pair[1] for md_pair in md_list]
     return render_template('card_multiple_with_dashboard.html',
                            name='to-do list',
-                           dashboard_contents=dashboard(),
-                           contents=zip(percentages, md_contents))
+                           dashboard=dashboard(total_chart),
+                           contents=zip(percentages, html_contents))
 
 
-@app.route('/single-page/')
-def readme_card():
-    test_content = """
-    <h1>hey</h1>
-    <p style="font-size: 80vmin">3days</p>
-    """
+@app.route('/single-page/<query>')
+def readme_card(query=None):
+    query = open(query).read()
+    test_content = markdown_to_html(query)
     return render_template('card_single.html', name='test', content=test_content)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
+    filepath_query = request.args.get('filepath')
+    if filepath_query:
+        return readme_card(filepath_query)
     print(request.method)
     return todo()
 
