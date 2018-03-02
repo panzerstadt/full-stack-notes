@@ -22,7 +22,7 @@ to see the repo graph:
 	# pretty version          : git log --graph --full-history --all --pretty=format:"%h%x09%d%x20%s"
 	# prettier version        : git log --graph --full-history --all --color \
         --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
-    # super version simple    : git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)
+    # super version simple    : git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
     # super version with time : git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n%C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
     # super duper version     : git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n%C(white)%s%C(reset)%n%C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
 
@@ -63,6 +63,13 @@ At a high level it’s pretty simple: align the way you work with the way Git wo
 
 ## **to check where this git will connect to**
 	git remote -v   # v for verbose
+
+## **merge develop to master branch**
+	git checkout develop
+	git pull origin develop
+	git checkout master
+	git merge develop
+	git push origin master
 
 ## **sequence of commands to develop a new feature for a project**
 	git clone https://github.com/cooperka/emoji-commit-messages.git
