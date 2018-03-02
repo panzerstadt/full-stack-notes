@@ -189,10 +189,16 @@ You can then embed them using:
 - https://medium.freecodecamp.org/5-github-tips-for-new-coders-2f312689ffd5
 - https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/merge-conflicts
 
-> When faced with a merge conflict, 
-> the first step is to understand what happened. 
-> E.g.: Did one of your colleagues edit the same file on the same lines as you? 
-> Did he delete a file that you modified? Did you both add a file with the same name?
+#### When faced with a merge conflict, 
+#### the first step is to understand what happened. 
+#### E.g.: Did one of your colleagues edit the same file on the same lines as you? 
+#### Did he delete a file that you modified? Did you both add a file with the same name?
+
+#### 1. who is responsible for the two conflicting edits?
+#### 2. which one is correct?
+#### 3. edit the file to reflect the newest one
+#### 4. resolve conflict (tell git it is solved) (READ MORE)
+#### 5. push new merge
 
 - in Git, "merging" is an act of integrating another branch into your current working branch
 
@@ -266,7 +272,7 @@ good stuff
 ok stuff
 - https://git.wiki.kernel.org/index.php/TipsAndTricks
 
-### **solving clashes and local/remote changes**
+## **solving clashes and local/remote changes**
 - https://stackoverflow.com/questions/22620393/various-ways-to-remove-local-git-changes
 ```
 *Solution : Major Edit(s): 03/26 : * Replaced many of vague terms with git specific terminology [tracked/untracked/staged/unstaged]
