@@ -179,12 +179,12 @@ def generate_chart(chart_type='pie',
 def progress_doughnut_chart(progress=60, centered=True):
     chart = generate_chart(markdown=True,
                            chart_type='doughnut',
-                           doughnut_center_str='{0}'.format(str(progress)+'/100'),
+                           doughnut_center_str='{0}'.format(str(progress)+'%'),
                            chart_size='600x600',
                            chart_label='not%20done|done',
                            label_color='FFC00C',
                            chart_animate=False,
-                           chart_colors='DB2B39|1D3152',
+                           chart_colors='DB2B39|7FD8D5',
                            chart_data='t:{0},{1}'.format(100 - progress, progress))
 
     chart = markdown_to_html(chart)
