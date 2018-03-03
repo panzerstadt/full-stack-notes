@@ -11,6 +11,7 @@
 #### git is a graph
 It is the **.git** folder in your main folder, that defines a repository for your project. this repository is a sorta-tree, or a ***directed acyclic graph*** of commit objects with pointers to parent commits that point backwards in time, until you reach the first commit.
 You can travel along the graph by using ```git checkout some-branch-name``` to rewind the project in time (on your local machine).
+
 ![a kinda-git repo](./images/directed-acyclic-graph.png)
 
 to see the repo graph:
