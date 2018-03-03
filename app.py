@@ -236,6 +236,7 @@ def ensure_url(line_of_text, split_key=' '):
     return split_key.join(words)
 
 
+# todo: https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files
 def ensure_images(line_of_text):
     if './' in line_of_text:
         line_of_text = line_of_text.replace('./', '/', 1)
