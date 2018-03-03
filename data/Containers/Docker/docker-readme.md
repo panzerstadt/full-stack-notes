@@ -10,17 +10,34 @@
 
 ## Docker / Virtual Machines
 ![docker and vm](./images/docker-vs-vm.png)
-- Docker is an app for your apps to run
-	- it manages setting up everything needed to run your app
-	- it runs on its own OS (your laptop or the cloud)
-	- your apps are called **containers**
-	- you can run code in your apps, or you can run code in other people's apps
-		- python + tf + linux (docker image)
 
-	> processes grouped in their own namespace = container [link](https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-normal-virtual-machine)
+> processes grouped in their own namespace = **container** [link](https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-normal-virtual-machine)
 
-- Virtual Machines are
-	- they are defined as an ***abstraction of physical hardware*** so its also a super general term
+#### Docker is an app for your apps to run
+![container](./images/container.jpeg)
+- it manages setting up everything needed to run your app
+- it runs on its own OS (your laptop or the cloud)
+- your apps are called **containers**
+- you can run code in your apps, or you can run code in other people's apps
+	- python + tf + linux (docker image)
+- you can *actually* also containerize a 'system' (OS image minus the base OS, like Git, an OS branch from the Windows repo)
+
+#### Virtual Machines is OS simulation
+- they are kungfu at CPU level to make the Virtual OS think it has the same resources as the Host OS
+- two ways:
+	1. Emulation
+		![emulator](./images/emulator.jpeg)
+		- writing a program that simulates all the underlying physical hardware
+		- e.g. Parallels, VMware Player, VirtualBox, QEMU
+		- slow
+	2. Hypervisors (Virtual Machine Monitor)
+		![hypervisor](./images/hypervisor.jpeg)
+		- run Guest OS directly on CPU
+		- e.g. Xen, KVM
+		- instruction sets (CPU code) for both OSes must be the same
+		- as fast as original OS
+- works by intercepting all calls made by Virtual OS to 
+- they are defined as an ***abstraction of physical hardware*** so its also a super general term
 
 ## The Lower Level
 - https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-normal-virtual-machine

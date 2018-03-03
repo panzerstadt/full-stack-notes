@@ -2,7 +2,7 @@
 
 import markdown
 from flask import Flask
-from flask import render_template, Markup, request
+from flask import render_template, Markup, request, url_for
 import os, datetime
 from collections import OrderedDict
 print('markdown version: ', markdown.version)
@@ -10,6 +10,10 @@ print('markdown version: ', markdown.version)
 """
 NOTES
 -----
+right now there are two methods of parsing markdown in the same app:
+1. the github-markdown version as a css file in layout.html 
+    - https://github.com/sindresorhus/github-markdown-css
+2. markdown library to parse markdown into html within python
 
 backslashes available in markdown:
 \ backslash
@@ -198,6 +202,10 @@ def is_unsorted(name):
         return True
 
 
+def ensure_relative_links(line_of_text, query_keyword='query'):
+    return '/?{0}={1}'.format(query_keyword, line_of_text)
+
+# not automated on markdown pyhton lib, but automatic on github
 def ensure_url(line_of_text, split_key=' '):
     words = line_of_text.split(split_key)  # split lines by spacing
     for i, character in enumerate(words):
@@ -211,11 +219,19 @@ def ensure_url(line_of_text, split_key=' '):
     return split_key.join(words)
 
 
-def build_all_files(full_filepaths, urlify=True):
+def ensure_images(line_of_text):
+    if './' in line_of_text:
+        line_of_text = line_of_text.replace('./', '/', 1)
+        print(line_of_text)
+    return line_of_text
+
+
+def build_all_files(full_filepaths, urlify=True, fix_images=True):
     """
     HEAVY. opens all files and stores them as a huge variable.
     :param full_filepaths: filepaths as an input list
     :param urlify: apply markdown formatting to ensure urls turn into links in markdown viewers
+    :param fix_images:
     :returns: a list with the format (filepath, file_as_string) for every filepath
     """
     result = []  # stores files as objects
@@ -225,11 +241,15 @@ def build_all_files(full_filepaths, urlify=True):
             for j, line in enumerate(readme):
                 if urlify:
                     line = ensure_url(line)
-                    readme[j] = line
+                if fix_images:
+                    line = ensure_images(line)
+                readme[j] = line
 
             result.append(''.join(readme))
 
     # if i return an iterator it will be gone the next time
+    [print(markdown_to_html(readme_page)) for readme_page in result]
+
     return list(zip(full_filepaths, result))
 
 
@@ -396,6 +416,7 @@ def todo():
     # format markdown into html
     html_contents = [markdown_to_html(md_pair[0]) for md_pair in md_list]
     percentages = [md_pair[1] for md_pair in md_list]
+    #[print(html_page) for html_page in html_contents]
     return render_template('card_multiple_with_dashboard.html',
                            name='to-do list',
                            dashboard=dashboard(total_chart),
@@ -406,15 +427,25 @@ def todo():
 def readme_card(query=None):
     query = open(query).read()
     test_content = markdown_to_html(query)
+    #test_content = ensure_images(test_content)
+    print(test_content)
     return render_template('card_single.html', name='test', content=test_content)
+
+# @app.route('/images/<image_name>')
+# def return_image_content(image_name):
+#     return open('./images/{0}'.format(image_name))
+#     #return open('./images/{0}'.format(image_name)).read()
 
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
     filepath_query = request.args.get('filepath')
+    print('filepath queried: ', filepath_query)
     if filepath_query:
         return readme_card(filepath_query)
-    print(request.method)
+    image_query = request.args.get('image')
+    print('image queried: ', image_query)
+
     return todo()
 
 if __name__ == '__main__':
