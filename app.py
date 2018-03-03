@@ -238,7 +238,7 @@ def ensure_url(line_of_text, split_key=' '):
 
 # todo: https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files
 def ensure_images(line_of_text):
-    if '(./' in line_of_text:
+    if './' in line_of_text:
         line_of_text = line_of_text.replace('./', './static/', 1)
         print(line_of_text)
     return line_of_text
@@ -440,7 +440,17 @@ def todo():
 @app.route('/single-page/<query>')
 def readme_card(query=None):
     #query = open(query).read()  #this opens the original readme.md file instead of the edited (parsed) version
+    global file_tuples
 
+    filepaths, edited_readme_file = zip(*file_tuples)
+    #[print(snippet) for snippet in edited_readme_file]
+    if query in filepaths:
+        file_index = filepaths.index(query)
+        print('found{0}!'.format(query))
+        print('in index number: {0}'.format)
+        html_content = markdown_to_html(edited_readme_file[file_index])
+        return render_template('card_single.html', name=query, content=html_content)
+        pass
     test_content = markdown_to_html(query)
     #test_content = ensure_images(test_content)
     #print(test_content)
