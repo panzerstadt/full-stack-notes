@@ -25,17 +25,21 @@
 #### Virtual Machines is OS simulation
 - they are kungfu at CPU level to make the Virtual OS think it has the same resources as the Host OS
 - two ways:
-	1. Emulation
-		![emulator](./images/emulator.jpeg)
-		- writing a program that simulates all the underlying physical hardware
-		- e.g. Parallels, VMware Player, VirtualBox, QEMU
-		- slow
-	2. Hypervisors (Virtual Machine Monitor)
-		![hypervisor](./images/hypervisor.jpeg)
-		- run Guest OS directly on CPU
-		- e.g. Xen, KVM
-		- instruction sets (CPU code) for both OSes must be the same
-		- as fast as original OS
+
+![emulator](./images/emulator.jpeg)
+
+1. Emulation
+	- writing a program that simulates all the underlying physical hardware
+	- e.g. Parallels, VMware Player, VirtualBox, QEMU
+	- slow
+
+![hypervisor](./images/hypervisor.jpeg)
+
+2. Hypervisors (Virtual Machine Monitor)
+	- run Guest OS directly on CPU
+	- e.g. Xen, KVM
+	- instruction sets (CPU code) for both OSes must be the same
+	- as fast as original OS
 - works by intercepting all calls made by Virtual OS to 
 - they are defined as an ***abstraction of physical hardware*** so its also a super general term
 

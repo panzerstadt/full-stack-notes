@@ -10,10 +10,9 @@ print('markdown version: ', markdown.version)
 """
 NOTES
 -----
-right now there are two methods of parsing markdown in the same app:
-1. the github-markdown version as a css file in layout.html 
-    - https://github.com/sindresorhus/github-markdown-css
-2. markdown library to parse markdown into html within python
+Markdown workflow:
+1. parse markdown into css through python's markdown library
+2. match css style to github-markdown form css stylesheet embedded in layout.html
 
 backslashes available in markdown:
 \ backslash
@@ -77,6 +76,24 @@ def first(s):
        Raise StopIteration if the collection is empty.
     '''
     return next(iter(s))
+
+
+def countdown(due_date='2017/04/15'):
+    """
+    :param due_date: year/month/day/hour   hour is optional
+    :return: string denoting time left
+    """
+    # create countdown timer
+    future = due_date.split('/')
+    current = datetime.datetime.now()
+
+    time_left = []
+    time_left.append(int(future[0]) - current.year)
+    time_left.append(int(future[1]) - current.month)
+    time_left.append(int(future[2]) - current.day)
+
+    t = time_left
+    return '{0}yr {1}mth {2}dy(s) left.'.format(t[0], t[1], t[2])
 
 
 def md_progressbar(percent, title=None):
@@ -222,7 +239,7 @@ def ensure_url(line_of_text, split_key=' '):
 def ensure_images(line_of_text):
     if './' in line_of_text:
         line_of_text = line_of_text.replace('./', '/', 1)
-        print(line_of_text)
+        #print(line_of_text)
     return line_of_text
 
 
@@ -248,8 +265,7 @@ def build_all_files(full_filepaths, urlify=True, fix_images=True):
             result.append(''.join(readme))
 
     # if i return an iterator it will be gone the next time
-    [print(markdown_to_html(readme_page)) for readme_page in result]
-
+    #[print(markdown_to_html(readme_page)) for readme_page in result]
     return list(zip(full_filepaths, result))
 
 
@@ -409,10 +425,6 @@ def todo():
     total_percentage = round(total_percentage*100)  #turn it into an integer
     total_chart = progress_doughnut_chart(total_percentage)
 
-    # create countdown timer
-    countdown = datetime.datetime.now().time()
-    due_date = 0
-
     # format markdown into html
     html_contents = [markdown_to_html(md_pair[0]) for md_pair in md_list]
     percentages = [md_pair[1] for md_pair in md_list]
@@ -420,6 +432,7 @@ def todo():
     return render_template('card_multiple_with_dashboard.html',
                            name='to-do list',
                            dashboard=dashboard(total_chart),
+                           countdown_timer=countdown('2018/04/15'),
                            contents=zip(percentages, html_contents))
 
 
@@ -428,7 +441,7 @@ def readme_card(query=None):
     query = open(query).read()
     test_content = markdown_to_html(query)
     #test_content = ensure_images(test_content)
-    print(test_content)
+    #print(test_content)
     return render_template('card_single.html', name='test', content=test_content)
 
 # @app.route('/images/<image_name>')
