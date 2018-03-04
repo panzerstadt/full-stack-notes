@@ -1,7 +1,7 @@
 # WEB HOSTING
 ## (with related terminologies)
 - to host something on the web, you need web servers (thing that sends you your website when you type your website url)
-
+- [how the web works](https://jeffknupp.com/blog/2014/03/03/what-is-a-web-framework/)
 
 ## types of web server technologies
 - dedicated servers
