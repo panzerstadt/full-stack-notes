@@ -65,12 +65,6 @@
 - https://stackoverflow.com/questions/29096967/what-are-the-differences-between-a-vm-image-and-a-docker-image?noredirect=1&lq=1
 - https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-normal-virtual-machine
 
-
-
-#### Analogy: copy pasting
-- an image (docker image / VM image) is a bunch of changes made from the base image (like GIT)
-- Docker containers 
-
 	These are some differences between a docker and a VM image which I could list out:
 
 	1. Snapshot process is faster in Docker than VMs
@@ -120,3 +114,33 @@
 	aki. An Amazon kernel image.
 	ari. An Amazon ramdisk image.
 	ami. An Amazon machine image.
+
+## Docker vs a deploying to a consistent production environment
+- https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-normal-virtual-machine
+
+	In relation to:-
+
+	"Why is deploying software to a docker image easier than simply deploying to a consistent production environment ?"
+	Most software is deployed to many environments, typically a minimum of three of the following:
+
+	Individual developer PC(s)
+	Shared developer environment
+	Individual tester PC(s)
+	Shared test environment
+	QA environment
+	UAT environment
+	Load / performance testing
+	Live staging
+	Production
+	Archive
+	There are also the following factors to consider:
+
+	Developers, and indeed testers, will all have either subtlely or vastly different PC configurations, by the very nature of the job
+	Developers can often develop on PCs beyond the control of corporate or business standardisation rules (e.g. freelancers who develop on their own machines (often remotely) or contributors to open source projects who are not 'employed' or 'contracted' to configure their PCs a certain way)
+	Some environments will consist of a fixed number of multiple machines in a load balanced configuration
+	Many production environments will have cloud-based servers dynamically (or 'elastically') created and destroyed depending on traffic levels
+	As you can see the extrapolated total number of servers for an organisation is rarely in single figures, is very often in triple figures and can easily be significantly higher still.
+
+	This all means that creating consistent environments in the first place is hard enough just because of sheer volume (even in a green field scenario), but keeping them consistent is all but impossible given the high number of servers, addition of new servers (dynamically or manually), automatic updates from o/s vendors, anti-virus vendors, browser vendors and the like, manual software installs or configuration changes performed by developers or server technicians, etc. Let me repeat that - it's virtually (no pun intended) impossible to keep environments consistent (okay, for the purist, it can be done, but it involves a huge amount of time, effort and discipline, which is precisely why VMs and containers (e.g. Docker) were devised in the first place).
+
+	So think of your question more like this "Given the extreme difficulty of keeping all environments consistent, is it easier to deploying software to a docker image, even when taking the learning curve into account ?". I think you'll find the answer will invariably be "yes" - but there's only one way to find out, post this new question on Stack Overflow.
