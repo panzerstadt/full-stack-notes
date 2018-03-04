@@ -3,14 +3,13 @@
 {{ name }}
 {% endblock %}
 {% block body %}
-<div class="col-xs-12" style="margin:10px 10px 10px 0px">
+<div style="margin:10px">
     <a href="/" class="btn btn-info btn-xs">home</a>
 </div>
-<div class="card">
-    <div class="card-body" style="background-color:#FEFCF9">
-        <div class="card-text markdown-body" >
-            {{ content }}
-        </div>
+
+<div style="background-color:#FEFCF9">
+    <div class="markdown-body" style="">
+    {{ content }}
     </div>
 </div>
 {% endblock %}

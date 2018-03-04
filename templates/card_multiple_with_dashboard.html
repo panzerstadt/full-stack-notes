@@ -13,27 +13,31 @@
 -->
 
 {% block body %}
-<div class="container-fluid">
-    <div class="col-xs-12" style="margin:auto">
-        <!-- work out the range of numbers for vmax based on num of characters -->
-        <p class="text-center" style="line-height:90vmin;font-size:8vmin;color:#DB2B39;vertical-align:middle;align:center">
-            {{ countdown_timer }}
-        </p>
+<div class="col-xs-12" style="padding:15px">
+    <div class="container-fluid">
+        <div class="col-xs-12" style="margin:auto">
+            <!-- work out the range of numbers for vmax based on num of characters -->
+            <p class="text-center" style="line-height:90vmin;font-size:8vmin;color:#DB2B39;vertical-align:middle;align:center">
+                {{ countdown_timer }}
+            </p>
+        </div>
+        <div class="col-xs-12" style="background-color:transparent;margin:5%">
+            {{ dashboard }}
+        </div>
     </div>
-    <div class="col-xs-12" style="background-color:transparent;margin:5%">
-        {{ dashboard }}
-    </div>
-</div>
 
-<div class="card-columns">
-    {% for percentage, content in contents %}
-        <div class="card">
-            <div class="card-body" style="background-color:#FEFCF9">
-                <div class="card-text" >
-                    {{ content }}
+    <div class="card-columns">
+        {% for percentage, content in contents %}
+            <div class="card">
+                <div class="card-body" style="background-color:#FEFCF9">
+                    <div class="card-text" >
+                        {{ content }}
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
+
 </div>
+
 {% endblock %}

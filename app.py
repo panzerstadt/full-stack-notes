@@ -371,11 +371,12 @@ def dashboard(list_of_stuff):
 def all_readmes():
     global file_tuples
 
+    _, edited_readme_file = zip(*file_tuples)
+
     md = ''
-    for file in full_filepaths:
-        with open(file) as single_readme:
-            md += single_readme.read()
-            md += '\n----\n'
+    for file in edited_readme_file:
+        md += file
+        md += '\n----\n'
 
     full_readme_md = md
     md_content = Markup(markdown.markdown(full_readme_md))

@@ -32,15 +32,11 @@ CSS is always on top (to speed things up)
     <meta charset="UTF-8">
     <title>gitnotes : {% block title %}{% endblock %}</title>
 </head>
-<body style="background-color:#77878B;padding:10px">
+<body style="background-color:#77878B">
 <!-- #373F42 -->
 
-<div class="container">
-    <div class="col-xs-12">
-        {% block body %}
-        {% endblock %}
-    </div>
-</div>
+{% block body %}
+{% endblock %}
 
 <!--
 JAVASCRIPT at the bottom
