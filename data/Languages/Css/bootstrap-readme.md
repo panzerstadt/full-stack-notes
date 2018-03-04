@@ -1,7 +1,7 @@
 # BOOTSTRAP
+||| future
 
 ### TODO: format a webpage in bootstrap
-- this todolist webapp
 - automate wrapping of bootstrap stuff
 
 ## css grid

@@ -3,6 +3,7 @@
 
 ## TODO:
 - setup and deploy a server
+- [nginx architecture](http://www.aosabook.org/en/nginx.html)
 
 ## what is Nginx?
 - pronounced 'engine x'
@@ -18,6 +19,8 @@
 
 ## Apache vs Nginx
 - https://code.tutsplus.com/tutorials/apache-vs-nginx-pros-cons-for-wordpress--cms-28540
+- https://poweruphosting.com/blog/apache-vs-nginx/
+- https://www.nginx.com/blog/nginx-vs-apache-our-view/
 
 ###### Apache
 	Apache calls a whole CPU thread to handle one task for every user. 1000 users = 1000 processes.

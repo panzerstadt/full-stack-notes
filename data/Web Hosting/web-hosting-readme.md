@@ -98,6 +98,29 @@ With persistent connections the problem of handling concurrency is even more pro
 - components of a web application solution stack
 - [source](https://www.reddit.com/r/explainlikeimfive/comments/14lmw6/eli5_please_explain_the_roles_of_the_components/)
 
+### LAMP = Linux, Apache, MySQL, PHP
+
+Many small scale web apps use this stack of technologies, but increasingly you'll see replacements for each of them being used instead. So let's look at them from a functional perspective and look at some possible alternatives as we go.
+
+**PHP is a programming language**. Its job is to help a software developer explain the behaviour that the computer should exhibit in certain conditions. "When this happens, do this", "When the input is this, the output should be this", and so on. We write these things in programming languages, because we want to describe a sort of architecture of logic that the application must follow.
+
+You don't need to write web applications in PHP, and in fact many web applications are not. It's limited in some respects, and some programmers just prefer other languages such as Java, Ruby, Perl, ASP, ColdFusion and many, many others. Almost all programming languages can be used to write web application software.
+
+**MySQL is a relational database system**. It's where data that the PHP code needs is stored. This is where your details as a user are stored, your preferences, your orders and so on. PHP talks to MySQL and creates, retrieves, updates and destroys records in MySQL when you interact with the web application.
+
+You don't need to use MySQL to store data, popular SQL alternatives include PostgreSQL or Oracle. In recent years there has been a rise in popularity of "NoSQL" systems like MongoDB and CouchDB. They all store - or "persist" as we prefer to call it - data for the web application, but have different features, strengths and weaknesses.
+
+**Apache is a web server program**. Its job is to take HTTP requests from across the Internet, and say to PHP "hey, PHP, wake up, what do I do here?". PHP then looks at what is being sent, cookies sent by your browser and what it has been scripted to do, maybe talk to MySQL and then crafts a response in HTML and says "Here you go Apache, send them this HTML back", which comes back to your browser. Your browser then renders it, requests images and stylesheets and the like, and makes it look lovely on your screen.
+
+There are alternatives to Apache. They include nginx, mongrel, IIS, Unicorn and others. They all do the same job: they take HTTP requests from browsers, and either figure out how to return a file or ask another program like PHP to return something back to the browser.
+
+**Linux is the operating system running all of these pieces of software**. As an operating system it abstracts things that the programs need: the network stack, RAM, disc, etc. It helps some of the software create forked processes or threads and manages them so the writers of the software don't have to do that bit themselves. In essence, it goes some way to let writers of other software focus on solving the problems their software needs to solve rather than having to do all of that themselves from scratch.
+
+Some people argue that Linux is the name of the kernel and the operating system is GNU/Linux. There are many GNU/Linux distributions you may have heard of: Redhat, CentOS, Ubuntu, Debian, Slackware, and so on.
+
+There are alternatives that can be used including OS X and Windows but for various reasons these are less popular for web serving than Unix or Unix-like operating systems without graphical user interfaces.
+
+In theory then you could replace each and every component. LAMP could be WNMJ (Windows Server + nginx + MongoDB + Java), but LAMP is popular because it's relatively easy to setup, well documented and easy to learn. It does pay dividends at the high-end to question each part of the equation though and wonder whether it's the best solution for the specific web application you have in mind.
 
 
 ## CGI, FastCGI, WSGI (the thing in between web servers and you the client)

@@ -1,4 +1,6 @@
 # SCALING
+||| future
+
 - https://stackoverflow.com/questions/11707879/difference-between-scaling-horizontally-and-vertically-for-databases
 - http://ht.ly/cAhPe
 
