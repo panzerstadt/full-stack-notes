@@ -5,6 +5,7 @@
 - make a javascript program https://www.udemy.com/the-complete-javascript-course/
 - short javascript tutorial https://medium.com/codingthesmartway-com-blog/pure-javascript-building-a-real-world-application-from-scratch-5213591cfcd6
 - [make a node.js app](https://drive.google.com/file/d/1JjvlIy4bwWJdbM8jc1NczbVyTpZqC69R/view?usp=sharing)
+- learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)?
 
 ## javascript history
 - https://codeburst.io/javascript-wtf-is-es6-es8-es-2017-ecmascript-dca859e4821c
