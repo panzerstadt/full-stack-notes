@@ -19,5 +19,34 @@ Here’s what happened long, long ago:
 - simple progress bar https://github.com/fehmicansaglam/progressed.io
 - other charts http://luizperes.github.io/status-projects/
 
+## how to run javascript
+- on the browser - use the browser
+	- [quora](https://www.quora.com/How-do-I-run-a-JavaScript-file)
+	1. use [jsbin](http://jsbin.com/?html,output)
+	2. save the file as .HTML, .HTM and open in google chrome, right click, inspect element, and click console. You should be able to see the results of your code running.
+
+- off the browser - use node.js
+	- in terminal: **node myapp.js**
+
+
+## NODEJS
+
+>just like when you do ***python myapp.py*** in terminal,
+> now you can do ***node myapp.js*** in terminal.
+
+> apparently you couldn't before.
+
+[eli5](https://www.reddit.com/r/learnjavascript/comments/3d4hs5/eli5_what_in_the_heck_is_nodejs/?st=jedngbld&sh=7bd840a1)
+- a lightweight server that allows you to run Javascript outside the browser
+- perform actions on your local machine
+- has the ability to run HTTP applications written in Javascript
+	- essentially doing what Apache httpd does (meaning Node.js acts like a webserver)
+- meaning, there are now applications using Javascript to run front end ***AND*** backend.
+- but Node is single threaded, so its not super fast
+
+	The main advantage is the asynchronous nature of the language, which is caused by the single-threaded event-loop, which is a fancy way of saying "I can schedule a bunch of jobs simultaneously, and I'll be able to answer them as soon as they are done processing - no job that is done will have to wait around for me to get around to it because I'll know instantly".
+
+
+
 ## links
 - https://webapplog.com/es6/
