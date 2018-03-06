@@ -7,7 +7,7 @@
 - https://sass-lang.com/guide
 
 ## watch a scss file (autocompile into css)
-> sass --watch input_file.scss output_file.css
+> sass --watch input_file.scss:output_file.css
 
 ### variables
 - store colors, font stacks, or any css value you think you want to reuse
@@ -24,4 +24,15 @@ body {
 }
 ```
 
-### another note
+### shorthand in css
+- https://www.webcredible.com/blog/css-shorthand-properties/
+
+## sass has FUNCTIONS
+- http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+### how to perform vertical centering
+- decision tree on which ones to use
+- https://css-tricks.com/centering-css-complete-guide/
+
+### other tips and tricks (css)
+- [vignettes](http://nimbupani.com/vignettes-with-css3-box-shadows.html)
