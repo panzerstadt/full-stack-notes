@@ -5,8 +5,18 @@
 - make a javascript program https://www.udemy.com/the-complete-javascript-course/
 - short javascript tutorial https://medium.com/codingthesmartway-com-blog/pure-javascript-building-a-real-world-application-from-scratch-5213591cfcd6
 - [make a node.js app](https://drive.google.com/file/d/1JjvlIy4bwWJdbM8jc1NczbVyTpZqC69R/view?usp=sharing)
-- learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)?
+- learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.
 - learn react and gulp through an [app with flask](https://realpython.com/blog/python/the-ultimate-flask-front-end/)
+- callback functions goddamnit
+
+## things to know (vs python)
+- javascript is an ***ASYNCHRONOUS*** programming language
+	- [callback](https://www.google.co.jp/search?client=safari&rls=en&q=learning+callback+structure+javascript&ie=UTF-8&oe=UTF-8&gfe_rd=cr&dcr=0&ei=-d6fWuGbB7P98Af--bngDg) functions are a big thing.
+	- things like error handling are a *Pain In The Ass* (PITA) because its hard to find out which method went wrong at what time (because they don't follow an order)
+- C# and F# is also asynchronous (but they have design patterns called 'async/wait' which make it easier apparently)
+- to deal with it properly, learn how to use `promise` or `future` or `task`
+	- with JQuery, use `$.Deferred()`
+	- with AngularJS, use `$q.defer()`
 
 ## javascript history
 - https://codeburst.io/javascript-wtf-is-es6-es8-es-2017-ecmascript-dca859e4821c
@@ -48,6 +58,47 @@ Here’s what happened long, long ago:
 
 	The main advantage is the asynchronous nature of the language, which is caused by the single-threaded event-loop, which is a fancy way of saying "I can schedule a bunch of jobs simultaneously, and I'll be able to answer them as soon as they are done processing - no job that is done will have to wait around for me to get around to it because I'll know instantly".
 
+## command cheat sheet
+
+#### console.log() and cousins (like print() in python)
+- 4 ways to display data, by writing into:
+1. html element - **innerHTML**
+	1. ask javascript to find the element
+2. html output - **document.write()**
+3. alert box (pop up in browser) - **window.alert()**
+4. browser console - **console.log()**
+
+#### load html (the final output usually) when working in js
+- use [ExpressJS](http://expressjs.com)
+- https://stackoverflow.com/questions/4720343/loading-basic-html-in-node-js
+
+#### callback functions
+	It's like calling a business on the phone and leaving your "callback" number, so they can call you when someone is available to get back to you. That's better than hanging on the line for who knows how long and not being able to attend to other affairs.
+
+- https://stackoverflow.com/questions/824234/what-is-a-callback-function
+
+	A callback function is a function which is:
+
+	passed as an argument to another function, and,
+	is invoked after some kind of event.
+
+-https://stackoverflow.com/questions/9596276/how-to-explain-callbacks-in-plain-english-how-are-they-different-from-calling-o/9652434#9652434
+
+Consider how programmers normally write to a file: (LQ: like python)
+
+	fileObject = open(file)
+	# now that we have WAITED for the file to open, we can write to it
+	fileObject.write("We are writing to the file.")
+	# now we can continue doing the other, totally unrelated things our program does
+
+Here, we WAIT for the file to open, before we write to it. This "blocks" the flow of execution, and our program cannot do any of the other things it might need to do! What if we could do this instead:
+
+	# we pass writeToFile (A CALLBACK FUNCTION!) to the open function
+	fileObject = open(file, writeToFile)
+	# execution continues flowing -- we don't wait for the file to be opened
+	# ONCE the file is opened we write to it, but while we wait WE CAN DO OTHER THINGS!
+
+It turns out we do this with some languages and frameworks. It's pretty cool! Check out Node.js to get some real practice with this kind of thinking.
 
 
 ## links
