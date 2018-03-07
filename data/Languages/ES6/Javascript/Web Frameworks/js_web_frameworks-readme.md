@@ -30,4 +30,4 @@ Angular - React
 - simplified development of complex applications
 - Javascript front and backend
 
-![image](./images.nodejs.png)
+![image](./images/nodejs.png)
