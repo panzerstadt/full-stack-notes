@@ -1,13 +1,17 @@
 # JAVASCRIPT
 
 ### TODO: learn a lot of javascript
-- actually learn javascript https://stackskills.com/courses/javascript-complete/lectures/903458
-- make a javascript program https://www.udemy.com/the-complete-javascript-course/
+- [actually learn javascript](https://stackskills.com/courses/javascript-complete/lectures/903458) [source2](https://www.udemy.com/the-complete-javascript-course/)
 - short javascript tutorial https://medium.com/codingthesmartway-com-blog/pure-javascript-building-a-real-world-application-from-scratch-5213591cfcd6
-- [make a node.js app](https://drive.google.com/file/d/1JjvlIy4bwWJdbM8jc1NczbVyTpZqC69R/view?usp=sharing)
 - learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.
 - learn react and gulp through an [app with flask](https://realpython.com/blog/python/the-ultimate-flask-front-end/)
 - callback functions goddamnit
+
+## DONE
+- [instagram viewing app](https://drive.google.com/file/d/1JjvlIy4bwWJdbM8jc1NczbVyTpZqC69R/view?usp=sharing)
+	- [code](https://github.com/panzerstadt/tut-instagram-app)
+- [coding train twitter bot](https://www.youtube.com/watch?v=ZvsqQjwrISQ)
+	- [code](https://github.com/panzerstadt/tut-twitter-bot)
 
 ## things to know (vs python)
 - javascript is an ***ASYNCHRONOUS*** programming language
@@ -30,6 +34,8 @@ Here’s what happened long, long ago:
 - progress bars https://docs.travis-ci.com/api#overview
 - simple progress bar https://github.com/fehmicansaglam/progressed.io
 - other charts http://luizperes.github.io/status-projects/
+- ejs package is like jinja2, expressJS templating engine
+	- for hairy things like running dynamic code on html
 
 ## how to run javascript
 - on the browser - use the browser

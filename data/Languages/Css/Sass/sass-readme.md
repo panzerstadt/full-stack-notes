@@ -1,6 +1,15 @@
 # SASS / SCSS
 
-## TODO: tutorials!
+## TODO: css animations and pseudo-classes!
+- [dropdown menu](https://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/)
+- [deconstruct some animations](http://freefrontend.com/css-menu/)
+- [pseudo classes](https://css-tricks.com/pseudo-class-selectors/) [source2](https://www.smashingmagazine.com/2016/05/an-ultimate-guide-to-css-pseudo-classes-and-pseudo-elements/) [source3](https://htmldog.com/guides/css/intermediate/pseudoclasses/)
+
+## architecture of CSS (for large scale maintainability)
+- https://sass-guidelin.es/#architecture
+- https://smacss.com
+
+## tutorials!
 - https://medium.com/@thejasonfile/getting-started-with-sass-dedb271bdf5a
 - https://tutorialzine.com/2016/01/learn-sass-in-15-minutes
 - https://scotch.io/tutorials/getting-started-with-sass
