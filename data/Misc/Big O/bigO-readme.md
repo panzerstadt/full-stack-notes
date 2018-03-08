@@ -4,6 +4,7 @@
 - https://en.wikipedia.org/wiki/Analysis_of_algorithms
 - https://www.hackerearth.com/ja/practice/notes/big-o-explained/
 - https://stackoverflow.com/questions/487258/what-is-a-plain-english-explanation-of-big-o-notation
+- https://www.infoarena.ro/blog/numbers-everyone-should-know
 
 ## TODO: code examples of notations with timing
 - python code examples of Big O [or even php examples (learn php along the way)](https://blog.eduonix.com/web-programming-tutorials/learn-about-big-o-notation-in-php/)
