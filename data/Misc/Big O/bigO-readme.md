@@ -675,9 +675,6 @@
     </span>
     .  Think about the graphs in the grow rate section.  The way each curve looks.  That is the most important thing to understand about algorithms analysis.
     <div class="comments-icon">
-        <div class="marker">
-            +
-        </div>
     </div>
 </p>
 
