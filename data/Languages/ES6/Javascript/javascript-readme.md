@@ -6,6 +6,7 @@
 - learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.
 - learn react and gulp through an [app with flask](https://realpython.com/blog/python/the-ultimate-flask-front-end/)
 - callback functions goddamnit (gotta learn async programming)
+- [nice gitbook javascript ebook](https://gitbookio.gitbooks.io/javascript/content/)
 
 ## DONE
 - [instagram viewing app](https://drive.google.com/file/d/1JjvlIy4bwWJdbM8jc1NczbVyTpZqC69R/view?usp=sharing)

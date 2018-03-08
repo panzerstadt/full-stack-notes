@@ -1,10 +1,707 @@
 # Big O notation
 ### O means slOwness
 - https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+- https://en.wikipedia.org/wiki/Analysis_of_algorithms
 
 ## TODO: code examples of notations with timing
 - python code examples of Big O
 - https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation
+- [nice read](https://cathyatseneca.gitbooks.io/data-structures-and-algorithms/analysis/notations.html)
+
+## [cheat sheet](https://en.wikipedia.org/wiki/Best,_worst_and_average_case)
+1. [sorting](https://en.wikipedia.org/wiki/Sorting_algorithm#Comparison_of_algorithms)
+
+<table class="wikitable">
+<tbody>
+	<tr>
+		<th>Algorithm</th>
+		<th>Data structure</th>
+		<th>Time complexity:Best</th>
+		<th>Time complexity:Average</th>
+		<th>Time complexity:Worst</th>
+		<th>Space complexity:Worst</th>
+	</tr>
+
+	<tr>
+		<td>Quick sort</td>
+		<td>Array</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(<i>n</i><sup>2</sup>)</td>
+		<td>O(n)</td>
+	</tr>
+
+	<tr>
+		<td>Merge sort</td>
+		<td>Array</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(n)</td>
+	</tr>
+
+	<tr>
+		<td>Heap sort</td>
+		<td>Array</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(1)</td>
+	</tr>
+
+	<tr>
+		<td>Smooth sort</td>
+		<td>Array</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(<i>n</i> log(<i>n</i>))</td>
+		<td>O(1)</td>
+	</tr>
+
+	<tr>
+		<td>Bubble sort</td>
+		<td>Array</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i><sup>2</sup>)</td>
+		<td>O(<i>n</i><sup>2</sup>)</td>
+		<td>O(1)</td>
+	</tr>
+
+	<tr>
+		<td>Insertion sort</td>
+		<td>Array</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i><sup>2</sup>)</td>
+		<td>O(<i>n</i><sup>2</sup>)</td>
+		<td>O(1)</td>
+	</tr>
+
+	<tr>
+		<td>Selection sort</td>
+		<td>Array</td>
+		<td>O(<i>n</i><sup>2</sup>)</td>
+		<td>O(<i>n</i><sup>2</sup>)</td>
+		<td>O(<i>n</i><sup>2</sup>)</td>
+		<td>O(1)</td>
+	</tr>
+</tbody>
+</table>
+
+2. [data structures](https://en.wikipedia.org/wiki/Search_data_structure#Asymptotic_amortized_worst-case_analysis)
+
+<table class="wikitable">
+<tbody>
+	<tr>
+		<th rowspan="2">Data structure</th>
+		<th colspan="8">Time complexity</th>
+		<th>Space complexity</th>
+	</tr>
+
+	<tr>
+		<th>Avg: Indexing</th>
+		<th>Avg: Search</th>
+		<th>Avg: Insertion</th>
+		<th>Avg: Deletion</th>
+		<th>Worst: Indexing</th>
+		<th>Worst: Search</th>
+		<th>Worst: Insertion</th>
+		<th>Worst: Deletion</th>
+		<th>Worst</th>
+	</tr>
+
+	<tr>
+		<td>Basic Array</td>
+		<td>O(1)</td>
+		<td>O(<i>n</i>)</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(1)</td>
+		<td>O(<i>n</i>)</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(<i>n</i>)</td>
+	</tr>
+
+	<tr>
+		<td>Dynamic array</td>
+		<td>O(1)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(1)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(<i>n</i>)</td>
+	</tr>
+
+	<tr>
+		<td>Singly linked list</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(1)</td>
+		<td>O(1)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(1)</td>
+		<td>O(1)</td>
+		<td>O(<i>n</i>)</td>
+	</tr>
+
+	<tr>
+		<td>Doubly linked list</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(1)</td>
+		<td>O(1)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(1)</td>
+		<td>O(1)</td>
+		<td>O(<i>n</i>)</td>
+	</tr>
+
+	<tr>
+		<td>Hash table</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(1)</td>
+		<td>O(1)</td>
+		<td>O(1)</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+	</tr>
+
+	<tr>
+		<td>Binary search tree</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+		<td>O(<i>n</i>)</td>
+	</tr>
+
+	<tr>
+		<td>B-tree</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(<i>n</i>)</td>
+	</tr>
+
+	<tr>
+		<td>Red-black tree</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(<i>n</i>)</td>
+	</tr>
+	
+	<tr>
+		<td>AVL tree</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td data-sort-value="" style="vertical-align:middle; text-align:center" class="table-na">—</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(log (<i>n</i>))</td>
+		<td>O(<i>n</i>)</td>
+	</tr>
+</tbody>
+</table>
+
+## how to think of Big O
+- [from the nice read ebook](https://cathyatseneca.gitbooks.io/data-structures-and-algorithms/analysis/notations.html)
+
+<p class="comments-section">
+    The math in big-O analysis can often be intimidates students.  One of the simplest ways to think about big-O analysis is that it is basically a way to apply a rating system for your algorithms (like movie ratings).  It tells you the kind of resource needs you can expect the algorithm to exhibit as your data gets bigger and bigger.  From best  (least resource requirements ) to worst, the rankings are:
+    <span class="katex">
+        <span class="katex-mathml">
+            <math>
+                <semantics>
+                    <mrow>
+                        <mi>
+                            O
+                        </mi>
+                        <mo>
+                            (
+                        </mo>
+                        <mn>
+                            1
+                        </mn>
+                        <mo>
+                            )
+                        </mo>
+                    </mrow>
+                    <annotation encoding="application/x-tex">
+                        O(1)
+                    </annotation>
+                </semantics>
+            </math>
+        </span>
+        <span aria-hidden="true" class="katex-html">
+            <span class="strut" style="height:0.75em;">
+            </span>
+            <span class="strut bottom" style="height:1em;vertical-align:-0.25em;">
+            </span>
+            <span class="base textstyle uncramped">
+                <span class="mord mathit" style="margin-right:0.02778em;">
+                    O
+                </span>
+                <span class="mopen">
+                    (
+                </span>
+                <span class="mord mathrm">
+                    1
+                </span>
+                <span class="mclose">
+                    )
+                </span>
+            </span>
+        </span>
+    </span>
+    ,
+    <span class="katex">
+        <span class="katex-mathml">
+            <math>
+                <semantics>
+                    <mrow>
+                        <mi>
+                            O
+                        </mi>
+                        <mo>
+                            (
+                        </mo>
+                        <mi>
+                            log
+                        </mi>
+                        <mi>
+                            n
+                        </mi>
+                        <mo>
+                            )
+                        </mo>
+                    </mrow>
+                    <annotation encoding="application/x-tex">
+                        O(\log n)
+                    </annotation>
+                </semantics>
+            </math>
+        </span>
+        <span aria-hidden="true" class="katex-html">
+            <span class="strut" style="height:0.75em;">
+            </span>
+            <span class="strut bottom" style="height:1em;vertical-align:-0.25em;">
+            </span>
+            <span class="base textstyle uncramped">
+                <span class="mord mathit" style="margin-right:0.02778em;">
+                    O
+                </span>
+                <span class="mopen">
+                    (
+                </span>
+                <span class="mop">
+                    lo
+                    <span style="margin-right:0.01389em;">
+                        g
+                    </span>
+                </span>
+                <span class="mord mathit">
+                    n
+                </span>
+                <span class="mclose">
+                    )
+                </span>
+            </span>
+        </span>
+    </span>
+    ,
+    <span class="katex">
+        <span class="katex-mathml">
+            <math>
+                <semantics>
+                    <mrow>
+                        <mi>
+                            O
+                        </mi>
+                        <mo>
+                            (
+                        </mo>
+                        <mi>
+                            n
+                        </mi>
+                        <mo>
+                            )
+                        </mo>
+                    </mrow>
+                    <annotation encoding="application/x-tex">
+                        O(n)
+                    </annotation>
+                </semantics>
+            </math>
+        </span>
+        <span aria-hidden="true" class="katex-html">
+            <span class="strut" style="height:0.75em;">
+            </span>
+            <span class="strut bottom" style="height:1em;vertical-align:-0.25em;">
+            </span>
+            <span class="base textstyle uncramped">
+                <span class="mord mathit" style="margin-right:0.02778em;">
+                    O
+                </span>
+                <span class="mopen">
+                    (
+                </span>
+                <span class="mord mathit">
+                    n
+                </span>
+                <span class="mclose">
+                    )
+                </span>
+            </span>
+        </span>
+    </span>
+    ,
+    <span class="katex">
+        <span class="katex-mathml">
+            <math>
+                <semantics>
+                    <mrow>
+                        <mi>
+                            O
+                        </mi>
+                        <mo>
+                            (
+                        </mo>
+                        <mi>
+                            n
+                        </mi>
+                        <mi>
+                            log
+                        </mi>
+                        <mi>
+                            n
+                        </mi>
+                        <mo>
+                            )
+                        </mo>
+                    </mrow>
+                    <annotation encoding="application/x-tex">
+                        O(n \log n)
+                    </annotation>
+                </semantics>
+            </math>
+        </span>
+        <span aria-hidden="true" class="katex-html">
+            <span class="strut" style="height:0.75em;">
+            </span>
+            <span class="strut bottom" style="height:1em;vertical-align:-0.25em;">
+            </span>
+            <span class="base textstyle uncramped">
+                <span class="mord mathit" style="margin-right:0.02778em;">
+                    O
+                </span>
+                <span class="mopen">
+                    (
+                </span>
+                <span class="mord mathit">
+                    n
+                </span>
+                <span class="mop">
+                    lo
+                    <span style="margin-right:0.01389em;">
+                        g
+                    </span>
+                </span>
+                <span class="mord mathit">
+                    n
+                </span>
+                <span class="mclose">
+                    )
+                </span>
+            </span>
+        </span>
+    </span>
+    ,
+    <span class="katex">
+        <span class="katex-mathml">
+            <math>
+                <semantics>
+                    <mrow>
+                        <mi>
+                            O
+                        </mi>
+                        <mo>
+                            (
+                        </mo>
+                        <msup>
+                            <mi>
+                                n
+                            </mi>
+                            <mn>
+                                2
+                            </mn>
+                        </msup>
+                        <mo>
+                            )
+                        </mo>
+                    </mrow>
+                    <annotation encoding="application/x-tex">
+                        O( n^2 )
+                    </annotation>
+                </semantics>
+            </math>
+        </span>
+        <span aria-hidden="true" class="katex-html">
+            <span class="strut" style="height:0.8141079999999999em;">
+            </span>
+            <span class="strut bottom" style="height:1.064108em;vertical-align:-0.25em;">
+            </span>
+            <span class="base textstyle uncramped">
+                <span class="mord mathit" style="margin-right:0.02778em;">
+                    O
+                </span>
+                <span class="mopen">
+                    (
+                </span>
+                <span class="mord">
+                    <span class="mord mathit">
+                        n
+                    </span>
+                    <span class="msupsub">
+                        <span class="vlist">
+                            <span style="top:-0.363em;margin-right:0.05em;">
+                                <span class="fontsize-ensurer reset-size5 size5">
+                                    <span style="font-size:0em;">
+                                        ​
+                                    </span>
+                                </span>
+                                <span class="reset-textstyle scriptstyle uncramped mtight">
+                                    <span class="mord mathrm mtight">
+                                        2
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="baseline-fix">
+                                <span class="fontsize-ensurer reset-size5 size5">
+                                    <span style="font-size:0em;">
+                                        ​
+                                    </span>
+                                </span>
+                                ​
+                            </span>
+                        </span>
+                    </span>
+                </span>
+                <span class="mclose">
+                    )
+                </span>
+            </span>
+        </span>
+    </span>
+    ,
+    <span class="katex">
+        <span class="katex-mathml">
+            <math>
+                <semantics>
+                    <mrow>
+                        <mi>
+                            O
+                        </mi>
+                        <mo>
+                            (
+                        </mo>
+                        <msup>
+                            <mi>
+                                n
+                            </mi>
+                            <mn>
+                                3
+                            </mn>
+                        </msup>
+                        <mo>
+                            )
+                        </mo>
+                    </mrow>
+                    <annotation encoding="application/x-tex">
+                        O(n^3)
+                    </annotation>
+                </semantics>
+            </math>
+        </span>
+        <span aria-hidden="true" class="katex-html">
+            <span class="strut" style="height:0.8141079999999999em;">
+            </span>
+            <span class="strut bottom" style="height:1.064108em;vertical-align:-0.25em;">
+            </span>
+            <span class="base textstyle uncramped">
+                <span class="mord mathit" style="margin-right:0.02778em;">
+                    O
+                </span>
+                <span class="mopen">
+                    (
+                </span>
+                <span class="mord">
+                    <span class="mord mathit">
+                        n
+                    </span>
+                    <span class="msupsub">
+                        <span class="vlist">
+                            <span style="top:-0.363em;margin-right:0.05em;">
+                                <span class="fontsize-ensurer reset-size5 size5">
+                                    <span style="font-size:0em;">
+                                        ​
+                                    </span>
+                                </span>
+                                <span class="reset-textstyle scriptstyle uncramped mtight">
+                                    <span class="mord mathrm mtight">
+                                        3
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="baseline-fix">
+                                <span class="fontsize-ensurer reset-size5 size5">
+                                    <span style="font-size:0em;">
+                                        ​
+                                    </span>
+                                </span>
+                                ​
+                            </span>
+                        </span>
+                    </span>
+                </span>
+                <span class="mclose">
+                    )
+                </span>
+            </span>
+        </span>
+    </span>
+    ,
+    <span class="katex">
+        <span class="katex-mathml">
+            <math>
+                <semantics>
+                    <mrow>
+                        <mi>
+                            O
+                        </mi>
+                        <mo>
+                            (
+                        </mo>
+                        <msup>
+                            <mn>
+                                2
+                            </mn>
+                            <mi>
+                                n
+                            </mi>
+                        </msup>
+                        <mo>
+                            )
+                        </mo>
+                    </mrow>
+                    <annotation encoding="application/x-tex">
+                        O(2^n)
+                    </annotation>
+                </semantics>
+            </math>
+        </span>
+        <span aria-hidden="true" class="katex-html">
+            <span class="strut" style="height:0.75em;">
+            </span>
+            <span class="strut bottom" style="height:1em;vertical-align:-0.25em;">
+            </span>
+            <span class="base textstyle uncramped">
+                <span class="mord mathit" style="margin-right:0.02778em;">
+                    O
+                </span>
+                <span class="mopen">
+                    (
+                </span>
+                <span class="mord">
+                    <span class="mord mathrm">
+                        2
+                    </span>
+                    <span class="msupsub">
+                        <span class="vlist">
+                            <span style="top:-0.363em;margin-right:0.05em;">
+                                <span class="fontsize-ensurer reset-size5 size5">
+                                    <span style="font-size:0em;">
+                                        ​
+                                    </span>
+                                </span>
+                                <span class="reset-textstyle scriptstyle uncramped mtight">
+                                    <span class="mord mathit mtight">
+                                        n
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="baseline-fix">
+                                <span class="fontsize-ensurer reset-size5 size5">
+                                    <span style="font-size:0em;">
+                                        ​
+                                    </span>
+                                </span>
+                                ​
+                            </span>
+                        </span>
+                    </span>
+                </span>
+                <span class="mclose">
+                    )
+                </span>
+            </span>
+        </span>
+    </span>
+    .  Think about the graphs in the grow rate section.  The way each curve looks.  That is the most important thing to understand about algorithms analysis
+    <div class="comments-icon">
+        <div class="marker">
+            +
+        </div>
+    </div>
+</p>
+
+## Big O = worst case scenario
+> number of computations needed given the size of dataset
+
+- the largest amount of steps an algorithm takes to complete its task on a dataset
+	- if say you're finding a pair of socks in your drawer, you calculate the longest possible time it takes (if you had to compare each and every one and still couldn't find the matching pair)
+- N = number of data points (rows) e.g. grocery list of 5 items, N = 5
+- **O(n^2) and above is super slow**
+
+1. O(1)   - one computation taken regardless of dataset size (**doesn't grow**)
+	- *if dataset = 10 things, computation = 1 time*
+	`return first element of a list`
+2. O(n)   - number of computations taken = dataset size (**grows linearly**)
+	- *if dataset = 10 things, computation = 10 times*
+	- O(3n) = O(2n) = O(n) as we consider comparing them ***as n tends toward infinity***
+	`for loops`
+3. O(n^2) - number of computations taken = twice the dataset size (**grows proportionally**)
+	- *if dataset = 10 things, computation = 20 times*
+	- O(n^3) > O(n^2) > O(n) as the comparison of speed becomes more relevant
+	`nested for loops`
+4. O(2^n) - number of computations taken = doubles 
+	- *if dataset = 10 things, computation = 2^10 = 1024 times*
+	- def **fibonacci**(n): if n<1: return n else: return **fibonacci**(n-2) + **fibonacci**(n-1)
+	`fibonacci`
 
 ### What is an algorithm? An algorithm is a finite series of steps to solve a problem.
 ### How to guess slOwness ? Take the slowest part of the algorithm and measure from that.
@@ -27,6 +724,10 @@ O(logN) =
 E.g slow at first then faster and faster (like binary search, because after each iteration, you deal with half as much of the data)
 - it seems that any log base just simplifies to logN, which is actually log base 2, because of something called the asymptotic bound)
 ```
+
+## calculation
+- https://stackoverflow.com/questions/3255/big-o-how-do-you-calculate-approximate-it
+
 
 ## Good explanation from reddit by Desmeraldoo
 ```
