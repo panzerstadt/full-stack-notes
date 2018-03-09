@@ -1,7 +1,7 @@
 # JAVASCRIPT
 
 ### TODO: learn a lot of javascript
-- [actually learn javascript](https://stackskills.com/courses/javascript-complete/lectures/903458) [source2](https://www.udemy.com/the-complete-javascript-course/)
+- [actually learn javascript](https://stackskills.com/courses/javascript-complete/lectures/903458) [source2](https://www.udemy.com/the-complete-javascript-course/) [recommended source](https://www.codecademy.com/courses/getting-started-v2/0/1?curriculum_id=506324b3a7dffd00020bf661)
 - short javascript tutorial https://medium.com/codingthesmartway-com-blog/pure-javascript-building-a-real-world-application-from-scratch-5213591cfcd6
 - learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.
 - learn react and gulp through an [app with flask](https://realpython.com/blog/python/the-ultimate-flask-front-end/)
@@ -22,6 +22,120 @@
 - to deal with it properly, learn how to use `promise` or `future` or `task`
 	- with JQuery, use `$.Deferred()`
 	- with AngularJS, use `$q.defer()`
+
+## cool new things (vs python)
+alert() // make a pop up that you can close
+confirm() // makes a yes/no popup
+
+## javascript (coming from python)
+### slight differences
+- add semicolons ;
+- add {} for stuff inside definitions
+- definitions are functions def -> function
+
+### things to watch out for
+- empty arrays and empty objects aren't false
+
+python -> javascript
+def myfunc(): code -> function myfunc() { code }
+list() -> Array
+dict -> Objects (they are everywhere)
+input() -> prompt()
+print() -> console.log()
+== -> ===
+"li qun"[1:3] ->
+
+## Promises, callbacks
+[dude who implemented promises explains well](https://blog.domenic.me/youre-missing-the-point-of-promises/) / [reader](https://gist.github.com/domenic/3889970)
+
+*You know when you have to make a function in a function in a function in  function to make sure all the callbacks collapse back in the right order?
+edit: it's called 'callback hell'.*
+
+##### NOW YOU DON'T HAVE TO.
+
+before
+```Javascript
+getTweetsFor("domenic", function (err, results) {
+    // the rest of your code goes here.
+});
+```
+
+after
+```Javascript
+var promiseForTweets = getTweetsFor("domenic");
+// holy shit this is async but it looks exactly the same as sync
+```
+
+or
+```Javascript
+runFunction().then(successFunc, failureFunc);
+// the above runFunction() returns a promise
+```
+
+#### Promises
+- allows us to wait on certain code to finish execution before running the next bit of code.
+
+	Think about a website that loads data from an API then processes and formats the data to display to the user. If we try to process and format our data before the API has even fetched the information, we’re either going to get an error or a blank website. By using a Promise, we can ensure that the API data isn’t processed/formatted until after our API call has succeeded.
+
+- a Promise represents a, ***eventual result*** of an asynchronous operation.
+- like a placeholder where you can attach callbacks.
+
+#### Promises can have 3 states
+- **Pending** - async operation has not completed yet
+- **Fulfilled** - operation has completed, Promise has a value
+- **Rejected** - operation has completed, error or failed
+
+	A promise is <strong>settled</strong> if it is not pending. Once a Promise has settled, it is settled for good. It cannot transition to any other state.
+
+#### [from here](https://blog.domenic.me/youre-missing-the-point-of-promises/):
+as of present day Javascript, async code looks almost like sync code
+
+> In other words, the following asynchronous code:
+
+```Javascript
+getTweetsFor("domenic") // promise-returning function
+  .then(function (tweets) {
+    var shortUrls = parseTweetsForUrls(tweets);
+    var mostRecentShortUrl = shortUrls[0];
+    return expandUrlUsingTwitterApi(mostRecentShortUrl); // promise-returning function
+  })
+  .then(httpGet) // promise-returning function
+  .then(
+    function (responseBody) {
+      console.log("Most recent link text:", responseBody);
+    },
+    function (error) {
+      console.error("Error with the twitterverse:", error);
+    }
+  );
+```
+
+parallels the synchronous code:
+
+```Javascript
+try {
+  var tweets = getTweetsFor("domenic"); // blocking
+  var shortUrls = parseTweetsForUrls(tweets);
+  var mostRecentShortUrl = shortUrls[0];
+  var responseBody = httpGet(expandUrlUsingTwitterApi(mostRecentShortUrl)); // blocking x 2
+  console.log("Most recent link text:", responseBody);
+} catch (error) {
+  console.error("Error with the twitterverse: ", error);
+}
+```
+
+Note in particular how errors flowed from any step in the process to our catch handler, without explicit by-hand bubbling code. And with the upcoming ECMAScript 6 revision of JavaScript, plus some party tricks, the code becomes not only parallel but almost identical.
+
+## [arrow functions (ES6)](https://stackoverflow.com/questions/24900875/whats-the-meaning-of-an-arrow-formed-from-equals-greater-than-in-javas)
+- works like python's lambda function
+
+```Javascript
+//before
+var a2 = a.map(function(s) { return s.length });
+
+// after
+var a2 = a.map( s => s.length )
+```
 
 ## javascript history
 - https://codeburst.io/javascript-wtf-is-es6-es8-es-2017-ecmascript-dca859e4821c

@@ -40,8 +40,7 @@ body {
 - http://sass-lang.com/documentation/Sass/Script/Functions.html
 
 ### how to perform vertical centering
-- decision tree on which ones to use
-- https://css-tricks.com/centering-css-complete-guide/
+- [decision tree on which ones to use](https://css-tricks.com/centering-css-complete-guide/)
 
 ### other tips and tricks (css)
 - [vignettes](http://nimbupani.com/vignettes-with-css3-box-shadows.html)

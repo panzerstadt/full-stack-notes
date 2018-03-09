@@ -1,11 +1,14 @@
 # OAuth 2.0
-||| future
 
 ## things required to use OAuth 2.0
 - consumer key
 	- client_id":"969449945528-776hnh3m9lssdp5885heqkdtrc52ucmn.apps.googleusercontent.com"
 - consumer secret
 	- client_secret":"8gAbKYWvoj_1cD3SlRkNd2Zg"
+
+## TODO
+- implement OAuth2.0 into todo app https://github.com/lepture/flask-oauthlib
+- https://requests-oauthlib.readthedocs.io/en/latest/examples/real_world_example.html#real-example
 
 ## workflow
 when you want to access your friend/client's data through ***WEBSITE A***'s API with Oauth2, you need to get them to give you permission (they will login themselves and tell WEBSITE A to give you permission), then you can only get the data that they allow you to have.
@@ -16,3 +19,6 @@ Oauth Is based around the idea of **not sharing usernames and passwords when sha
 - Prevent password sharing
 - More adjustable permissions (types of data allowed to access, time allowed to access)
 - https://hueniverse.com/beginners-guide-to-oauth-part-ii-protocol-workflow-200dbcfac627
+
+## python's OAuth
+- http://oauthlib.readthedocs.io/en/latest/faq.html
