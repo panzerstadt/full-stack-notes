@@ -1,12 +1,47 @@
 # JAVASCRIPT
 
-### TODO: learn a lot of javascript
-- [actually learn javascript](https://stackskills.com/courses/javascript-complete/lectures/903458) [source2](https://www.udemy.com/the-complete-javascript-course/) [recommended source](https://www.codecademy.com/courses/getting-started-v2/0/1?curriculum_id=506324b3a7dffd00020bf661)
+## TODO: learn a lot of javascript
+- [f8 app tutorial](http://makeitopen.com/docs/en/1-2-design.html) > [react](https://reactjs.org/tutorial/tutorial.html) > [jsx](https://reactjs.org/docs/jsx-in-depth.html) > [react native](http://facebook.github.io/react-native/docs/tutorial.html#content)
 - short javascript tutorial https://medium.com/codingthesmartway-com-blog/pure-javascript-building-a-real-world-application-from-scratch-5213591cfcd6
-- learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.
 - learn react and gulp through an [app with flask](https://realpython.com/blog/python/the-ultimate-flask-front-end/)
 - callback functions goddamnit (gotta learn async programming)
+
+## the heart of Javascript - DOM
+- https://www.codecademy.com/articles/react-virtual-dom
+- manipulating DOM is slow. most Javascript frameworks also UPDATE THEM MORE THAN THEY NEED TO
+	- checklist app
+		- when you tick one item, javascript rebuilds the ENTIRE list
+- therefore React popularized something called *virtual DOM*
+
+### Virtual DOM
+- [more](http://reactkungfu.com/2015/10/the-difference-between-virtual-dom-and-dom/)
+- in React, for every DOM object, there is a corresponding *virtual DOM object*. a virtual DOM object is a ***representation*** of a DOM object (a lightweight copy)
+- exactly same as DOM, but can't change anything on the screen
+- manipulating virtual DOM is much faster, like editing a blueprint, vs moving rooms in the entire house (DOM).
+- when a JSX element is rendered, *every single virtual DOM* gets updated, then **React compares the virtual DOM with the previuos virtual DOM**, like Git, and **only updates the changes**.
+- it is called **diffing**
+
+
+## WIP
+- React uses JSX (javascript precompiler) which looks like html
+	- JSX can be treated as a expressions, and passed around in variables
+	- JSX can be treated as basically html inside javascript
+	- so any fancy <p class"thingy" style="thingy-black">thing</p> will work
+	- look like this ->  var myVariable = <p>JSX here</p>
+	- it multiline JSX (html), wrap them in brackets ( multiline JSX )
+	- BUT multiline JSX must be single outer element, and not multiple elements
+	- cannot do:
+	var myVar = (
+		<p>thing1</p>
+		<p>thing2</p>
+		);
+	- ReactDOM.render() **only updates things that have changed**. so if you resend the exact same thing in code, it won't be rerendered, saving time.
+	 
+
+## OTHERS
+- learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.
 - [nice gitbook javascript ebook](https://gitbookio.gitbooks.io/javascript/content/)
+- [actually learn javascript](https://stackskills.com/courses/javascript-complete/lectures/903458) [source2](https://www.udemy.com/the-complete-javascript-course/) [recommended source](https://www.codecademy.com/courses/getting-started-v2/0/1?curriculum_id=506324b3a7dffd00020bf661)
 
 ## DONE
 - [instagram viewing app](https://drive.google.com/file/d/1JjvlIy4bwWJdbM8jc1NczbVyTpZqC69R/view?usp=sharing)

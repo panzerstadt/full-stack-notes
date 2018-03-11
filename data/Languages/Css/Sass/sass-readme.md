@@ -1,13 +1,32 @@
 # SASS / SCSS
 
+> SASS: We have extended css to make it DRY
+
+> Bitters: We have a clear folder structure for you
+
+	Quote:
+
+	After some time of getting used to it, you'll appreciate Bitters more and more: its default structure suggests a place for almost everything. Especially when working in a team, it's great to simply know where things are defined - instead of having to search and wonder.
+
+## cheat sheets
+- [with selectors and pseudo classes](https://learn-the-web.algonquindesign.ca/topics/css-selectors-units-cheat-sheet/)
+- [animations](https://learn-the-web.algonquindesign.ca/topics/css-animations-effects-cheat-sheet/)
+
+
 ## TODO: css animations and pseudo-classes!
 - [dropdown menu](https://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/)
 - [deconstruct some animations](http://freefrontend.com/css-menu/)
-- [pseudo classes](https://css-tricks.com/pseudo-class-selectors/) [source2](https://www.smashingmagazine.com/2016/05/an-ultimate-guide-to-css-pseudo-classes-and-pseudo-elements/) [source3](https://htmldog.com/guides/css/intermediate/pseudoclasses/)
 
 ## architecture of CSS (for large scale maintainability)
 - https://sass-guidelin.es/#architecture
 - https://smacss.com
+
+## mixins ref
+- https://www.git-tower.com/learn/bourbon-neat-bitters/in-practice/neat-mixins#start
+
+## pseudo classes
+- [pseudo classes](https://css-tricks.com/pseudo-class-selectors/) [source2](https://www.smashingmagazine.com/2016/05/an-ultimate-guide-to-css-pseudo-classes-and-pseudo-elements/) [source3](https://htmldog.com/guides/css/intermediate/pseudoclasses/)
+
 
 ## tutorials!
 - https://medium.com/@thejasonfile/getting-started-with-sass-dedb271bdf5a
