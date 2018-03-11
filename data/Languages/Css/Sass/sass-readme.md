@@ -11,7 +11,10 @@
 ## cheat sheets
 - [with selectors and pseudo classes](https://learn-the-web.algonquindesign.ca/topics/css-selectors-units-cheat-sheet/)
 - [animations](https://learn-the-web.algonquindesign.ca/topics/css-animations-effects-cheat-sheet/)
+- https://www.rankred.com/css-cheat-sheets/
 
+## DONE
+- [bourbon + neat + bitters](https://github.com/panzerstadt/tut-sass-bourbon-neat-bitters.git)
 
 ## TODO: css animations and pseudo-classes!
 - [dropdown menu](https://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/)
@@ -27,6 +30,8 @@
 ## pseudo classes
 - [pseudo classes](https://css-tricks.com/pseudo-class-selectors/) [source2](https://www.smashingmagazine.com/2016/05/an-ultimate-guide-to-css-pseudo-classes-and-pseudo-elements/) [source3](https://htmldog.com/guides/css/intermediate/pseudoclasses/)
 
+## SASS Neat 2.0
+- https://robots.thoughtbot.com/the-release-of-neat-2-0-a-lightweight-and-flexible-sass-grid
 
 ## tutorials!
 - https://medium.com/@thejasonfile/getting-started-with-sass-dedb271bdf5a
