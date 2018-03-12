@@ -295,7 +295,7 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=Tru
                 result[filename] = [full_filepath, None, None, True]
                 todo_boolean = True
                 #print('completion flag found in {0}!'.format(filename))
-                pass
+                continue
 
         else:
             readme = iter(file_str.splitlines())  #makes the same iterable as open() function
@@ -311,7 +311,7 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=Tru
                 else:
                     continue
 
-        if not todo_boolean:
+        if todo_boolean == False:
             result[filename] = [full_filepath, None, None, False]
 
     return result
