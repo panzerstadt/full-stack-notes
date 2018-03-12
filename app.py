@@ -297,18 +297,19 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=Tru
                 #print('completion flag found in {0}!'.format(filename))
                 pass
 
-        readme = iter(file_str.splitlines())  #makes the same iterable as open() function
+        else:
+            readme = iter(file_str.splitlines())  #makes the same iterable as open() function
 
-        for line in readme:
-            if keyword in line.lower():
-                # strips markdown formatting on left and \n + spaces on both sides
-                subtitle = line.lstrip('#').strip()
-                content = iterate_till_blank(readme)
-                result[filename] = [full_filepath, subtitle, content, False]
-                todo_boolean = True
-                break
-            else:
-                continue
+            for line in readme:
+                if keyword in line.lower():
+                    # strips markdown formatting on left and \n + spaces on both sides
+                    subtitle = line.lstrip('#').strip()
+                    content = iterate_till_blank(readme)
+                    result[filename] = [full_filepath, subtitle, content, False]
+                    todo_boolean = True
+                    break
+                else:
+                    continue
 
         if not todo_boolean:
             result[filename] = [full_filepath, None, None, False]
