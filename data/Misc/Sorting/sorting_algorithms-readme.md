@@ -172,23 +172,6 @@ window.gon={};gon.flash={};gon.env="production";gon.signedin=false;gon.check_ses
                 </div>
             </header>
             <main class="layout-main">
-                <div class="grid-row">
-                    <div class="grid-row-inner">
-                        <header class="sorting_algorithms_header">
-                            <div class="sorting_algorithms_header-logo page_header_top-logotype">
-                                <a class="logo is-big is-link" href="https://www.toptal.com/">
-                                </a>
-                            </div>
-                            <h2 class="sorting_algorithms_header-description">
-                                Toptal connects the top 3% of
-                                <a href="https://www.toptal.com/developers">
-   file:///Users/liquntang/Desktop/sorting_algorithms-readme.html#                                 freelance developers
-                                </a>
-                                all over the world.
-                            </h2>
-                        </header>
-                    </div>
-                </div>
                 <header class="grid-row page_title-wrapper">
                     <div class="grid-row-inner has-big_padding page_title has-free_height" style="padding-left:0px; padding-right: 0px">
                         <div class="page_title-container">
