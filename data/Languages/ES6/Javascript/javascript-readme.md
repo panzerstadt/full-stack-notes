@@ -36,6 +36,13 @@
 		<p>thing2</p>
 		);
 	- ReactDOM.render() **only updates things that have changed**. so if you resend the exact same thing in code, it won't be rerendered, saving time.
+	- JSX gotchas:
+		- classes are classNames
+			`<h1 class="btn"></h1>  ->  <h1 className="btn"></h1>`
+		- self-closing tags must have slashes at the back
+			`<img> and <input> MUST BE <img /> and <input />`
+		
+
 	 
 
 ## OTHERS
