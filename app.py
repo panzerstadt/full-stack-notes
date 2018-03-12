@@ -399,7 +399,10 @@ def todo():
 
         # subtitle and contents
         md_block_1 = ''
-        if v[1]:
+        if v[3]:
+            md_block_1 += '###### complete!\n'
+            percentage = 100
+        elif v[1]:
             percentage = 0
             md_block_1 += '###### {0}\n'.format(v[1])  # subtitle
             # if there is a todolist, then check for contents
@@ -409,9 +412,6 @@ def todo():
                 # write contents
                 for lines in v[2]:
                     md_block_1 += '{0}\n'.format(lines)  # contents
-        elif v[3]:
-            md_block_1 += '###### complete!\n'
-            percentage = 100
         else:
             md_block_1 += '\nno todo list found.\n'
             percentage = 0
