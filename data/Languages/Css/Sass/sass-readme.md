@@ -15,20 +15,27 @@
 
 ## DONE
 - [bourbon + neat + bitters](https://github.com/panzerstadt/tut-sass-bourbon-neat-bitters.git)
+- [react + Sass menu](https://codepen.io/panzerstadt/pen/rdONWV?editors=0010)
+- [dropdown menu](../code/index.html) [from](https://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/)
 
 ## TODO: css animations and pseudo-classes!
-- [dropdown menu](https://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/)
 - [deconstruct some animations](http://freefrontend.com/css-menu/)
+- [css selectors](https://medium.com/the-web-crunch-publication/advanced-css-selectors-you-never-knew-about-972d8275d079)
+
+## some funky css stuff
+- https://techbrij.com/css-selector-adjacent-child-sibling
 
 ## architecture of CSS (for large scale maintainability)
 - https://sass-guidelin.es/#architecture
 - https://smacss.com
+- using a scaffold like Bitters
 
 ## mixins ref
 - https://www.git-tower.com/learn/bourbon-neat-bitters/in-practice/neat-mixins#start
 
 ## pseudo classes
 - [pseudo classes](https://css-tricks.com/pseudo-class-selectors/) [source2](https://www.smashingmagazine.com/2016/05/an-ultimate-guide-to-css-pseudo-classes-and-pseudo-elements/) [source3](https://htmldog.com/guides/css/intermediate/pseudoclasses/)
+- [medium article](https://medium.com/the-web-crunch-publication/advanced-css-selectors-you-never-knew-about-972d8275d079)
 
 ## SASS Neat 2.0
 - https://robots.thoughtbot.com/the-release-of-neat-2-0-a-lightweight-and-flexible-sass-grid

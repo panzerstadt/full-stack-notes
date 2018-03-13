@@ -21,29 +21,49 @@
 - when a JSX element is rendered, *every single virtual DOM* gets updated, then **React compares the virtual DOM with the previuos virtual DOM**, like Git, and **only updates the changes**.
 - it is called **diffing**
 
+## things to know
+[var, let, const](https://hackernoon.com/js-var-let-or-const-67e51dbb716f)
+### VAR
+- put variable declarations on top (good practise)
+- assign your variables before using it (because, just because. you know, like python)
+- vars are function scoped
+- vars are **block** scoped (if statements are block scopes)
+```Javascript
+var i = 0;
+if (true) {
+	var i = 1;
+}
+console.log(i);  // 1   even if false. whadda hell.
+```
 
-## WIP
-- React uses JSX (javascript precompiler) which looks like html
-	- JSX can be treated as a expressions, and passed around in variables
-	- JSX can be treated as basically html inside javascript
-	- so any fancy <p class"thingy" style="thingy-black">thing</p> will work
-	- look like this ->  var myVariable = <p>JSX here</p>
-	- it multiline JSX (html), wrap them in brackets ( multiline JSX )
-	- BUT multiline JSX must be single outer element, and not multiple elements
-	- cannot do:
-	var myVar = (
-		<p>thing1</p>
-		<p>thing2</p>
-		);
-	- ReactDOM.render() **only updates things that have changed**. so if you resend the exact same thing in code, it won't be rerendered, saving time.
-	- JSX gotchas:
-		- classes are classNames
-			`<h1 class="btn"></h1>  ->  <h1 className="btn"></h1>`
-		- self-closing tags must have slashes at the back
-			`<img> and <input> MUST BE <img /> and <input />`
-		
+### LET
+- lets **are block scoped!**
+```Javascript
+let i = 0;
+if (true) {
+	let i = 1;
+}
+console.log(i);  //0   Phew.
+```
 
-	 
+### CONST
+- const is also **block scoped**
+```Javascript
+const i = 0;
+i = 1;  //NOPE
+
+const objThing = {
+	i : 0
+};
+obj.i = 1;  //OK
+```
+- so `const` allows mutability, but disallows variables from changing.
+	- variables = ***no change allowed***
+	- objects and arrays and stuff = ***allowed***
+
+### Short form If else
+(condition) ? expression on true : expression on false
+`const result = (10 < 5) ? "cat" : "dog"`
 
 ## OTHERS
 - learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.

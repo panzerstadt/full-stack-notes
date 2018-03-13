@@ -11,6 +11,9 @@
 ## css cards
 - http://v4-alpha.getbootstrap.com/components/card/#card-columns
 
+## css advanced weird stuff
+- https://medium.com/@peedutuisk/lesser-known-css-quirks-oddities-and-advanced-tips-css-is-awesome-8ee3d16295bb?source=userActivityShare-291fdf924ce8-1520905172
+
 ## adding plugins
 - https://bootbites.com/tutorials/how-add-plugins-your-bootstrap-site/
 
