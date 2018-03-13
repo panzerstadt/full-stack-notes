@@ -16,7 +16,7 @@
 ## DONE
 - [bourbon + neat + bitters](https://github.com/panzerstadt/tut-sass-bourbon-neat-bitters.git)
 - [react + Sass menu](https://codepen.io/panzerstadt/pen/rdONWV?editors=0010)
-- [dropdown menu](../code/index.html) [from](https://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/)
+- dropdown menu in (../code/) [: tutorial](https://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/)
 
 ## TODO: css animations and pseudo-classes!
 - [deconstruct some animations](http://freefrontend.com/css-menu/)
