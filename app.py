@@ -78,23 +78,46 @@ def first(s):
     return next(iter(s))
 
 
-def countdown(due_date='2017/04/15'):
+def countdown(due_date='2000/01/01', days_only=False):
     """
     :param due_date: year/month/day/hour   hour is optional
     :return: string denoting time left
     """
     # create countdown timer
-    future = due_date.split('/')
+    future = [int(s) for s in due_date.split('/')]
+    f = future
+    future = datetime.datetime(year=f[0], month=f[1], day=f[2])
     current = datetime.datetime.now()
 
-    time_left = []
-    time_left.append(int(future[0]) - current.year)
-    time_left.append(int(future[1]) - current.month)
-    time_left.append(int(future[2]) - current.day)
+    time_left = future - current
+    time_left = time_left.days
+
+    if days_only:
+        print('time left:', time_left, 'days')
+        return time_left
+
+    def year(days):
+        if days % 365 != days:
+            return int(days / 365)
+        else: return 0
+
+    def month(days):
+        years = year(days)
+        if years >= 1:
+            days = days - (years * 365)
+        if days % 30 != days:
+            return int(days / 30)
+        else: return 0
+
+    def day(days):
+        months = month(days)
+        years = year(days)
+        if months >= 1:
+            days = days - (years * 365) - (months * 30)
+        return days
 
     t = time_left
-    return '{0}yr {1}mth {2}dy(s) left.'.format(t[0], t[1], t[2])
-
+    return '{0}yr {1}mth {2}dy left.'.format(year(t), month(t), day(t))
 
 def md_progressbar(percent, title=None):
     """
@@ -464,6 +487,7 @@ def readme_card(query=None):
 #     #return open('./images/{0}'.format(image_name)).read()
 
 
+# MAIN VIEW
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
     filepath_query = request.args.get('filepath')
@@ -474,6 +498,8 @@ def homepage():
     print('image queried: ', image_query)
 
     return todo()
+
+
 
 if __name__ == '__main__':
     app.run()

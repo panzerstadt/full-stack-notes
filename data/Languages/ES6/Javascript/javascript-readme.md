@@ -65,50 +65,93 @@ obj.i = 1;  //OK
 (condition) ? expression on true : expression on false
 `const result = (10 < 5) ? "cat" : "dog"`
 
-## OTHERS
-- learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.
-- [nice gitbook javascript ebook](https://gitbookio.gitbooks.io/javascript/content/)
-- [actually learn javascript](https://stackskills.com/courses/javascript-complete/lectures/903458) [source2](https://www.udemy.com/the-complete-javascript-course/) [recommended source](https://www.codecademy.com/courses/getting-started-v2/0/1?curriculum_id=506324b3a7dffd00020bf661)
+### Short form conditionals && and || when used in one line without =,
+### becomes a short-circuit operation
 
-## DONE
-- [instagram viewing app](https://drive.google.com/file/d/1JjvlIy4bwWJdbM8jc1NczbVyTpZqC69R/view?usp=sharing)
-	- [code](https://github.com/panzerstadt/tut-instagram-app)
-- [coding train twitter bot](https://www.youtube.com/watch?v=ZvsqQjwrISQ)
-	- [code](https://github.com/panzerstadt/tut-twitter-bot)
+```Javascript
+(thing > 5 && 'quesadilla')  
+// if thing is more than 5, the code in the bracket becomes 'quesadilla'
+// otherwise it becomes nothing!
+```
 
-## things to know (vs python)
-- javascript is an ***ASYNCHRONOUS*** programming language
-	- [callback](https://www.google.co.jp/search?client=safari&rls=en&q=learning+callback+structure+javascript&ie=UTF-8&oe=UTF-8&gfe_rd=cr&dcr=0&ei=-d6fWuGbB7P98Af--bngDg) functions are a big thing.
-	- things like error handling are a *Pain In The Ass* (PITA) because its hard to find out which method went wrong at what time (because they don't follow an order)
-- C# and F# is also asynchronous (but they have design patterns called 'async/wait' which make it easier apparently)
-- to deal with it properly, learn how to use `promise` or `future` or `task`
-	- with JQuery, use `$.Deferred()`
-	- with AngularJS, use `$q.defer()`
+### binding a method to an object
+- an object is (python's class) a thing with properties
+- when you want to do two functions that use different parts of an object, you bind them to an object.
+```Javascript
+var person = {
+    firstName : "John",
+    lastName : "Smith",
+    age : 23
+};
 
-## cool new things (vs python)
-alert() // make a pop up that you can close
-confirm() // makes a yes/no popup
+function printFullName()
+{
+    console.log(this.firstName + " " + this.lastName);
+}
 
-## javascript (coming from python)
-### slight differences
-- add semicolons ;
-- add {} for stuff inside definitions
-- definitions are functions def -> function
+function printDetails()
+{
+    console.log(this.firstName + " is " + this.age + " years old");
+}
 
-### things to watch out for
-- empty arrays and empty objects aren't false
+// TODO: create bound copies of printFullName and printDetails.
+var boundPrintFullName = printFullName.bind(person);
+var boundPrintDetails = printDetails.bind(person);
 
-python -> javascript
-def myfunc(): code -> function myfunc() { code }
-list() -> Array
-dict -> Objects (they are everywhere)
-input() -> prompt()
-print() -> console.log()
-== -> ===
-"li qun"[1:3] ->
+boundPrintFullName();
+boundPrintDetails();
+```
 
-## Promises, callbacks
+### prototype property
+- all functions come with a .prototype
+- `var thing = function() {};` makes an object (class in py) and does nothing. - if you then call `thing.prototype.height = 15`, then the `thing` has a height property of 15. 
+- you call it with `var Vase = new thing();` and then when you call `Vase.height` you get a 15. 
+- of course, gotta console.log to see it.
+- if you do 
+```
+thing.prototype.weight = function(water_amount, flowers_amount) {
+	this.water = water_amount;
+	this.flowers = flowers_amount;
+
+	return (this.water * 0.1) + (this.flowers * 5)
+}
+```
+- you get a weight method (same in python, a method is a function/definition inside a class/object) that takes in two inputs.
+- when you run it with `Vase.weight(10, 5)` you get a value.
+
+### inheritance (read prototype first)
+```Javascript
+var Person = function() {};
+
+Person.prototype.initialize = function(name, age)
+{
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype.describe = function()
+{
+    return this.name + ", " + this.age + " years old.";
+}
+
+var Student = function() {};
+Student.prototype = new Person();  
+// THIS HERE ABOVE is the fancy part called INHERITANCE
+
+Student.prototype.learn = function(subject)
+{
+    console.log(this.name + " just learned " + subject);
+}
+
+var me = new Student();
+
+me.initialize("John", 25);
+me.learn("Inheritance");
+```
+
+### Promises, callbacks
 [dude who implemented promises explains well](https://blog.domenic.me/youre-missing-the-point-of-promises/) / [reader](https://gist.github.com/domenic/3889970)
+[promises sequence viewer (viz tool)](http://bevacqua.github.io/promisees/)
 
 *You know when you have to make a function in a function in a function in  function to make sure all the callbacks collapse back in the right order?
 edit: it's called 'callback hell'.*
@@ -198,6 +241,54 @@ var a2 = a.map(function(s) { return s.length });
 // after
 var a2 = a.map( s => s.length )
 ```
+
+
+
+
+
+
+## OTHERS
+- learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.
+- [nice gitbook javascript ebook](https://gitbookio.gitbooks.io/javascript/content/)
+- [actually learn javascript](https://stackskills.com/courses/javascript-complete/lectures/903458) [source2](https://www.udemy.com/the-complete-javascript-course/) [recommended source](https://www.codecademy.com/courses/getting-started-v2/0/1?curriculum_id=506324b3a7dffd00020bf661)
+
+## DONE
+- [instagram viewing app](https://drive.google.com/file/d/1JjvlIy4bwWJdbM8jc1NczbVyTpZqC69R/view?usp=sharing)
+	- [code](https://github.com/panzerstadt/tut-instagram-app)
+- [coding train twitter bot](https://www.youtube.com/watch?v=ZvsqQjwrISQ)
+	- [code](https://github.com/panzerstadt/tut-twitter-bot)
+
+## things to know (vs python)
+- javascript is an ***ASYNCHRONOUS*** programming language
+	- [callback](https://www.google.co.jp/search?client=safari&rls=en&q=learning+callback+structure+javascript&ie=UTF-8&oe=UTF-8&gfe_rd=cr&dcr=0&ei=-d6fWuGbB7P98Af--bngDg) functions are a big thing.
+	- things like error handling are a *Pain In The Ass* (PITA) because its hard to find out which method went wrong at what time (because they don't follow an order)
+- C# and F# is also asynchronous (but they have design patterns called 'async/wait' which make it easier apparently)
+- to deal with it properly, learn how to use `promise` or `future` or `task`
+	- with JQuery, use `$.Deferred()`
+	- with AngularJS, use `$q.defer()`
+
+## cool new things (vs python)
+alert() // make a pop up that you can close
+confirm() // makes a yes/no popup
+
+## javascript (coming from python)
+### slight differences
+- add semicolons ;
+- add {} for stuff inside definitions
+- definitions are functions def -> function
+
+### things to watch out for
+- empty arrays and empty objects aren't false
+
+python -> javascript
+def myfunc(): code -> function myfunc() { code }
+list() -> Array
+dict -> Objects (they are everywhere)
+input() -> prompt()
+print() -> console.log()
+== -> ===
+"li qun"[1:3] -> "li qun".substring(1, 3)
+
 
 ## javascript history
 - https://codeburst.io/javascript-wtf-is-es6-es8-es-2017-ecmascript-dca859e4821c

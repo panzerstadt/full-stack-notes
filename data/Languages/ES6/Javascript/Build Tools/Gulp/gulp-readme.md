@@ -144,5 +144,10 @@ gulp.task('watch-sync', ['browserSync', 'sass-sync'], function(){
 ```
 
 
-## cheat sheet (minification)
+## cheat sheet (optimization)
+optimization involves two prodecures:
+1. minification
+2. concatenation
+
+
 

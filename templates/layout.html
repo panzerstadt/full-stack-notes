@@ -9,35 +9,29 @@ CSS is always on top (to speed things up)
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css">
 <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.3/flatly/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans+Condensed:300|Oswald|Playfair+Display|Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.10.0/css/bootstrap-markdown.min.css">
 <!-- the above bootstrap-markdown is for markdown EDITING -->
-<style>
-    .markdown-body {
-		box-sizing: border-box;
-		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-	}
+<link rel="stylesheet" type="text/css" href="./static/styles/css/style.css">
 
-	@media (max-width: 767px) {
-		.markdown-body {
-			padding: 15px 0px 15px 0px;
-		}
-	}
-</style>
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
 <head>
     <meta charset="UTF-8">
     <title>gitnotes : {% block title %}{% endblock %}</title>
 </head>
-<body style="background-color:#333745">
+
+
+<body class="git-body">
 <!-- #373F42 -->
 
 {% block body %}
 {% endblock %}
+
 
 <!--
 JAVASCRIPT at the bottom

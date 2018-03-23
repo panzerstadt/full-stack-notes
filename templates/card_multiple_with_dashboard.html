@@ -17,18 +17,18 @@
     <div class="container-fluid">
         <div class="col-xs-12" style="margin:auto">
             <!-- work out the range of numbers for vmax based on num of characters -->
-            <p class="text-center" style="line-height:90vmin;font-size:8vmin;color:#DB2B39;vertical-align:middle;align:center">
+            <p class="text-center git-countdown">
                 {{ countdown_timer }}
             </p>
         </div>
-        <div class="col-xs-12" style="background-color:transparent;margin:5%">
+        <div class="col-xs-12 git-dashboard">
             {{ dashboard }}
         </div>
     </div>
 
     <div class="card-columns">
         {% for percentage, content in contents %}
-            <div class="card" style="background-color:#FEFCF9">
+            <div class="card">
                 <div class="card-body">
                     <div class="card-text">
                         {{ content }}
