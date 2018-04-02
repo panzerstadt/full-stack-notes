@@ -25,6 +25,10 @@
 ## some funky css stuff
 - https://techbrij.com/css-selector-adjacent-child-sibling
 
+## speed ups - achieving 60fps animations
+- [only css](https://medium.com/outsystems-experts/how-to-achieve-60-fps-animations-with-css3-db7b98610108)
+- [css + js](https://medium.com/outsystems-experts/flip-your-60-fps-animations-flip-em-good-372281598865)
+
 ## architecture of CSS (for large scale maintainability)
 - https://sass-guidelin.es/#architecture
 - https://smacss.com
