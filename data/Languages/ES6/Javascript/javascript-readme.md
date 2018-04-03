@@ -242,8 +242,29 @@ var a2 = a.map(function(s) { return s.length });
 var a2 = a.map( s => s.length )
 ```
 
+## Event Listeners
+- [list of things that js can listen to](https://www.w3schools.com/jsref/dom_obj_event.asp)
 
+```Javascript
+<script>
+    const input = document.querySelector("input")
+    const example = document.querySelector("#example")
+    
+    /*
+    event listener is added to the thing in html
+    which is the input tag, and it listens for 'change'
+    as defined in the link above
+    when the listener detects 'change', it takes what
+    comes out of the input and sets the
+    example.style.background to e.target.value
+    */
 
+    input.addEventListener("change", (e) => {
+        // points to the css
+        example.style.background = e.target.value;
+    })
+</script>
+```
 
 
 
