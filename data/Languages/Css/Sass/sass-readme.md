@@ -1,4 +1,5 @@
 # SASS / SCSS
+||| pretty much done
 
 > SASS: We have extended css to make it DRY
 
@@ -19,8 +20,12 @@
 - dropdown menu in (../code/) [: tutorial](https://medialoot.com/blog/how-to-create-a-responsive-navigation-menu-using-only-css/)
 
 ## TODO: css animations and pseudo-classes!
+- [media queries](https://css-tricks.com/snippets/css/media-queries-for-standard-devices/)
 - [deconstruct some animations](http://freefrontend.com/css-menu/)
 - [css selectors](https://medium.com/the-web-crunch-publication/advanced-css-selectors-you-never-knew-about-972d8275d079)
+
+## media queries for responsive design
+- https://css-tricks.com/snippets/css/media-queries-for-standard-devices/
 
 ## some funky css stuff
 - https://techbrij.com/css-selector-adjacent-child-sibling
