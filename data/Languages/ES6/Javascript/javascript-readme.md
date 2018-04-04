@@ -28,6 +28,7 @@
 
 ### internal synchronous
 (double click html)
+
 - inline javascript
 - single request (to the server)
 - use `<script>//javascript here</script>` inside your html and type javascript stuff in there
@@ -37,6 +38,7 @@
 
 ### external synchronous
 (double click html, html has link to `app.js`)
+
 - the resultant javascript is injected into the html and run as if it is a single html file
 - external javascript ([example](https://www.guru99.com/all-about-internal-external-javascript.html))
 - multiple requests (because its multiple files to call)
@@ -50,6 +52,7 @@
 
 ### external asynchronous
 (run the .js (*something like* `node app.js` and the html is served at some port))
+
 - javascript is in charge, and sets up the environment that serves the html and listens to interactivity coming in from the html (which is technically the View in MVC speak)
 - flask as server === `node app.js`
 - flask/node runs the .py/.js file which generates or calls the .html file and displays it
@@ -57,17 +60,15 @@
 
 [this is hard. what are its uses?? this dude says so below](https://stackoverflow.com/questions/12697437/why-do-i-need-javascript-module-loading-and-what-is-the-difference-between-all-t)
 
-```
-You do not "need" to load javascript files asynchronously or via some custom loader. Here are some reasons when asynchronous loading or custom loading might provide a benefit:
+  You do not "need" to load javascript files asynchronously or via some custom loader. Here are some reasons when asynchronous loading or custom loading might provide a benefit:
 
-When the javascript file is not normally needed and you might want to load it upon demand rather than all the time
-When the javascript file is not needed for initial page display and you want to maximize the speed of first display for your page
-When you want to control the timing of exactly when the javascript file is loaded
-When you are deciding, based upon some condition, whether to load the javascript file or not (for example, if loading from a CDN failed, you might load from a backup location)
-When you want script loading to proceed in parallel with other things rather than serialized one after another
-If you don't need any of these benefits or some other benefit provided by programmatic loading, then you can just use the normal <script> tags and let them load synchronously.
+  When the javascript file is not normally needed and you might want to load it upon demand rather than all the time
+  When the javascript file is not needed for initial page display and you want to maximize the speed of first display for your page
+  When you want to control the timing of exactly when the javascript file is loaded
+  When you are deciding, based upon some condition, whether to load the javascript file or not (for example, if loading from a CDN failed, you might load from a backup location)
+  When you want script loading to proceed in parallel with other things rather than serialized one after another
+  If you don't need any of these benefits or some other benefit provided by programmatic loading, then you can just use the normal <script> tags and let them load synchronously.
 
-```
 
 
 ## how does Javascript work? (event loops) [source](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
