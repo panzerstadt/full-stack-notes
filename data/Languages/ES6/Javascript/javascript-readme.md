@@ -16,12 +16,6 @@
 2. external (synchronous loading) - script is separate file but `browserify`-ed to magically appear in between <script></script> tags
 3. external (asynchronous loading) - script is separate file, uses module loading
 
-- [when to use which](https://stackoverflow.com/questions/138884/when-should-i-use-inline-vs-external-javascript)
-- [another comparison](https://stackoverflow.com/questions/29918246/javascript-inline-vs-external-script-whats-the-difference)
-- [and another](https://stackoverflow.com/questions/12697437/why-do-i-need-javascript-module-loading-and-what-is-the-difference-between-all-t)
-- [if `document.getElementById("someTag")` doesn't work](https://stackoverflow.com/questions/42341761/javascript-eventlistener-not-working-in-external-js-file)
-- [window vs document (in javascript)](http://eligeske.com/jquery/what-is-the-difference-between-document-and-window-objects-2/)
-
 
 ### internal synchronous
 (double click html)
@@ -66,6 +60,13 @@
 	When you want script loading to proceed in parallel with other things rather than serialized one after another
 	If you don't need any of these benefits or some other benefit provided by programmatic loading, then you can just use the normal <script> tags and let them load synchronously.
 
+
+### comparisons between internal and external js
+- [when to use which](https://stackoverflow.com/questions/138884/when-should-i-use-inline-vs-external-javascript)
+- [another comparison](https://stackoverflow.com/questions/29918246/javascript-inline-vs-external-script-whats-the-difference)
+- [and another](https://stackoverflow.com/questions/12697437/why-do-i-need-javascript-module-loading-and-what-is-the-difference-between-all-t)
+- [if `document.getElementById("someTag")` doesn't work](https://stackoverflow.com/questions/42341761/javascript-eventlistener-not-working-in-external-js-file)
+- [window vs document (in javascript)](http://eligeske.com/jquery/what-is-the-difference-between-document-and-window-objects-2/)
 
 
 ## how does Javascript work? (event loops) [source](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
