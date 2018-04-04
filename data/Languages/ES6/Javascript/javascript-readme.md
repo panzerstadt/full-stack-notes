@@ -4,7 +4,76 @@
 - [f8 app tutorial](http://makeitopen.com/docs/en/1-2-design.html) > [react](https://reactjs.org/tutorial/tutorial.html) > [jsx](https://reactjs.org/docs/jsx-in-depth.html) > [react native](http://facebook.github.io/react-native/docs/tutorial.html#content)
 - short javascript tutorial https://medium.com/codingthesmartway-com-blog/pure-javascript-building-a-real-world-application-from-scratch-5213591cfcd6
 - learn react and gulp through an [app with flask](https://realpython.com/blog/python/the-ultimate-flask-front-end/)
-- callback functions goddamnit (gotta learn async programming)
+- [PWA with async/await](https://www.udemy.com/progressive-web-app-pwa-the-complete-guide/learn/v4/overview)
+- [read](https://medium.com/@gaurav.pandvia/understanding-javascript-function-executions-tasks-event-loop-call-stack-more-part-1-5683dea1f5ec)
+
+## the bits that make javascript work
+- [things 1](https://medium.com/@gaurav.pandvia/understanding-javascript-function-executions-tasks-event-loop-call-stack-more-part-1-5683dea1f5ec)
+- [events loops](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+
+## ways to run javascript (together with html+css)
+1. [internal (synchronous loading)](#internal-synchronous)
+- script is between <script></script> tags
+2. [external (synchronous loading)](#external-synchronous)
+- script is separate file but `browserify`-ed to magically appear in between <script></script> tags
+3. [external (asynchronous loading)](#external-asynchronous)
+- script is separate file, uses module loading
+
+- [when to use which](https://stackoverflow.com/questions/138884/when-should-i-use-inline-vs-external-javascript)
+- [another comparison](https://stackoverflow.com/questions/29918246/javascript-inline-vs-external-script-whats-the-difference)
+- [and another](https://stackoverflow.com/questions/12697437/why-do-i-need-javascript-module-loading-and-what-is-the-difference-between-all-t)
+- [if `document.getElementById("someTag")` doesn't work](https://stackoverflow.com/questions/42341761/javascript-eventlistener-not-working-in-external-js-file)
+- [window vs document (in javascript)](http://eligeske.com/jquery/what-is-the-difference-between-document-and-window-objects-2/)
+
+
+### internal synchronous
+(double click html)
+- inline javascript
+- single request (to the server)
+- use `<script>//javascript here</script>` inside your html and type javascript stuff in there
+- has no `require("someLibrary");` when you do inline js
+- libraries can be run from `npm` using `unpkg` (i think the package needs to have a js file particularly for this usage because npm seems to just load that file from npm into inline)
+
+
+### external synchronous
+(double click html, html has link to `app.js`)
+- the resultant javascript is injected into the html and run as if it is a single html file
+- external javascript ([example](https://www.guru99.com/all-about-internal-external-javascript.html))
+- multiple requests (because its multiple files to call)
+- if not using external libraries, then just point to your `app.js` file.
+- to use `require("someLibrary")` (which is actually a node.js method), run [browserify](http://browserify.org/) on it. [source](https://stackoverflow.com/questions/41315987/how-to-use-require-function-in-js)
+
+> Browserify parses the AST for require() calls to traverse the entire dependency graph of your project.
+
+- this is because you don't use node.js to run it, but rather you run the entire html (and js with the node-specific methods) through the web browser.
+
+
+### external asynchronous
+(run the .js (*something like* `node app.js` and the html is served at some port))
+- javascript is in charge, and sets up the environment that serves the html and listens to interactivity coming in from the html (which is technically the View in MVC speak)
+- flask as server === `node app.js`
+- flask/node runs the .py/.js file which generates or calls the .html file and displays it
+- opens a port and listens
+
+[this is hard. what are its uses?? this dude says so below](https://stackoverflow.com/questions/12697437/why-do-i-need-javascript-module-loading-and-what-is-the-difference-between-all-t)
+```
+You do not "need" to load javascript files asynchronously or via some custom loader. Here are some reasons when asynchronous loading or custom loading might provide a benefit:
+
+When the javascript file is not normally needed and you might want to load it upon demand rather than all the time
+When the javascript file is not needed for initial page display and you want to maximize the speed of first display for your page
+When you want to control the timing of exactly when the javascript file is loaded
+When you are deciding, based upon some condition, whether to load the javascript file or not (for example, if loading from a CDN failed, you might load from a backup location)
+When you want script loading to proceed in parallel with other things rather than serialized one after another
+If you don't need any of these benefits or some other benefit provided by programmatic loading, then you can just use the normal <script> tags and let them load synchronously.
+
+```
+
+
+## how does Javascript work? (event loops) [source](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+`a single-threaded non-blocking asynchronous concurrent language`
+`has a call stack, an event loop, a callback queue, some other apis`
+- TODO: FINISH LISTENING TO THE TALK
+
 
 ## the heart of Javascript - DOM
 - https://www.codecademy.com/articles/react-virtual-dom
@@ -21,13 +90,23 @@
 - when a JSX element is rendered, *every single virtual DOM* gets updated, then **React compares the virtual DOM with the previuos virtual DOM**, like Git, and **only updates the changes**.
 - it is called **diffing**
 
-## things to know
+## Things to Know
+1. var, let, const
+2. async/await
+3. .bind() - binding a method to an object
+4. prototypes
+5. inheritance
+6. promises and callbacks - i placed them below cause we should be using async/await instead
+7. event listeners
+
+
+## Var, Let, Const
 [var, let, const](https://hackernoon.com/js-var-let-or-const-67e51dbb716f)
 ### VAR
 - put variable declarations on top (good practise)
 - assign your variables before using it (because, just because. you know, like python)
 - vars are function scoped
-- vars are **block** scoped (if statements are block scopes)
+- vars are not **block** scoped (if statements are block scopes)
 ```Javascript
 var i = 0;
 if (true) {
@@ -61,22 +140,39 @@ obj.i = 1;  //OK
 	- variables = ***no change allowed***
 	- objects and arrays and stuff = ***allowed***
 
-### Short form If else
-(condition) ? expression on true : expression on false
-`const result = (10 < 5) ? "cat" : "dog"`
 
-### Short form conditionals && and || when used in one line without =,
-### becomes a short-circuit operation
-
+## async/await
 ```Javascript
-(thing > 5 && 'quesadilla')  
-// if thing is more than 5, the code in the bracket becomes 'quesadilla'
-// otherwise it becomes nothing!
+const puppeteer = require("puppeteer");
+
+// async function that can run on as many threads as possible
+async function screenshotter(link_in) {
+  const screenshot_name = link_in.split('/').slice(-1)[0];
+  console.log(screenshot_name);
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(link_in);
+  await page.screenshot({path: `${screenshot_name}.png`});
+
+  await browser.close();
+}
+
+screenshotter('https://developers.google.com/web/tools/puppeteer');
+screenshotter('https://stackoverflow.com/questions/3304014/how-to-interpolate-variables-in-strings-in-javascript-without-concatenation');
+screenshotter('https://stackoverflow.com/questions/3216013/get-the-last-item-in-an-array');
+screenshotter('https://alligator.io/tooling/puppeteer');
+screenshotter('https://medium.com/jsguru/javascript-async-await-742ddf66c348');
 ```
 
-### binding a method to an object
+
+### .bind() - binding a method to an object
 - an object is (python's class) a thing with properties
 - when you want to do two functions that use different parts of an object, you bind them to an object.
+1. you have an object `myobject` (kinda like a dictionary where keys are 'properties' *fancy*)
+2. you have two functions that need to use that object `fullnamer` `detailer`
+3. you `.bind()` the object `myobject` to both `fullnamer` and `detailer` with `var newFunctionName = originalFunctionName.bind(objectName);`
+4. now when you call `newFunctionName` you run the function using ***properties from the object***
+5. e.g. below:
 ```Javascript
 var person = {
     firstName : "John",
@@ -98,9 +194,10 @@ function printDetails()
 var boundPrintFullName = printFullName.bind(person);
 var boundPrintDetails = printDetails.bind(person);
 
-boundPrintFullName();
-boundPrintDetails();
+boundPrintFullName();  //prints : John Smith
+boundPrintDetails();   //prints : John is 23 years old
 ```
+
 
 ### prototype property
 - all functions come with a .prototype
@@ -118,6 +215,7 @@ thing.prototype.weight = function(water_amount, flowers_amount) {
 ```
 - you get a weight method (same in python, a method is a function/definition inside a class/object) that takes in two inputs.
 - when you run it with `Vase.weight(10, 5)` you get a value.
+
 
 ### inheritance (read prototype first)
 ```Javascript
@@ -231,16 +329,6 @@ try {
 
 Note in particular how errors flowed from any step in the process to our catch handler, without explicit by-hand bubbling code. And with the upcoming ECMAScript 6 revision of JavaScript, plus some party tricks, the code becomes not only parallel but almost identical.
 
-## [arrow functions (ES6)](https://stackoverflow.com/questions/24900875/whats-the-meaning-of-an-arrow-formed-from-equals-greater-than-in-javas)
-- works like python's lambda function
-
-```Javascript
-//before
-var a2 = a.map(function(s) { return s.length });
-
-// after
-var a2 = a.map( s => s.length )
-```
 
 ## Event Listeners
 - [list of things that js can listen to](https://www.w3schools.com/jsref/dom_obj_event.asp)
@@ -266,7 +354,61 @@ var a2 = a.map( s => s.length )
 </script>
 ```
 
+---
 
+## SOME BATSHIT CONVENIENCE FUNCTIONS
+
+### Conditional Operators
+`hsb.s = max != 0 ? 255 * delta / max : 0;`
+
+> wha?
+
+It is called the Conditional Operator (which is a ternary operator).
+
+It has the form of: `condition` ? `value-if-true` : `value-if-false`
+Think of the ? as "then" and : as "else".
+
+Your code is equivalent to:
+```
+if (max != 0)
+  hsb.s = 255 * delta / max;
+else
+  hsb.s = 0;
+```
+
+### Short form If else
+(condition) ? expression on true : expression on false
+`const result = (10 < 5) ? "cat" : "dog"`
+
+### Short Circuit Operations
+
+#### Short form conditionals && and || when used in one line without =,
+#### becomes a short-circuit operation
+```Javascript
+(thing > 5 && 'quesadilla')  
+// if thing is more than 5, the code in the bracket becomes 'quesadilla'
+// otherwise it becomes nothing!
+```
+
+### [Arrow Functions (ES6)](https://stackoverflow.com/questions/24900875/whats-the-meaning-of-an-arrow-formed-from-equals-greater-than-in-javas)
+- works like python's lambda function
+
+```Javascript
+//before
+var a2 = a.map(function(s) { return s.length });
+
+// after
+var a2 = a.map( s => s.length )
+```
+
+---
+
+
+## fancy AF
+- [DOM manipulation and async/await with puppeteer](https://alligator.io/tooling/puppeteer/)
+
+## string with variables
+- https://stackoverflow.com/questions/3304014/how-to-interpolate-variables-in-strings-in-javascript-without-concatenation
 
 ## OTHERS
 - learn javascript through [rapydscript](https://github.com/atsepkov/RapydScript)? It's like python so its cheating a bit.
@@ -352,6 +494,7 @@ Here’s what happened long, long ago:
 - but Node is single threaded, so its not super fast
 
 	The main advantage is the asynchronous nature of the language, which is caused by the single-threaded event-loop, which is a fancy way of saying "I can schedule a bunch of jobs simultaneously, and I'll be able to answer them as soon as they are done processing - no job that is done will have to wait around for me to get around to it because I'll know instantly".
+
 
 ## command cheat sheet
 

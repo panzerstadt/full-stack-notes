@@ -15,7 +15,8 @@ end
 `\Z` - single string only
 `\>` - word only
 
-
+## more cheat sheets
+- http://www.jasinskionline.com/technicalwiki/Print.aspx?Page=Regular-Expression-Samples&AspxAutoDetectCookieSupport=1
 
 ## cheat sheet in LaTeX
 - also on index.html
