@@ -95,23 +95,168 @@ javascript (node) starts a server through `node server.js`, which serves the htm
 - [if `document.getElementById("someTag")` doesn't work](https://stackoverflow.com/questions/42341761/javascript-eventlistener-not-working-in-external-js-file)
 - [window vs document (in javascript)](http://eligeske.com/jquery/what-is-the-difference-between-document-and-window-objects-2/)
 
+## understanding asynchronous function calls
+
+#### when people say, 'don't block the event loop', they mean 'don't put shitty slow code on the stack, because the browser can't do what it needs to do, which is update its frames to be a fluid ui'.
+
+##### Wha?
+
+#### read the following topic then.
 
 ## how does Javascript work? (event loops) 
-[source](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+[the video](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+[the awesome event loop ide 'loupe'](http://latentflip.com/loupe)
 
 	a single-threaded non-blocking asynchronous concurrent language
 	has a call stack, an event loop, a callback queue, some other apis
 
-![v8 engine](./images/this-is-javascript)
+![v8 engine](./images/this-is-javascript.png)
 
-javascript is a single threaded programming language
+- the above is what the chrome v8 engine looks like
+- in node, almost everything is the same (except instead of WebAPIs it is all C++ APIs)
 
-the call stack
+> javascript is a single threaded programming language
+
+**the call stack**
 - one thread === one call stack === one thing at a time
 - add to and take away from one 'order' at a time
+- Javascript can only do one thing at a time
 
 ![call stack](https://media.giphy.com/media/67uuy0QottvRiP1yCs/giphy.gif)
 
+**blocking**
+- code that is 'blocking' the stack from running fast
+- no formal definition of what is blocking, it's just code that is slow
+- this behaviour happens in single threaded languages like Ruby (just gotta wait till it's done)
+
+![blocking the call stack](https://media.giphy.com/media/RkCiZpcggi7pvQejqC/giphy.gif)
+
+![blocking 2](https://media.giphy.com/media/paRJciLFzP6p9V0zz7/giphy.gif)
+
+**solution to blocking : asynchronous callbacks**
+> call me ... maybe?
+
+- the call stack run the code in sequence, but the asynchronous function magically vanishes, allowing you to run the next bit of code, until the async process finishes and returns something after that.
+- how?
+
+**with concurrency & and event loop**
+> one thing at a time. except not really.
+
+- so Javascript can *actually* do more than one thing at a time
+- Javascript ***Runtime*** can only do one thing at a time. :P
+- but the browser is more than just Javascript Runtime.
+
+![async](https://media.giphy.com/media/1wrAmnblJX6TZt52fa/giphy.gif)
+
+> it's a bit chaotic, so let's break it down piece by piece
+
+<!-- next slide -->
+
+![async1](./images/async1.png)
+
+`stack` is `call stack` - essentially 'javascript land', `webapis`, `task queue` and `event loop` are hidden from us but lives in the browser / nodejs runtime environment.
+
+<!-- next slide -->
+
+![async2](./images/async2.png)
+
+the `main()` process starts (Javascript starts running)
+
+<!-- next slide -->
+
+![async3](./images/async3.png)
+
+the `call stack` (also called Javascript Runtime) steps through the code from top to bottom, performing the `console.log('Hi');` task. hee you can see it in the call stack.
+
+<!-- next slide -->
+
+![async4](./images/async4.png)
+
+here we run into out asynchronous function. the `setTimeout` function gets pushed onto the `call stack` and executed.
+
+- note that setTimeout **doesn't exist** in the `call stack` (and by extension the chrome v8 engine), but is given to JS Runtime by the `webapis` part of the Chrome / Nodejs environment. 
+
+<!-- next slide -->
+
+![async5](./images/async5.png)
+
+![async10](./images/async10.png)
+
+but since it is defined as an async function (you have to tell js that it's async when defining your own function too), it gets passed onto the `webapis` part of the environment and **off** the `call stack`.
+
+<!-- next slide -->
+
+![async11](./images/async11.png)
+
+the `call stack` (remember, it is the JS Runtime which we see) continues stepping through to the next line, executing `console.log('JSConfEU');` while `webapis` is executing `setTimeout`.
+
+<!-- next slide -->
+
+![async15](./images/async15.png)
+
+the stack is cleared. `setTimeout` continues running for however long it is needed.
+
+<!-- next slide -->
+
+![async17](./images/async17.png)
+
+`setTimeout` is done! the result is passed form `webapis` to the `task queue`.
+
+<!-- next slide -->
+
+![async20](./images/async20.png)
+
+now the `event loop` as one job: to look at the `call stack` and look at the `task queue`. if the `call stack` is empty, it take the first thing in the `task queue` and pushes it onto the `call stack`, letting it return the result of the execution from the async function `setTimeout`, thereby running it.
+
+<!-- next slide -->
+
+![async23](./images/async23.png)
+
+`setTimeout` performs its function `console.log('there');` and it ends.
+
+<!-- next slide -->
+
+**common examples of people using event loops**
+
+<!-- next slide -->
+
+**deferring execution**
+to defer execution till the rest of the code is done, using `setTimeout(myfunction(){}, 0);` (setTimeout with a delay of 0)
+- this is because the function wrapped in setTimeout gets thrown into `webapi` land while the `call stack` continues to execute code down the line, and then only return the wrapped function when the ***entire*** call stack has been cleared.
+
+<!-- next slide -->
+
+**other examples**
+- [XHR request (XmlHttpRequest (go to a url and do something))](https://youtu.be/8aGhZQkoFbQ?t=16m)
+- [forEach-asynchronous : do something (heavy) for each thing in the list asynchronously](https://youtu.be/8aGhZQkoFbQ?t=20m15s)
+
+<!-- next slide -->
+
+**the browser is constrained by what you're doing in javascript**
+- the browser would like to repaint the screen every 16.6ms (60fps), but you're asking it to do something else and slow it down by giving it code
+- it **can't** actually **do a render** if you have something on the stack (code being executed)
+
+<!-- next slide -->
+
+![render queue before task queue](./images/render-queue.png)
+
+##### important part: the Render's Queue is higher priority than your Task Queue [source](https://youtu.be/8aGhZQkoFbQ?t=22m49s)
+
+<!-- next slide -->
+
+![render queue blocking](./images/render-queue-blocking.png)
+
+if your task is doing something, the `Render Queue` is blocked. You can't click anything.
+
+<!-- next slide -->
+
+![async queueing](./images/async-queueing.png)
+
+![async queueing 2](./images/async-queueing-2.png)
+
+with async functions, you first queue up the async functions wrapped in `setTimeout`, and then they are run in the `webapi` and placed back in the `callback queue / task queue`. this time, `Render Queue` is allowed to update the frame (render the image) between callback queues so your **screen doesn't freeze up**.
+
+<!-- next slide -->
 
 
 ## the heart of Javascript - DOM

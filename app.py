@@ -4,6 +4,7 @@ import markdown
 from flask import Flask
 from flask import render_template, Markup, request, url_for
 import os, datetime
+from shutil import copyfile
 from collections import OrderedDict
 print('markdown version: ', markdown.version)
 
@@ -68,6 +69,26 @@ def get_full_and_simple_filepaths(folder='./', keyword='.md', ignore=[None], deb
         full_filepaths.append(os.path.join(filepath[0], filepath[1]))
         simple_filepaths.append(os.path.splitext(filepath[1])[0])
     return full_filepaths, simple_filepaths
+
+
+def copy_images_to_static(src_dir, dst_dir='./static/images'):
+    temp = list(os.walk(src_dir))
+    destination_folder = dst_dir
+
+    image_filepaths = []
+    for group in temp:
+        check = os.path.basename(group[0])
+        if 'images' in check:
+            for file in group[2]:
+                image_filepaths.append(os.path.join(group[0], file))
+
+    #print('images found: ')
+    #[print(file) for file in image_filepaths]
+
+    for file in image_filepaths:
+        destination_path = os.path.join(destination_folder, os.path.basename(file))
+        copyfile(file, destination_path)
+        print('copied {0}  -->  {1}'.format(file, destination_path))
 
 
 def first(s):
@@ -374,9 +395,11 @@ app = Flask(__name__)
 print('app initiated. name of app: {0}'.format(__name__))
 
 # global variables
-full_filepaths, filenames = get_full_and_simple_filepaths(folder='./', keyword='.md', debug=False)
+full_filepaths, filenames = get_full_and_simple_filepaths(folder='./data/', keyword='.md', debug=False)
 file_tuples = build_all_files(full_filepaths)
 
+# copy all static images by os.walking through entire directory
+copy_images_to_static('./data/')
 
 # temp = build_content_dict_from_tuple(file_tuples)
 # for k, v in temp.items():
