@@ -13,11 +13,11 @@
 
 ## ways to run javascript (together with html+css)
 1. [internal (synchronous loading)](#internal-synchronous)
-- script is between <script></script> tags
+  - script is between <script></script> tags
 2. [external (synchronous loading)](#external-synchronous)
-- script is separate file but `browserify`-ed to magically appear in between <script></script> tags
+  - script is separate file but `browserify`-ed to magically appear in between <script></script> tags
 3. [external (asynchronous loading)](#external-asynchronous)
-- script is separate file, uses module loading
+  - script is separate file, uses module loading
 
 - [when to use which](https://stackoverflow.com/questions/138884/when-should-i-use-inline-vs-external-javascript)
 - [another comparison](https://stackoverflow.com/questions/29918246/javascript-inline-vs-external-script-whats-the-difference)
@@ -56,6 +56,7 @@
 - opens a port and listens
 
 [this is hard. what are its uses?? this dude says so below](https://stackoverflow.com/questions/12697437/why-do-i-need-javascript-module-loading-and-what-is-the-difference-between-all-t)
+
 ```
 You do not "need" to load javascript files asynchronously or via some custom loader. Here are some reasons when asynchronous loading or custom loading might provide a benefit:
 
@@ -72,7 +73,7 @@ If you don't need any of these benefits or some other benefit provided by progra
 ## how does Javascript work? (event loops) [source](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 `a single-threaded non-blocking asynchronous concurrent language`
 `has a call stack, an event loop, a callback queue, some other apis`
-- TODO: FINISH LISTENING TO THE TALK
+- test
 
 
 ## the heart of Javascript - DOM
