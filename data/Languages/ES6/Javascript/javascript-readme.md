@@ -16,40 +16,63 @@
 2. external (synchronous loading) - script is separate file but `browserify`-ed to magically appear in between <script></script> tags
 3. external (asynchronous loading) - script is separate file, uses module loading
 
+>examples in ./code/js-runtime-methods/
 
 ### internal synchronous
-(double click html)
+> 1x html file
+
+> html file runs with javascript inside within the `<script></script>` tags
 
 - inline javascript
 - single request (to the server)
-- use `<script>//javascript here</script>` inside your html and type javascript stuff in there
-- has no `require("someLibrary");` when you do inline js
 - libraries can be run from `npm` using `unpkg` (i think the package needs to have a js file particularly for this usage because npm seems to just load that file from npm into inline)
+- *use `<script>//javascript here</script>` inside your html and type javascript stuff in there
+- *has no `require("someLibrary");` when you do inline js
 
 
 ### external synchronous
-(double click html, html has link to `app.js`)
+> 1x html file, 1x js file
 
-- the resultant javascript is injected into the html and run as if it is a single html file
-- external javascript ([example](https://www.guru99.com/all-about-internal-external-javascript.html))
+> html file runs, calling the (browserified) app.js file
+
+- [`source code transformation — either ahead of time (webpack and browserify) or at runtime (nodular)`](https://blog.cloudboost.io/how-to-run-node-js-apps-in-the-browser-3f077f34f8a5)
 - multiple requests (because its multiple files to call)
-- if not using external libraries, then just point to your `app.js` file.
-- to use `require("someLibrary")` (which is actually a node.js method), run [browserify](http://browserify.org/) on it. [source](https://stackoverflow.com/questions/41315987/how-to-use-require-function-in-js)
+- the resultant javascript is injected into the html and run as if it is a single html file (after joining it together through multiple requests)
 
+- *if **not using** external libraries, then just point to your `app.js` file.
+- *if **using** external libraries (through node) to use `require("someLibrary")` (which is actually a node.js method), run [browserify](http://browserify.org/) on it. [source](https://stackoverflow.com/questions/41315987/how-to-use-require-function-in-js)
+- [example](https://www.guru99.com/all-about-internal-external-javascript.html)
+
+#### how?
 > Browserify parses the AST for require() calls to traverse the entire dependency graph of your project.
-
 - this is because you don't use node.js to run it, but rather you run the entire html (and js with the node-specific methods) through the web browser.
 
 
 ### external asynchronous
-(run the .js (*something like* `node app.js` and the html is served at some port))
+> 1x html file, 2x js file
 
-- javascript is in charge, and sets up the environment that serves the html and listens to interactivity coming in from the html (which is technically the View in MVC speak)
+> javascript (node) starts a server through `node server.js`, which serves the html file, which calls the (browserified) client.js file
+
+(run the .js (*something like* `node server.js` and the html is served at some port))
+
+- running a server + source code transformation
+- multiple requests (because its multiple files to call)
+
+***server side***
 - flask as server === `node app.js`
 - flask/node runs the .py/.js file which generates or calls the .html file and displays it
 - opens a port and listens
 
-[this is hard. what are its uses?? this dude says so below](https://stackoverflow.com/questions/12697437/why-do-i-need-javascript-module-loading-and-what-is-the-difference-between-all-t)
+***client side***
+- [either browerify it](https://www.techiediaries.com/how-to-bring-node-js-modules-to-the-browser/)
+- [or use dnode](https://github.com/substack/dnode)
+- [or put it in a shared .js file](https://stackoverflow.com/questions/3225251/how-can-i-share-code-between-node-js-and-the-browser)
+
+++
+- [or read this (disclaimer: this way doesn't always work)](https://caolan.org/posts/writing_for_node_and_the_browser.html)
+- [more reads](https://stackoverflow.com/questions/33337722/how-to-organize-build-server-client-and-shared-javascript-code-with-nodejs)
+
+[this is hard. what are its uses?? A: this dude says so below](https://stackoverflow.com/questions/12697437/why-do-i-need-javascript-module-loading-and-what-is-the-difference-between-all-t)
 
 	You do not "need" to load javascript files asynchronously or via some custom loader. Here are some reasons when asynchronous loading or custom loading might provide a benefit:
 
@@ -61,6 +84,9 @@
 	If you don't need any of these benefits or some other benefit provided by programmatic loading, then you can just use the normal <script> tags and let them load synchronously.
 
 
+### all-in-one
+- [this node.js bootstrapping magic](https://blog.cloudboost.io/how-to-run-node-js-apps-in-the-browser-3f077f34f8a5)
+
 ### comparisons between internal and external js
 - [when to use which](https://stackoverflow.com/questions/138884/when-should-i-use-inline-vs-external-javascript)
 - [another comparison](https://stackoverflow.com/questions/29918246/javascript-inline-vs-external-script-whats-the-difference)
@@ -69,9 +95,12 @@
 - [window vs document (in javascript)](http://eligeske.com/jquery/what-is-the-difference-between-document-and-window-objects-2/)
 
 
-## how does Javascript work? (event loops) [source](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
-`a single-threaded non-blocking asynchronous concurrent language`
-`has a call stack, an event loop, a callback queue, some other apis`
+## how does Javascript work? (event loops) 
+[source](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+
+	a single-threaded non-blocking asynchronous concurrent language
+	has a call stack, an event loop, a callback queue, some other apis
+
 - test
 
 
