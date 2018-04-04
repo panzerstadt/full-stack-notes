@@ -11,17 +11,17 @@
 - [things 1](https://medium.com/@gaurav.pandvia/understanding-javascript-function-executions-tasks-event-loop-call-stack-more-part-1-5683dea1f5ec)
 - [events loops](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 
-## ways to run javascript (together with html+css)
+## 3(++) ways to run javascript (together with html+css)
 1. internal (synchronous loading) - script is between <script></script> tags
 2. external (synchronous loading) - script is separate file but `browserify`-ed to magically appear in between <script></script> tags
 3. external (asynchronous loading) - script is separate file, uses module loading
 
 >examples in ./code/js-runtime-methods/
 
-### internal synchronous
+### 1. internal synchronous
 > 1x html file
 
-> html file runs with javascript inside within the `<script></script>` tags
+html file runs with javascript inside within the `<script></script>` tags
 
 - inline javascript
 - single request (to the server)
@@ -30,10 +30,10 @@
 - *has no `require("someLibrary");` when you do inline js
 
 
-### external synchronous
+### 2. external synchronous
 > 1x html file, 1x js file
 
-> html file runs, calling the (browserified) app.js file
+html file runs, calling the (browserified) app.js file
 
 - [`source code transformation — either ahead of time (webpack and browserify) or at runtime (nodular)`](https://blog.cloudboost.io/how-to-run-node-js-apps-in-the-browser-3f077f34f8a5)
 - multiple requests (because its multiple files to call)
@@ -45,13 +45,14 @@
 
 #### how?
 > Browserify parses the AST for require() calls to traverse the entire dependency graph of your project.
+
 - this is because you don't use node.js to run it, but rather you run the entire html (and js with the node-specific methods) through the web browser.
 
 
-### external asynchronous
+### 3. external asynchronous
 > 1x html file, 2x js file
 
-> javascript (node) starts a server through `node server.js`, which serves the html file, which calls the (browserified) client.js file
+javascript (node) starts a server through `node server.js`, which serves the html file, which calls the (browserified) client.js file
 
 (run the .js (*something like* `node server.js` and the html is served at some port))
 
@@ -101,7 +102,16 @@
 	a single-threaded non-blocking asynchronous concurrent language
 	has a call stack, an event loop, a callback queue, some other apis
 
-- test
+![v8 engine](./images/this-is-javascript)
+
+javascript is a single threaded programming language
+
+the call stack
+- one thread === one call stack === one thing at a time
+- add to and take away from one 'order' at a time
+
+![call stack](https://media.giphy.com/media/67uuy0QottvRiP1yCs/giphy.gif)
+
 
 
 ## the heart of Javascript - DOM
