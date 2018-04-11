@@ -1,5 +1,8 @@
 # JAVASCRIPT
 
+## BABEL REPL compiles everything into the final state (before serving), use it to check for everything
+- [Babel REPL](https://babeljs.io/repl/#?presets=react&code_lz=MYewdgzgLgBApgGzgWzmWBeGAeAFgRgD4AJRBEAGhgHcQAnBAEwEJsB6AwgbgChRJY_KAEMAlmDh0YWRiGABXVOgB0AczhQAokiVQAQgE8AkowAUAcjogQUcwEpeAJTjDgUACIB5ALLK6aRklTRBQ0KCohMQk6Bx4gA)
+
 ## TODO: learn a lot of javascript
 - [f8 app tutorial](http://makeitopen.com/docs/en/1-2-design.html) > [react](https://reactjs.org/tutorial/tutorial.html) > [jsx](https://reactjs.org/docs/jsx-in-depth.html) > [react native](http://facebook.github.io/react-native/docs/tutorial.html#content)
 - short javascript tutorial https://medium.com/codingthesmartway-com-blog/pure-javascript-building-a-real-world-application-from-scratch-5213591cfcd6
@@ -538,6 +541,16 @@ Note in particular how errors flowed from any step in the process to our catch h
 </script>
 ```
 
+## immutability and why it is important
+- [link](https://reactjs.org/tutorial/tutorial.html#why-immutability-is-important)
+
+> There are generally two ways for changing data. The first method is to mutate the data by directly changing the values of a variable. The second method is to replace the data with a new copy of the object that also includes desired changes.
+
+#### benefits
+- easier undo/redo and time travel
+- tracking changes (like git)
+- determinining when to re-render in React
+
 ---
 
 ## SOME BATSHIT CONVENIENCE FUNCTIONS
@@ -627,6 +640,7 @@ confirm() // makes a yes/no popup
 ### things to watch out for
 - empty arrays and empty objects aren't false
 
+```
 python -> javascript
 def myfunc(): code -> function myfunc() { code }
 list() -> Array
@@ -634,8 +648,11 @@ dict -> Objects (they are everywhere)
 input() -> prompt()
 print() -> console.log()
 == -> ===
+// below is for strings
 "li qun"[1:3] -> "li qun".substring(1, 3)
-
+// below is for arrays (lists)
+['a', 'b', 'c', 'd', 'e'][1:3] -> ['a', 'b', 'c', 'd', 'e'].slice(2, 3)
+```
 
 ## javascript history
 - https://codeburst.io/javascript-wtf-is-es6-es8-es-2017-ecmascript-dca859e4821c

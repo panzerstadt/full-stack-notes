@@ -1,6 +1,15 @@
 # JSX
 ||| Ref
 
+## what is JSX?
+- Javascript **precompiler** that React uses in its code to make adding dynamic content to html easier.
+
+## ALL THE GOTCHAS
+- [link](https://shripadk.github.io/react/docs/jsx-gotchas.html)
+
+## how to comment in JSX
+- http://wesbos.com/react-jsx-comments/
+
 ## things allowed and disallowed in JSX
 - html things allowed
 - javascript injection

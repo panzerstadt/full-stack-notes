@@ -62,6 +62,10 @@ At a high level it’s pretty simple: align the way you work with the way Git wo
 	
 	git remote add origin [copied web address]
 
+## **to connect this local git to a NON-empty remote repository**
+- the main answer seems to clear out the remote repo (which is not ideal)
+- https://stackoverflow.com/questions/2411031/how-do-i-clone-into-a-non-empty-directory
+
 ## **to check where this git will connect to**
 	git remote -v   # v for verbose
 
