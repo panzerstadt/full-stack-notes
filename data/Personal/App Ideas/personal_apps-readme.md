@@ -38,6 +38,8 @@ you are an adventurer entering a cave with a band of warriors, and you've walked
 
 ### generating the todo list
 
+![sketches](./images/epic-todolist-01.jpg)
+
 #### general effects with interactive objecs
 - like the css toggle, colourful, low input high output effects
 

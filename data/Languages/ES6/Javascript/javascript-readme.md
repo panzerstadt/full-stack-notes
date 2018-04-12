@@ -291,7 +291,12 @@ with async functions, you first queue up the async functions wrapped in `setTime
 
 
 ## Var, Let, Const
-[var, let, const](https://hackernoon.com/js-var-let-or-const-67e51dbb716f)
+- TLDR: when?
+	1. don't use `var` if possible
+	2. `const` for variables that won't change (immutable)
+	3. `let` for variables that will change
+- [var, let, const](https://hackernoon.com/js-var-let-or-const-67e51dbb716f)
+
 ### VAR
 - put variable declarations on top (good practise)
 - assign your variables before using it (because, just because. you know, like python)
