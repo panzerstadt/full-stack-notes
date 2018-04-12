@@ -266,6 +266,7 @@ def is_unsorted(name):
 def ensure_relative_links(line_of_text, query_keyword='query'):
     return '/?{0}={1}'.format(query_keyword, line_of_text)
 
+
 # not automated on markdown pyhton lib, but automatic on github
 def ensure_url(line_of_text, split_key=' '):
     words = line_of_text.split(split_key)  # split lines by spacing
@@ -281,9 +282,9 @@ def ensure_url(line_of_text, split_key=' '):
 
 
 # todo: https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files
-def ensure_images(line_of_text):
-    if './' in line_of_text:
-        line_of_text = line_of_text.replace('./', './static/', 1)
+def ensure_images(line_of_text, keyword='./images', image_folder='./static/'):
+    if keyword in line_of_text:
+        line_of_text = line_of_text.replace(keyword, ''.join([image_folder, keyword.split('./')[-1]]), 1)
         print(line_of_text)
     return line_of_text
 
@@ -314,7 +315,7 @@ def build_all_files(full_filepaths, urlify=True, fix_images=True):
     return list(zip(full_filepaths, result))
 
 
-def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=True, readme_files_only=True):
+def build_content_dict_from_tuple(file_tuples, keyword='todo', keyword_title_only=True, flag_complete=True, readme_files_only=True):
     """
     DISCLAIMER : ONLY DESIGNED TO WORK WITH PERSONAL MARKDOWN RULES
 
@@ -333,8 +334,13 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=Tru
         todo_boolean = False
         filename = splitext(basename(full_filepath))[0]  # get clean filename
 
+        #print('filename is: ', filename)
+
         if readme_files_only:
-            if 'readme' in filename: pass
+            if not 'readme' in filename:
+                print('skipping ', filename)
+                todo_boolean = True;
+                pass
 
         filename = filename[:-7]  # remove -readme
 
@@ -346,14 +352,21 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=Tru
                 pass
 
             else:
-                readme = iter(file_str.splitlines())  #makes the same iterable as open() function
+                readme = file_str.splitlines()
 
-                for line in readme:
+                for i, line in enumerate(readme):
                     if keyword in line.lower():
+                        if keyword_title_only:
+                            if not '#' in line:
+                                continue
+
                         # strips markdown formatting on left and \n + spaces on both sides
                         subtitle = line.lstrip('#').strip()
-                        content = iterate_till_blank(readme)
-                        result[filename] = [full_filepath, subtitle, content, False]
+
+                        # cut away the part of the readme before todo
+                        todo_lines = readme[i+1:]
+                        todo_content = iterate_till_blank(iter(todo_lines))  # needs an iterable to iterate. duh.
+                        result[filename] = [full_filepath, subtitle, todo_content, False]
                         todo_boolean = True
                         break
                     else:
@@ -364,35 +377,6 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=Tru
 
     return result
 
-
-# OLD
-def build_content_dict_from_filepaths(full_filepaths, keyword='todo'):
-    """
-    DISCLAIMER : ONLY DESIGNED TO WORK WITH PERSONAL MARKDOWN RULES
-
-    searches a list of filepaths for the first instance of a given keyword
-    and builds an ordered dictionary consisting of:
-    {filename : [absolute_path, line_containing_keyword, content_related_to_line]}
-
-    :return: OrderedDict() in the format {filename : [absolute_path, line_containing_keyword, content_related_to_line]}
-    """
-    from os.path import basename, splitext
-    filenames = [splitext(basename(f))[0] for f in full_filepaths]  # get clean filename
-    filenames = [f[:-7] for f in filenames]  # remove -readme
-
-    result = OrderedDict()
-    for i, full_filepath in enumerate(full_filepaths):
-        with open(full_filepath, encoding='utf-8', errors='ignore') as readme:
-            for line in readme:
-                if keyword in line.lower():
-                    # strips markdown formatting on left and \n + spaces on right
-                    subtitle = line.lstrip('#').strip()
-                    content = iterate_till_blank(readme)
-                    result[filenames[i]] = [full_filepath, subtitle, content]
-                    break
-                else:
-                    result[filenames[i]] = [full_filepath, None, None]
-    return result
 
 
 app = Flask(__name__)
@@ -417,29 +401,12 @@ def dashboard(list_of_stuff):
     else: return '\n'.join(list_of_stuff)
 
 
-# OLD
-@app.route('/full/')
-def all_readmes():
-    global file_tuples
-
-    _, edited_readme_file = zip(*file_tuples)
-
-    md = ''
-    for file in edited_readme_file:
-        md += file
-        md += '\n----\n'
-
-    full_readme_md = md
-    md_content = Markup(markdown.markdown(full_readme_md))
-    return render_template('card_single.html', name='all the readmes', content=md_content)
-
-
 @app.route('/todo/')
 def todo():
     global file_tuples
 
     # find keyword from filepaths
-    todo_dict = build_content_dict_from_tuple(file_tuples, keyword='todo')
+    todo_dict = build_content_dict_from_tuple(file_tuples)  # keyword set by default
 
     # rebuild markdown formatting for todolist
     md_list = []
