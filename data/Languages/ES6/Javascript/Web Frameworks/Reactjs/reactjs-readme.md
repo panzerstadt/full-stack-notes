@@ -8,6 +8,12 @@
 ## the babel for reactjs
 - https://www.codementor.io/tamizhvendan/beginner-guide-setup-reactjs-environment-npm-babel-6-webpack-du107r9zr
 
+## the Travis CI for reactjs
+- https://medium.com/@bezgachev/6-simple-steps-to-automatically-test-and-deploy-your-javascript-app-to-github-pages-c4c32a34bcb1
+
+## props and state (two most important things to know in react)
+- http://lucybain.com/blog/2016/react-state-vs-pros/
+
 ## DONE
 - [react + sass menu](https://codepen.io/panzerstadt/pen/rdONWV?editors=0010)
 

@@ -1,5 +1,8 @@
 # JAVASCRIPT
 
+## various MVC frameworks in javascript for comparison
+- http://todomvc.com
+
 ## BABEL REPL compiles everything into the final state (before serving), use it to check for everything
 - [Babel REPL](https://babeljs.io/repl/#?presets=react&code_lz=MYewdgzgLgBApgGzgWzmWBeGAeAFgRgD4AJRBEAGhgHcQAnBAEwEJsB6AwgbgChRJY_KAEMAlmDh0YWRiGABXVOgB0AczhQAokiVQAQgE8AkowAUAcjogQUcwEpeAJTjDgUACIB5ALLK6aRklTRBQ0KCohMQk6Bx4gA)
 
