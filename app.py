@@ -314,7 +314,7 @@ def build_all_files(full_filepaths, urlify=True, fix_images=True):
     return list(zip(full_filepaths, result))
 
 
-def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=True):
+def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=True, readme_files_only=True):
     """
     DISCLAIMER : ONLY DESIGNED TO WORK WITH PERSONAL MARKDOWN RULES
 
@@ -332,6 +332,10 @@ def build_content_dict_from_tuple(file_tuples, keyword='todo', flag_complete=Tru
     for full_filepath, file_str in file_tuples:
         todo_boolean = False
         filename = splitext(basename(full_filepath))[0]  # get clean filename
+
+        if readme_files_only:
+            if 'readme' in filename: pass
+
         filename = filename[:-7]  # remove -readme
 
         if flag_complete:
