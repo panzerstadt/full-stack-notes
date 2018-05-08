@@ -64,6 +64,8 @@
 5. view layer binding (new in REDUX)
 6. goes back to 1.
 
+7. ++: the root component (because it is React/Flux's root component with additional responsibilities)
+
 ## describing redux as a team of people working together, but a slightly different team compared to flux
 ### 1. the ACTION creator
 #### FLUX: takes input, turns it into actions, passes it to dispatcher
@@ -181,6 +183,16 @@ STORE --passes current state--> ROOT REDUCER --passes to relevant reducers--> RE
     - the connect function will setup all the wiring for it, using the selector.
 #### concept 3: selector
 - selector: a function you can write. specifies what parts of the state a component needs as properties.
+
+### 7. the root component (in REACT and REACT-REDUX)
+> ALL REACT APPLICATIONS HAVE ROOT COMPONENTS. IN REDUX APPLICATIONS, THIS COMPONENT TAKES ON MORE RESPONSIBILITY
+
+- component at the top level of the component hierarchy (like github's first commit)
+- its role is to put all the teams in place to tackle the work
+    - creates the store
+        - tells it which reducer to use
+    - brings together the view layer binding and the views
+- that's it. doesn't do much after the setup.
 
 
 ## HOW THEY ALL WORK TOGETHER (in flowchart)
