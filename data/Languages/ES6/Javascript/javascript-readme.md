@@ -335,6 +335,35 @@ obj.i = 1;  //OK
 	- variables = ***no change allowed***
 	- objects and arrays and stuff = ***allowed***
 
+## promises
+```Javascript
+// PROMISES
+// --------
+// promises (+ async/await)
+// https://codeburst.io/javascript-es-2017-learn-async-await-by-example-48acc58bad65
+// resolving and rejecting
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+// promise.all
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+// https://stackoverflow.com/questions/33073509/promise-all-then-resolve
+
+// structure of a promises based async function
+function functionName(input1, input2){
+    // always returns a promise where inside you do stuff
+    // resolve is where you tell Promise when is the time to mark the code as DONE
+    return new Promise(resolve => {
+        const a = 'hey';
+        // do all your code here
+
+        // when you're done, resolve (special return for Promises)
+        resolve(a);
+
+        if ('something bad happens') {
+            reject("argh i'm dying!!!");
+        }
+    })
+}
+```
 
 ## async/await
 ```Javascript
