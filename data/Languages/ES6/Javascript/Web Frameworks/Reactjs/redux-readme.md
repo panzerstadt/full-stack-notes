@@ -2,7 +2,13 @@
 ||| ref
 
 ## link
-- https://hackernoon.com/a-basic-react-redux-introductory-tutorial-adcc681eeb5e
+- [rahmat's recommendation](https://egghead.io/courses/getting-started-with-redux)
+- https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6
+- [conceptual diagram, connect(), and Provider](https://www.sohamkamani.com/blog/2017/03/31/react-redux-connect-explained/)
+- [calling APIs](https://www.sohamkamani.com/blog/2016/06/05/redux-apis/)
+
+## all you really need to write are reducers (to do things) and containers (to get things)!?
+- https://www.codementor.io/vkarpov/beginner-s-guide-to-redux-middleware-du107uyud
 
 ## before you get to react, know redux
 ### before you get to redux, know flux
@@ -129,6 +135,8 @@
 - does dispatching (an independent entity previously in flux)
 - delegates the work of figuring out what state changes need to happen (flux STORE's job) to the ROOT REDUCER which passes to REDUCERS
 
+> Those actions will be then passed to the ALL of the reducers combined into our rootReducer and each one of them will return a new copy of the state modified (or not) according to the requested action.
+
 ```
 STORE --passes current state--> ROOT REDUCER --passes to relevant reducers--> REDUCERS copy and make changes to copy --pass changed copy back--> ROOT REDUCER --passes new state back--> STORE that makes it the official new state
 ```
@@ -154,7 +162,9 @@ STORE --passes current state--> ROOT REDUCER --passes to relevant reducers--> RE
     - store tells CONTROLLER VIEW when the state has changed, CONTROLLER VIEW collects the new state, formats state into html, passes the updated state to all of the VIEWs under it
 
 #### REDUX : smart and dumb components
-- smart components
+##### dumb components == standard React component
+##### smart components / containers == dumb components + connect()
+- smart components (also called containers)
     - like controller views, but a few more rules
     - smart components are in charge of actions
     - if a dumb component under it needs to trigger an action, the smart component passes a function in via props. the dumb component can then treat that as a callback.
@@ -166,6 +176,8 @@ STORE --passes current state--> ROOT REDUCER --passes to relevant reducers--> RE
     - this means dumb components can be reused in a different app **that has different logic**.
     - they contain CSS styles that they need
         - can allow for custom styling, by accepting a style prop and merging it into the default styles
+- when to use which?
+    - when a component needs to know about a piece of the app state from the *ReduxStore*, then it is a smart component/container.
 
 
 ### 5. view layer binding
@@ -181,6 +193,22 @@ STORE --passes current state--> ROOT REDUCER --passes to relevant reducers--> RE
 #### concept 2: connect()
 - connect(): a function provided by react-redux. if a component wants to get state updates, it wraps itself using connect().
     - the connect function will setup all the wiring for it, using the selector.
+```
+example :
+ACTION CREATOR here takes new input and returns a formatted ACTION
+then the VIEW LAYER BINDING takes the formatted ACTION and the
+SMART COMPONENT (also CONTAINER) and plugs them together, so now the
+SMART COMPONENT HAS THE ACTION.
+
+the VIEW LAYER BINDING does this (with its connect() function):
+connect(mapStateProps, mapDispatchProps)(ContactList)
+- mapStateToProps
+    - state = get state from store
+- mapDispatchToProps
+    - dispatch = trigger action, make action, change state of store
+- ContactList
+    - the component (that is going to become a SMART COMPONENT / CONTAINER)
+```
 #### concept 3: selector
 - selector: a function you can write. specifies what parts of the state a component needs as properties.
 
@@ -196,6 +224,6 @@ STORE --passes current state--> ROOT REDUCER --passes to relevant reducers--> RE
 
 
 ## HOW THEY ALL WORK TOGETHER (in flowchart)
-![chart](./images/flux_flow.jpg)
+![chart](./images/redux_flow.jpg)
 
 

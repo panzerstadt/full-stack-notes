@@ -2,7 +2,7 @@
 ||| ref
 
 ## link
-- https://hackernoon.com/a-basic-react-redux-introductory-tutorial-adcc681eeb5e
+- https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207
 
 ## before you get to react, know redux
 ### before you get to redux, know flux
