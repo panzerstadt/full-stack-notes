@@ -4,7 +4,7 @@
 - main point : put that icon onto the homescreen for more user engagement
 
 ## properties
-name : full name, appears on spash screen
+name : full name, appears on splash screen
 
 short_name : short name for use on tabs and places with short spaces
 
