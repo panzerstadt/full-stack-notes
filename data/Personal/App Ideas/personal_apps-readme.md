@@ -38,7 +38,8 @@ you are an adventurer entering a cave with a band of warriors, and you've walked
 
 ### generating the todo list
 
-![sketches](./images/epic-todolist-01.jpg)
+![sketches](./images/epic-todolist-01.JPG)
+
 
 #### general effects with interactive objecs
 - like the css toggle, colourful, low input high output effects
@@ -66,3 +67,30 @@ you are an adventurer entering a cave with a band of warriors, and you've walked
 
 ### inspiration
 - [fancy toggle](https://codepen.io/panzerstadt/pen/YarQrp)
+
+## 2. a 'what did i do on dd-mm?' app
+- signs in to my gmail accounts (important)
+- apple notes and 
+- github and 
+- google (google activity?)
+- facebook (messenger esp)
+- twitter (opt)
+- instagram (opt)
+- google maps location history
+- google calendar
+- youtube
+- medium
+- safari and chrome browser history
+
+*use anomaly detection to detect different places i went to outside of my daily commute and work/home*
+
+#### displays it in a short paragraph
+#### also displays it as a list of 'achievements'
+
+### answers to:
+#### what did i do on 'dd-mm'
+#### what did i do last week
+#### what did i do last month
+
+
+## holy crap! i better learn to encrypt this properly

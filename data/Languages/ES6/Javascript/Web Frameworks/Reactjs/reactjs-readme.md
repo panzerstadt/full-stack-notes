@@ -1,6 +1,12 @@
 # REACTjs
 - another framework like node
 
+## REACT, FLUX, REDUX, REACT-REDUX
+- REACT = framework
+- [FLUX](./flux-readme.md) = architecture for REACT
+- [REDUX](./redux-readme.md) = different architecture
+- REACT-REDUX = REACT framework with REDUX architecture
+
 ## TODO: react apps
 - todo app (quick) https://medium.freecodecamp.org/how-to-build-a-real-time-todo-app-with-react-native-19a1ce15b0b3
 - learning webpack with react https://github.com/MikaelCarpenter/ReactWebpack
