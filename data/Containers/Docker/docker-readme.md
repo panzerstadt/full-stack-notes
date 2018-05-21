@@ -2,7 +2,15 @@
 
 #### Docker is like Git for OSes
 - in Git, you start with a base image(repo) with git init. your repo is .git
-- in Docker, you start a 
+- in Docker, you start a container, and you can freeze and save different container settings
+
+## TLDR
+### what is a container
+- docker is a popular one. there are others
+- container is like a virtual OS on a machine. but lighter, because its a bunch of processes in a namespace.
+- **containers are a bunch of processes grouped together in a namespace**
+- if you can group all the required processes and record them, you can tell another computer to run the same processes to get the exact same environment to run your app on
+- that other computer can be anywhere: on your friend's laptop, on the cloud, in google's servers.
 
 ## TODO: do stuff with docker
 - https://towardsdatascience.com/beginners-guide-to-data-science-python-docker-3181fd321a5c

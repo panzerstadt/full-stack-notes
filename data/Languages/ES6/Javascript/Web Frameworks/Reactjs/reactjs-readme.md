@@ -1,6 +1,38 @@
 # REACTjs
 - another framework like node
 
+## when to use React? (or other frameworks) over pure js?
+- https://css-tricks.com/project-need-react/
+
+### 1. when there is a lot of state
+```
+Even "state" is a bit of a nebulous word. Imagine things like this:
+
+	Which navigation item is active
+	Whether a button is disabled or not
+	The value of an input
+	Which accordion sections are expanded
+	When an area is loading
+	The user that is logged in and the team they belong to
+	Whether the thing the user is working on is published, or a draft
+
+"Business logic"-type stuff that we regularly deal with. State can also be straight up content:
+
+	All the comments on an article and the bits and bobs that make them up
+	The currently viewed article and all its metadata
+	An array of related articles and the metadata for those
+	A list of authors
+	An an activity log of recent actions a user has taken
+```
+
+### 2. to fight spaghetti
+- spaghetti code is when code organization and structure has gotten away from you
+- React owns your DOM, so it knows when to render what, you just need to change state whenever
+
+### 3. lots of DOM management
+- manually handling DOM is probably the biggest cause of spaghetti code
+
+
 ## REACT, FLUX, REDUX, REACT-REDUX
 - REACT = framework
 - [FLUX](./flux-readme.md) = architecture for REACT
